@@ -578,7 +578,7 @@ Figura 5.8: <em>Ejemplo de sumarización de direcciones.</em>
 <li><p><strong>Destino inalcanzable</strong>.- ICMP type: 3. El paquete no se entregó. No puede encontrarse la ruta o un paquete con el bit DF no puede pasar una red con un valor de paquete mas pequeño.</p></li>
 <li><p><strong>Tiempo excedido</strong>.- ICMP type: 11. El valor de TTL llegó a 0 y el paquete ha sido descartado (posible condición de loop o tiempo de reensamble expirado).</p></li>
 <li><p><strong>Problemas con parámetros</strong>.- ICMP type: 12. Un valor ilegal ha sido detectado en algún campo del encabezado.</p></li>
-<li><p><strong>Anuncio y solicitud de enrutador</strong>.- ICMP type: 9,10. Permite a los enrutadores anunciarse en una subred o contestar a una solicitud, todo lo anterior con la finalidad de configurar en forma automática el ruteador por default (gateway).</p></li>
+<li><p><strong>Anuncio y solicitud de enrutador</strong>.- ICMP type: 9,10. Permite a los enrutadores anunciarse en una subred o contestar a una solicitud, todo lo anterior con la finalidad de configurar en forma automática el enrutador por default (gateway).</p></li>
 <li><p><strong>Redirección</strong>.- ICMP type: 5. Se utiliza para que el enrutador le notifique al emisor que existe una ruta más adecuada. Este comando puede ser utilizado maliciosamente, por lo que muchos enrutadores lo bloquean</p></li>
 <li><p><strong>Petición y respuesta de eco</strong>.- ICMP type: 8, 0. Sirve para saber si un nodo es alcanzable y está activo. Son los comandos de la aplicación “ping”.</p></li>
 </ul>
@@ -993,7 +993,7 @@ Figura 5.20: <em>Formato del mensaje RIP (versión 1)</em>.
 </p>
 </div>
 <ul>
-<li>El campo comando puede ser 1 si es una solicitud (algún nodo solicita el vector de distancias) o 0, el valor más común, cuando el enrutador envía su vector de distancias.</li>
+<li>El campo comando puede ser 1 si es una solicitud (algún nodo solicita parte o toda la tabla de enrutamiento) o 2, el valor más común, cuando el enrutador envía su tabla de enrutamiento o parte de ella.</li>
 <li>La versión debe ser 1; existe una versión 2 que se presenta más adelante.</li>
 <li>El identificador de familia debe ser 2, que es el valor reservado para IP. RIP no se ha utilizado en ningún otro tipo de red.</li>
 <li>La dirección IP contiene una dirección de red, por ejemplo, 148.205.0.0. También podría contener una dirección de subred, pero como RIPv1 no entiende de máscaras de red, esto sólo puede funcionar si en todo el SA existe una configuración local de máscara de red</li>
@@ -1067,7 +1067,7 @@ Figura 5.23: <em>Principio de operación de OSPF</em>.
 Figura 5.24: <em>Red de referencia para ejemplificar la operación del algoritmo Shortest Path First</em>.
 </p>
 </div>
-<p>Para encontar la ruta mas corta entre pares de ruteadores (en este caso desde el ruteador B a los demás ruteadores) el algoritmo encuentra la trayectoria de menor costo. El algoritmo utiliza dos estructuras con tuplas de identificación de enrutador, costo y nodo de salida. La estructura llamada TRAYECTORIA, contiene las rutas con costos mínimos para alcanzar a un determinado enrutador. La estructura llamada ALTERNATIVAS, contiene rutas alternativas que aún no han sido consideradas. Cuando esta estructura está vacía, el algoritmo ha terminado y la tabla de enrutamiento se forma a partir de la información en la estructura TRAYECTORIAS.</p>
+<p>Para encontar la ruta mas corta entre pares de enrutadores (en este caso desde el enrutador B a los demás enrutadores) el algoritmo encuentra la trayectoria de menor costo. El algoritmo utiliza dos estructuras con tuplas de identificación de enrutador, costo y nodo de salida. La estructura llamada TRAYECTORIA, contiene las rutas con costos mínimos para alcanzar a un determinado enrutador. La estructura llamada ALTERNATIVAS, contiene rutas alternativas que aún no han sido consideradas. Cuando esta estructura está vacía, el algoritmo ha terminado y la tabla de enrutamiento se forma a partir de la información en la estructura TRAYECTORIAS.</p>
 <p>Tras la difusión de los LSA entre vecinos, cada enrutador tendrá la siguiente información:</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:spf1a"></span>
 <img src="figuras/c5/spf1a.jpg" alt="*Tablas con el estado de enlace de los vecinos para cada enrutador en el ejemplo*." width="60%" />
@@ -1165,7 +1165,7 @@ Figura 5.32: <em>Paquetes HELLO en la activación de un enrutador.</em>
 </p>
 </div>
 <p>Al recibir este mensaje, el enrutador B añade a A a su tabla de vecinos y responde con otro mensaje HELLO con la información de otros vecinos de B.</p>
-<p>Cuando A recibe este mensaje, añade B y su lista de vecinos a su propia tabla.En este punto, los ruteadores pueden iniciar comunicación bireccional para intercambiar información de estado de enlace.</p>
+<p>Cuando A recibe este mensaje, añade B y su lista de vecinos a su propia tabla.En este punto, los enrutadores pueden iniciar comunicación bireccional para intercambiar información de estado de enlace.</p>
 </div>
 <div id="elección-de-enrutador-designado" class="section level6 unnumbered hasAnchor">
 <h6>Elección de enrutador designado<a href="capl3.html#elección-de-enrutador-designado" class="anchor-section" aria-label="Anchor link to header"></a></h6>
@@ -1224,7 +1224,9 @@ Figura 5.35: <em>Proceso para selección, actualización y anuncio de rutas en B
 <p>Las actualizaciones de ruteo son recibidas de otros enrutadores BGP. El módulo de políticas de entrada filtra las rutas y realiza manipulación de los atributos. El proceso de decisión determina qué rutas de BGP serán usadas. El módulo de políticas de salida filtra las rutas y realiza la manipulación de atributos de las rutas que serán anunciadas. Las actualizaciones de ruteo son anunciadas a otros enrutadores BGP.</p>
 <p>El proceso de selección de rutas en BGP es un aspecto crítico de su operación. Cuando un enrutador BGP recibe múltiples anuncios para la misma red de destino, debe decidir cuál de estas rutas utilizar. Este proceso de selección se basa en una serie de reglas predefinidas que consideran los atributos de las rutas. Por ejemplo, una de las reglas más importantes es la longitud del AS_PATH: en general, BGP prefiere rutas con un AS_PATH más corto, ya que esto indica menos saltos entre sistemas autónomos. Sin embargo, las políticas de enrutamiento pueden modificar este comportamiento para cumplir con los objetivos específicos de la red.</p>
 <p>A cada SA se le asigna un peso y la ruta preferida al destino es aquella con el menor peso agregado. BGP debe de incluir una política para excluir un SA de todas las posibles trayectorias; esto se logra asignando un peso de infinito a un SA.</p>
-<p>#####Componentes {-}</p>
+</div>
+<div id="componentes" class="section level5 unnumbered hasAnchor">
+<h5>Componentes<a href="capl3.html#componentes" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 <p>BGP consta de varios componentes clave que trabajan juntos para proporcionar sus funcionalidades de enrutamiento. Los más importantes se muestran en la figura <a href="capl3.html#fig:compbgp">5.36</a>. Estos componentes incluyen los enrutadores, las sesiones BGP, los mensajes BGP y las tablas de enrutamiento.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:compbgp"></span>
 <img src="figuras/c5/compbgp.jpg" alt="*Principales componentes de BGP.*" width="60%" />
@@ -1314,11 +1316,8 @@ de la dirección 194.108.168.0.</p>
 </ul>
 </div>
 <div class="exercise">
-<ul>
-<li><span id="exr:c56" class="exercise"><strong>Problema 5.6  </strong></span></li>
-<li><p>Para un administrador de un Sistema Autónomo, ¿qué diferencia hay entre un protocolo de enrutamiento IGP y uno EGP</p></li>
-<li><p>Proporcione un ejemplo de protocolo IGP y uno de EGP</p></li>
-</ul>
+<p><span id="exr:c56" class="exercise"><strong>Problema 5.6  </strong></span>Para un administrador de un Sistema Autónomo, ¿qué diferencia hay entre un protocolo de enrutamiento IGP y uno EGP.</p>
+<p>Proporcione un ejemplo de protocolo IGP y uno de EGP.</p>
 </div>
 <div class="exercise">
 <p><span id="exr:c57" class="exercise"><strong>Problema 5.7  </strong></span>Seleccione las respuestas correctas.</p>
