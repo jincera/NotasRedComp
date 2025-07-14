@@ -30,7 +30,7 @@
   
   
 <link rel="prev" href="caplan.html"/>
-<link rel="next" href="referencias.html"/>
+<link rel="next" href="capl4.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -225,6 +225,29 @@ div.csl-indent {
 <li class="chapter" data-level="5.6.4" data-path="capl3.html"><a href="capl3.html#protocolos-de-enrutamiento-externo"><i class="fa fa-check"></i><b>5.6.4</b> Protocolos de enrutamiento externo</a></li>
 </ul></li>
 <li class="chapter" data-level="5.7" data-path="capl3.html"><a href="capl3.html#problemas-4"><i class="fa fa-check"></i><b>5.7</b> Problemas</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="capl4.html"><a href="capl4.html"><i class="fa fa-check"></i><b>6</b> Capa de Transporte</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="capl4.html"><a href="capl4.html#introducción-4"><i class="fa fa-check"></i><b>6.1</b> Introducción</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="capl4.html"><a href="capl4.html#comunicación-mediante-sockets"><i class="fa fa-check"></i><b>6.1.1</b> Comunicación mediante Sockets</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="capl4.html"><a href="capl4.html#udp-user-datagram-protocol"><i class="fa fa-check"></i><b>6.2</b> UDP (<em>User Datagram Protocol</em>)</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="capl4.html"><a href="capl4.html#formato-del-datagrama-udp"><i class="fa fa-check"></i><b>6.2.1</b> Formato del datagrama UDP</a></li>
+<li class="chapter" data-level="6.2.2" data-path="capl4.html"><a href="capl4.html#análisis-de-un-datagrama-udp"><i class="fa fa-check"></i><b>6.2.2</b> Análisis de un datagrama UDP</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="capl4.html"><a href="capl4.html#tcp-transmission-control-protocol"><i class="fa fa-check"></i><b>6.3</b> TCP (<em>Transmission Control Protocol</em>)</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="capl4.html"><a href="capl4.html#formato-del-segmento-tcp"><i class="fa fa-check"></i><b>6.3.1</b> Formato del segmento TCP</a></li>
+<li class="chapter" data-level="6.3.2" data-path="capl4.html"><a href="capl4.html#análisis-de-un-segmento-tcp"><i class="fa fa-check"></i><b>6.3.2</b> Análisis de un segmento TCP</a></li>
+<li class="chapter" data-level="6.3.3" data-path="capl4.html"><a href="capl4.html#establecimiento-y-liberación-de-una-conexión"><i class="fa fa-check"></i><b>6.3.3</b> Establecimiento y liberación de una conexión</a></li>
+<li class="chapter" data-level="6.3.4" data-path="capl4.html"><a href="capl4.html#control-de-errores-1"><i class="fa fa-check"></i><b>6.3.4</b> Control de errores</a></li>
+<li class="chapter" data-level="6.3.5" data-path="capl4.html"><a href="capl4.html#control-de-flujo"><i class="fa fa-check"></i><b>6.3.5</b> Control de flujo</a></li>
+<li class="chapter" data-level="6.3.6" data-path="capl4.html"><a href="capl4.html#control-de-congestión"><i class="fa fa-check"></i><b>6.3.6</b> Control de congestión</a></li>
+<li class="chapter" data-level="6.3.7" data-path="capl4.html"><a href="capl4.html#otros-mecanismos-de-control-de-congestión-en-tcp"><i class="fa fa-check"></i><b>6.3.7</b> Otros mecanismos de control de congestión en TCP</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="capl4.html"><a href="capl4.html#problemas-5"><i class="fa fa-check"></i><b>6.4</b> Problemas</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="referencias.html"><a href="referencias.html"><i class="fa fa-check"></i>Referencias</a></li>
 <li class="divider"></li>
@@ -1252,7 +1275,7 @@ Figura 5.37: <em>Mensaje de apertura BGP.</em>
 <p>El mensaje de apertura provee parámetros opcionales que pueden ser usados para autenticar al vecino BGP. Una aceptación del mensaje open se reconoce mediante la recepción de mensajes <em>keepalive</em>.</p>
 <p>Los mensajes de actualización son quizás los más importantes en BGP, ya que contienen información sobre las rutas que se están anunciando o retirando. Su formato se muestra en la figura <a href="capl3.html#fig:updatebgp">5.38</a> y está formado por varios campos además del encabezado común.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:updatebgp"></span>
-<img src="figuras/c5/updatebgp.jpg" alt="*Mensaje de actualización BGP.*" width="30%" />
+<img src="figuras/c5/updatebgp.jpg" alt="*Mensaje de actualización BGP.*" width="20%" />
 <p class="caption">
 Figura 5.38: <em>Mensaje de actualización BGP.</em>
 </p>
@@ -1280,7 +1303,7 @@ Figura 5.38: <em>Mensaje de actualización BGP.</em>
 <ul>
 <li>Se modifica el campo TTL incrementándolo en 1</li>
 <li>Se modifica el campo TTL decrementándolo en 1</li>
-<li>Se recalcula el campo FCS ({})</li>
+<li>Se recalcula el campo FCS (<em>checksum</em>)</li>
 <li>Se cambia la dirección IP de origen por la de la interfaz de salida</li>
 <li>Se cambia la dirección IP de destino por la de la interfaz de salida</li>
 <li>Se mantienen las direcciones IP de origen y destino</li>
@@ -1289,8 +1312,7 @@ Figura 5.38: <em>Mensaje de actualización BGP.</em>
 <div class="exercise">
 <p><span id="exr:c52" class="exercise"><strong>Problema 5.2  </strong></span>Asigne los nombres faltantes en la figura, que representa la clasificación típica de las familias de protocolos de enrutamiento (para redes fijas).</p>
 </div>
-<p><img src="figuras/c5/ejerc52.jpg" width="50%" style="display: block; margin: auto;" />
-```</p>
+<p><img src="figuras/c5/ejerc52.jpg" width="50%" style="display: block; margin: auto;" /></p>
 <div class="exercise">
 <p><span id="exr:c53" class="exercise"><strong>Problema 5.3  </strong></span>Tras configurar una red (en la que no se ha intercambiado ningún mensaje), la computadora A quiere comunicarse con B y para ello manda una trama de difusión ARP. Tras recibir la res-pues-ta de B, le envía un mensaje. Ahora B debe responder a A. ¿Necesita B mandar a su vez una trama de difusión ARP?
 Justifique muy brevemente su respuesta.</p>
@@ -1353,6 +1375,7 @@ de la dirección 194.108.168.0.</p>
 <div class="exercise">
 <p><span id="exr:c58" class="exercise"><strong>Problema 5.8  </strong></span>¿Qué es BGP-4 y en qué se diferencia de otros protocolos de ruteo?</p>
 </div>
+
 </div>
 </div>
 <div class="footnotes">
@@ -1368,7 +1391,7 @@ de la dirección 194.108.168.0.</p>
         </div>
       </div>
 <a href="caplan.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="referencias.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="capl4.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

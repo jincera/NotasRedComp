@@ -226,6 +226,29 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="5.7" data-path="capl3.html"><a href="capl3.html#problemas-4"><i class="fa fa-check"></i><b>5.7</b> Problemas</a></li>
 </ul></li>
+<li class="chapter" data-level="6" data-path="capl4.html"><a href="capl4.html"><i class="fa fa-check"></i><b>6</b> Capa de Transporte</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="capl4.html"><a href="capl4.html#introducción-4"><i class="fa fa-check"></i><b>6.1</b> Introducción</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="capl4.html"><a href="capl4.html#comunicación-mediante-sockets"><i class="fa fa-check"></i><b>6.1.1</b> Comunicación mediante Sockets</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="capl4.html"><a href="capl4.html#udp-user-datagram-protocol"><i class="fa fa-check"></i><b>6.2</b> UDP (<em>User Datagram Protocol</em>)</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="capl4.html"><a href="capl4.html#formato-del-datagrama-udp"><i class="fa fa-check"></i><b>6.2.1</b> Formato del datagrama UDP</a></li>
+<li class="chapter" data-level="6.2.2" data-path="capl4.html"><a href="capl4.html#análisis-de-un-datagrama-udp"><i class="fa fa-check"></i><b>6.2.2</b> Análisis de un datagrama UDP</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="capl4.html"><a href="capl4.html#tcp-transmission-control-protocol"><i class="fa fa-check"></i><b>6.3</b> TCP (<em>Transmission Control Protocol</em>)</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="capl4.html"><a href="capl4.html#formato-del-segmento-tcp"><i class="fa fa-check"></i><b>6.3.1</b> Formato del segmento TCP</a></li>
+<li class="chapter" data-level="6.3.2" data-path="capl4.html"><a href="capl4.html#análisis-de-un-segmento-tcp"><i class="fa fa-check"></i><b>6.3.2</b> Análisis de un segmento TCP</a></li>
+<li class="chapter" data-level="6.3.3" data-path="capl4.html"><a href="capl4.html#establecimiento-y-liberación-de-una-conexión"><i class="fa fa-check"></i><b>6.3.3</b> Establecimiento y liberación de una conexión</a></li>
+<li class="chapter" data-level="6.3.4" data-path="capl4.html"><a href="capl4.html#control-de-errores-1"><i class="fa fa-check"></i><b>6.3.4</b> Control de errores</a></li>
+<li class="chapter" data-level="6.3.5" data-path="capl4.html"><a href="capl4.html#control-de-flujo"><i class="fa fa-check"></i><b>6.3.5</b> Control de flujo</a></li>
+<li class="chapter" data-level="6.3.6" data-path="capl4.html"><a href="capl4.html#control-de-congestión"><i class="fa fa-check"></i><b>6.3.6</b> Control de congestión</a></li>
+<li class="chapter" data-level="6.3.7" data-path="capl4.html"><a href="capl4.html#otros-mecanismos-de-control-de-congestión-en-tcp"><i class="fa fa-check"></i><b>6.3.7</b> Otros mecanismos de control de congestión en TCP</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="capl4.html"><a href="capl4.html#problemas-5"><i class="fa fa-check"></i><b>6.4</b> Problemas</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="referencias.html"><a href="referencias.html"><i class="fa fa-check"></i>Referencias</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
@@ -326,7 +349,7 @@ Figura 2.3: <em>Una señal representada en el dominio del tiempo (figura de la i
 resistencia a la propagación de la energía, por lo que las señales se <em>atenúan</em>. En genera,l no permite que todas las frecuencias se propaguen de igual manera<a href="#fn11" class="footnote-ref" id="fnref11"><sup>11</sup></a>. La velocidad a la que se propagan varía con la frecuencia y, de hecho, algunas se atenúan tanto que ya no son perceptibles. Por ello, las señales se <em>distorsionan</em> en el medio.</p>
 <p>Así, el medio es una especie de filtro que bloquea algunos de los
 componentes de la señal. Llamamos <em>ancho de banda del medio</em> (a veces lo llamaremos respuesta en frecuencia) al conjunto de frecuencias que pueden viajar por éste sin que se atenúen sensiblemente, es decir, las frecuencias que no distorsionan sensiblemente a la señal.</p>
-<p>La figura <a href="capl1.html#fig:bwcanal">2.4</a>, tomada de <span class="citation">[5]</span>, ejemplifica el impacto que las diferencias entre el ancho de banda de la señal y el ancho de banda del medio puede tener en la información transportada. En el primer renglón se muestra la señal cuadrada que representa el valor ASCII de la letra "b" en binario y a su derecha se presentan sus principales armónicas.</p>
+<p>La figura <a href="capl1.html#fig:bwcanal">2.4</a>, tomada de <span class="citation">(Tanenbaum 2003)</span>, ejemplifica el impacto que las diferencias entre el ancho de banda de la señal y el ancho de banda del medio puede tener en la información transportada. En el primer renglón se muestra la señal cuadrada que representa el valor ASCII de la letra "b" en binario y a su derecha se presentan sus principales armónicas.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:bwcanal"></span>
 <img src="figuras/c2/bwcanal.jpg" alt="*Impacto del ancho de banda del canal sobre una señal*" width="50%" />
 <p class="caption">
@@ -352,7 +375,7 @@ ello, el baudaje es proporcional al ancho de banda del medio.</p>
 puede tener uno o más bits de información<a href="#fn12" class="footnote-ref" id="fnref12"><sup>12</sup></a>, por lo que el baudaje y la velocidad de transmisión medida en bits por segundo, no necesariamente son iguales.</p>
 <p>En cualquier caso, a condiciones iguales, a mayor ancho de banda, mayor es la velocidad de transmisión. Harry Nyquist demostró que existe un límite en la cantidad de datos que se pueden transmitir en el medio. Si el canal tiene <span class="math inline">\(B\)</span> baudios, el "pulso más estrecho" que se puede transmitir es <span class="math inline">\(1/2B\)</span>, por lo que para un símbolo que puede tomar <span class="math inline">\(M\)</span> valores distintos, (por ejemplo, <span class="math inline">\(M\)</span> niveles de voltaje), la velocidad máxima de transmisión del canal es: <span class="math display">\[C= 2B\log_2(M)\,\text{bps}\]</span></p>
 <div class="example">
-<p><span id="exm:unnamed-chunk-4" class="example"><strong>Ejemplo 2.1  </strong></span>Si el ancho de banda de una señal es de <span class="math inline">\(B = 3,200\)</span> Hz y los símbolos pueden tomar <span class="math inline">\(M=8\)</span> valores, la capacidad máxima teórica de transmisión
+<p><span id="exm:unnamed-chunk-5" class="example"><strong>Ejemplo 2.1  </strong></span>Si el ancho de banda de una señal es de <span class="math inline">\(B = 3,200\)</span> Hz y los símbolos pueden tomar <span class="math inline">\(M=8\)</span> valores, la capacidad máxima teórica de transmisión
 es de:
 <span class="math display">\[C = 2\times3,200\times\log_2(8) = 2\times3,200\times3 =  19,200\,bps\]</span></p>
 </div>
@@ -370,14 +393,14 @@ velocidad de transmisión máxima que un canal con ancho de banda B podría alca
 <span class="math display">\[C = B \log_2 (1 +\frac{S}{N})\]</span></p>
 <p>La fracción <span class="math inline">\(S/N\)</span>, es la relación de la potencia de la señal dividida entre la potencia del ruido. No tiene unidades y se le conoce como SNR, <em>signal to noise ratio</em>.</p>
 <div class="example">
-<p><span id="exm:unnamed-chunk-5" class="example"><strong>Ejemplo 2.2  </strong></span>Considere una señal de <span class="math inline">\(B=3,200\,\text{Hz}\)</span> y una relación señal a ruido de 1000 (es decir, 30 dB). La capacidad del canal en bps es de: <span class="math display">\[C = 3,200\times\log_2(1+1000) = 3,200\times \log_2(1001) = 3,200\times\frac{\log_{10}1001}{\log_{10}2}\approx 31.9 kbps\]</span></p>
+<p><span id="exm:unnamed-chunk-6" class="example"><strong>Ejemplo 2.2  </strong></span>Considere una señal de <span class="math inline">\(B=3,200\,\text{Hz}\)</span> y una relación señal a ruido de 1000 (es decir, 30 dB). La capacidad del canal en bps es de: <span class="math display">\[C = 3,200\times\log_2(1+1000) = 3,200\times \log_2(1001) = 3,200\times\frac{\log_{10}1001}{\log_{10}2}\approx 31.9 kbps\]</span></p>
 </div>
 </div>
 <div id="medios-guiados" class="section level3 hasAnchor" number="2.1.2">
 <h3><span class="header-section-number">2.1.2</span> Medios guiados<a href="capl1.html#medios-guiados" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Las señales de los mensajes deben propagarse a través de un canal o
 medio de transmisión. Tanenbaum clasifica estos medios en guiados y no
-guiados <span class="citation">[5]</span>. En los primeros, la energía se propaga por un
+guiados <span class="citation">(Tanenbaum 2003)</span>. En los primeros, la energía se propaga por un
 medio físico acotado, como los cables telefónicos y las fibras ópticas.
 En los medios no guiados la energía suele propagarse en forma de señales
 electromagnéticas.</p>
@@ -406,14 +429,14 @@ adyacentes. Al mismo tiempo, se reduce la interferencia generada por las
 señales electromagnéticas circundantes: el campo es capturado por los
 dos conductores más o menos en la misma proporción, por lo que la
 diferencia en intensidad entre uno y otro conductor casi no se ve
-afectada<a href="#fn13" class="footnote-ref" id="fnref13"><sup>13</sup></a> <span class="citation">[9]</span>.</p>
+afectada<a href="#fn13" class="footnote-ref" id="fnref13"><sup>13</sup></a> <span class="citation">(Leon-Garcia and Indra 2002)</span>.</p>
 <p>Como veremos más adelante, la mayor parte de las redes de acceso
 telefónicas (llamadas par de abonado, o de última milla) utilizan pares
 trenzados para enlazar a los suscriptores con las centrales telefónicas.
 Estas redes tienen tal cobertura que, a decir de Tanenbaum, si se
 extendieran juntos todos los despliegues de pares de abonado, se crearía
 un cable que podría ir a la Luna y regresar a la Tierra ¡mil
-veces! <span class="citation">[5]</span></p>
+veces! <span class="citation">(Tanenbaum 2003)</span></p>
 <p>Aunque la señal se atenúa aceleradamente con la distancia, el par
 trenzado tiene un ancho de banda relativamente amplio, por lo que su uso
 en redes locales también es sumamente popular, sobre todo en lo que se

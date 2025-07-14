@@ -1,0 +1,1593 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 15 Enrutamiento | Redes de Computadoras</title>
+  <meta name="description" content="Notas del curso Redes de Computadoras en HTML." />
+  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 15 Enrutamiento | Redes de Computadoras" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Notas del curso Redes de Computadoras en HTML." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 15 Enrutamiento | Redes de Computadoras" />
+  
+  <meta name="twitter:description" content="Notas del curso Redes de Computadoras en HTML." />
+  
+
+<meta name="author" content="José Incera" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="ipv6.html"/>
+<link rel="next" href="problemas-4.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Redes de Computadoras. Notas de Curso</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Presentación</a></li>
+<li class="chapter" data-level="" data-path="resumen.html"><a href="resumen.html"><i class="fa fa-check"></i>Resumen</a></li>
+<li class="chapter" data-level="1" data-path="conceptos-básicos.html"><a href="conceptos-básicos.html"><i class="fa fa-check"></i><b>1</b> Conceptos básicos</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="conceptos-básicos.html"><a href="conceptos-básicos.html#sistemas-de-comunicaciones"><i class="fa fa-check"></i><b>1.1</b> Sistemas de comunicaciones</a></li>
+<li class="chapter" data-level="1.2" data-path="conceptos-básicos.html"><a href="conceptos-básicos.html#redes-de-telecomunicaciones"><i class="fa fa-check"></i><b>1.2</b> Redes de telecomunicaciones</a></li>
+<li class="chapter" data-level="1.3" data-path="conceptos-básicos.html"><a href="conceptos-básicos.html#señal"><i class="fa fa-check"></i><b>1.3</b> Señal</a></li>
+<li class="chapter" data-level="1.4" data-path="conceptos-básicos.html"><a href="conceptos-básicos.html#conversión-analógica-a-digital-ad"><i class="fa fa-check"></i><b>1.4</b> Conversión analógica a digital (A/D)</a>
+<ul>
+<li class="chapter" data-level="" data-path="conceptos-básicos.html"><a href="conceptos-básicos.html#teorema-de-nyquist"><i class="fa fa-check"></i>Teorema de Nyquist</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="conmutación.html"><a href="conmutación.html"><i class="fa fa-check"></i><b>2</b> Conmutación</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="conmutación.html"><a href="conmutación.html#conmutación-de-mensajes"><i class="fa fa-check"></i><b>2.1</b> Conmutación de mensajes</a></li>
+<li class="chapter" data-level="2.2" data-path="conmutación.html"><a href="conmutación.html#conmutación-de-circuitos"><i class="fa fa-check"></i><b>2.2</b> Conmutación de circuitos</a></li>
+<li class="chapter" data-level="2.3" data-path="conmutación.html"><a href="conmutación.html#conmutación-de-paquetes"><i class="fa fa-check"></i><b>2.3</b> Conmutación de paquetes</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="multiplexaje.html"><a href="multiplexaje.html"><i class="fa fa-check"></i><b>3</b> Multiplexaje</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="multiplexaje.html"><a href="multiplexaje.html#multiplexaje-en-el-tiempo"><i class="fa fa-check"></i><b>3.1</b> Multiplexaje en el tiempo</a></li>
+<li class="chapter" data-level="3.2" data-path="multiplexaje.html"><a href="multiplexaje.html#multiplexaje-en-frecuencia"><i class="fa fa-check"></i><b>3.2</b> Multiplexaje en frecuencia</a></li>
+<li class="chapter" data-level="3.3" data-path="multiplexaje.html"><a href="multiplexaje.html#s:cdm"><i class="fa fa-check"></i><b>3.3</b> Multiplexaje por división de código</a></li>
+<li class="chapter" data-level="3.4" data-path="multiplexaje.html"><a href="multiplexaje.html#multiplexaje-espacial"><i class="fa fa-check"></i><b>3.4</b> Multiplexaje espacial</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="arquitecturas-de-red.html"><a href="arquitecturas-de-red.html"><i class="fa fa-check"></i><b>4</b> Arquitecturas de red</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="arquitecturas-de-red.html"><a href="arquitecturas-de-red.html#modelo-isoosi"><i class="fa fa-check"></i><b>4.1</b> Modelo ISO/OSI</a></li>
+<li class="chapter" data-level="4.2" data-path="arquitecturas-de-red.html"><a href="arquitecturas-de-red.html#modelo-tcpip"><i class="fa fa-check"></i><b>4.2</b> Modelo TCP/IP</a></li>
+<li class="chapter" data-level="4.3" data-path="arquitecturas-de-red.html"><a href="arquitecturas-de-red.html#encapsulamiento"><i class="fa fa-check"></i><b>4.3</b> Encapsulamiento</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="taxonomía.html"><a href="taxonomía.html"><i class="fa fa-check"></i><b>5</b> Taxonomía</a></li>
+<li class="chapter" data-level="6" data-path="problemas.html"><a href="problemas.html"><i class="fa fa-check"></i><b>6</b> Problemas</a></li>
+<li class="chapter" data-level="7" data-path="capl1.html"><a href="capl1.html"><i class="fa fa-check"></i><b>7</b> Capa física</a>
+<ul>
+<li class="chapter" data-level="" data-path="capl1.html"><a href="capl1.html#resumen-1"><i class="fa fa-check"></i>Resumen</a></li>
+<li class="chapter" data-level="7.1" data-path="capl1.html"><a href="capl1.html#medios-de-transmisión"><i class="fa fa-check"></i><b>7.1</b> Medios de transmisión</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="capl1.html"><a href="capl1.html#introducción"><i class="fa fa-check"></i><b>7.1.1</b> Introducción</a></li>
+<li class="chapter" data-level="" data-path="capl1.html"><a href="capl1.html#baudaje-y-velocidad-de-transmisión"><i class="fa fa-check"></i>Baudaje y velocidad de transmisión</a></li>
+<li class="chapter" data-level="7.1.2" data-path="capl1.html"><a href="capl1.html#medios-guiados"><i class="fa fa-check"></i><b>7.1.2</b> Medios guiados</a></li>
+<li class="chapter" data-level="" data-path="capl1.html"><a href="capl1.html#par-trenzado"><i class="fa fa-check"></i>Par trenzado</a></li>
+<li class="chapter" data-level="" data-path="capl1.html"><a href="capl1.html#cable-coaxial"><i class="fa fa-check"></i>Cable coaxial</a></li>
+<li class="chapter" data-level="" data-path="capl1.html"><a href="capl1.html#fibra-óptica"><i class="fa fa-check"></i>Fibra óptica</a></li>
+<li class="chapter" data-level="7.1.3" data-path="capl1.html"><a href="capl1.html#medios-no-guiados"><i class="fa fa-check"></i><b>7.1.3</b> Medios no guiados</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="capl1.html"><a href="capl1.html#sistemas-de-comunicaciones-1"><i class="fa fa-check"></i><b>7.2</b> Sistemas de comunicaciones</a></li>
+<li class="chapter" data-level="7.3" data-path="capl1.html"><a href="capl1.html#codificaciones"><i class="fa fa-check"></i><b>7.3</b> Codificaciones</a></li>
+<li class="chapter" data-level="7.4" data-path="capl1.html"><a href="capl1.html#problemas-1"><i class="fa fa-check"></i><b>7.4</b> Problemas</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="capl2.html"><a href="capl2.html"><i class="fa fa-check"></i><b>8</b> Capa de enlace de datos</a>
+<ul>
+<li class="chapter" data-level="" data-path="capl2.html"><a href="capl2.html#resumen-2"><i class="fa fa-check"></i>Resumen</a></li>
+<li class="chapter" data-level="8.1" data-path="capl2.html"><a href="capl2.html#introducción-1"><i class="fa fa-check"></i><b>8.1</b> Introducción</a></li>
+<li class="chapter" data-level="8.2" data-path="capl2.html"><a href="capl2.html#control-de-errores"><i class="fa fa-check"></i><b>8.2</b> Control de errores</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="capl2.html"><a href="capl2.html#detección-de-errores"><i class="fa fa-check"></i><b>8.2.1</b> Detección de errores</a></li>
+<li class="chapter" data-level="8.2.2" data-path="capl2.html"><a href="capl2.html#auto-corrección-de-errores"><i class="fa fa-check"></i><b>8.2.2</b> Auto-corrección de errores</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="capl2.html"><a href="capl2.html#protocolos-para-corrección-de-errores"><i class="fa fa-check"></i><b>8.3</b> Protocolos para corrección de errores</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="capl2.html"><a href="capl2.html#protocolo-stop-and-wait"><i class="fa fa-check"></i><b>8.3.1</b> Protocolo Stop and Wait</a></li>
+<li class="chapter" data-level="8.3.2" data-path="capl2.html"><a href="capl2.html#protocolo-de-bit-alternado"><i class="fa fa-check"></i><b>8.3.2</b> Protocolo de bit alternado</a></li>
+<li class="chapter" data-level="8.3.3" data-path="capl2.html"><a href="capl2.html#protocolos-de-ventanas-deslizantes"><i class="fa fa-check"></i><b>8.3.3</b> Protocolos de ventanas deslizantes</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="capl2.html"><a href="capl2.html#problemas-2"><i class="fa fa-check"></i><b>8.4</b> Problemas</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="caplan.html"><a href="caplan.html"><i class="fa fa-check"></i><b>9</b> Redes locales</a>
+<ul>
+<li class="chapter" data-level="" data-path="caplan.html"><a href="caplan.html#resumen-3"><i class="fa fa-check"></i>Resumen</a></li>
+<li class="chapter" data-level="9.1" data-path="caplan.html"><a href="caplan.html#introducción-2"><i class="fa fa-check"></i><b>9.1</b> Introducción</a></li>
+<li class="chapter" data-level="9.2" data-path="caplan.html"><a href="caplan.html#ethernetieee-802.3"><i class="fa fa-check"></i><b>9.2</b> Ethernet/IEEE 802.3</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="caplan.html"><a href="caplan.html#csmacd"><i class="fa fa-check"></i><b>9.2.1</b> CSMA/CD</a></li>
+<li class="chapter" data-level="9.2.2" data-path="caplan.html"><a href="caplan.html#formato-de-la-trama"><i class="fa fa-check"></i><b>9.2.2</b> Formato de la trama</a></li>
+<li class="chapter" data-level="9.2.3" data-path="caplan.html"><a href="caplan.html#implementaciones"><i class="fa fa-check"></i><b>9.2.3</b> Implementaciones</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="caplan.html"><a href="caplan.html#redes-locales-inalámbricas"><i class="fa fa-check"></i><b>9.3</b> Redes locales inalámbricas</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="caplan.html"><a href="caplan.html#protocolo-de-acceso"><i class="fa fa-check"></i><b>9.3.1</b> Protocolo de Acceso</a></li>
+<li class="chapter" data-level="9.3.2" data-path="caplan.html"><a href="caplan.html#implementaciones-1"><i class="fa fa-check"></i><b>9.3.2</b> Implementaciones</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="caplan.html"><a href="caplan.html#conmutacion"><i class="fa fa-check"></i><b>9.4</b> Conmutacion</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="caplan.html"><a href="caplan.html#principio-de-operación"><i class="fa fa-check"></i><b>9.4.1</b> Principio de operación</a></li>
+<li class="chapter" data-level="9.4.2" data-path="caplan.html"><a href="caplan.html#conmutadores-transparentes---operación"><i class="fa fa-check"></i><b>9.4.2</b> Conmutadores transparentes - operación</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="caplan.html"><a href="caplan.html#protocolo-spanning-tree"><i class="fa fa-check"></i><b>9.5</b> Protocolo Spanning Tree</a>
+<ul>
+<li class="chapter" data-level="9.5.1" data-path="caplan.html"><a href="caplan.html#protocolo-spanning-tree-1"><i class="fa fa-check"></i><b>9.5.1</b> Protocolo Spanning Tree</a></li>
+<li class="chapter" data-level="" data-path="caplan.html"><a href="caplan.html#asignación-del-puente-raíz"><i class="fa fa-check"></i>Asignación del Puente Raíz</a></li>
+<li class="chapter" data-level="" data-path="caplan.html"><a href="caplan.html#temporizadores-y-reconfiguración-de-la-topología"><i class="fa fa-check"></i>Temporizadores y reconfiguración de la topología</a></li>
+</ul></li>
+<li class="chapter" data-level="9.6" data-path="caplan.html"><a href="caplan.html#rapid-stp"><i class="fa fa-check"></i><b>9.6</b> Rapid STP</a></li>
+<li class="chapter" data-level="9.7" data-path="caplan.html"><a href="caplan.html#agregación-de-enlaces"><i class="fa fa-check"></i><b>9.7</b> Agregación de enlaces</a></li>
+<li class="chapter" data-level="9.8" data-path="caplan.html"><a href="caplan.html#redes-locales-virtuales"><i class="fa fa-check"></i><b>9.8</b> Redes locales virtuales</a>
+<ul>
+<li class="chapter" data-level="9.8.1" data-path="caplan.html"><a href="caplan.html#criterios-de-membresía"><i class="fa fa-check"></i><b>9.8.1</b> Criterios de membresía</a></li>
+<li class="chapter" data-level="9.8.2" data-path="caplan.html"><a href="caplan.html#etiquetado-de-vlan"><i class="fa fa-check"></i><b>9.8.2</b> Etiquetado de VLAN</a></li>
+<li class="chapter" data-level="9.8.3" data-path="caplan.html"><a href="caplan.html#puertos-de-acceso-y-de-trunking"><i class="fa fa-check"></i><b>9.8.3</b> Puertos de acceso y de trunking</a></li>
+</ul></li>
+<li class="chapter" data-level="9.9" data-path="caplan.html"><a href="caplan.html#problemas-3"><i class="fa fa-check"></i><b>9.9</b> Problemas</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="introducción-3.html"><a href="introducción-3.html"><i class="fa fa-check"></i><b>10</b> Introducción</a></li>
+<li class="chapter" data-level="11" data-path="sec:ip.html"><a href="sec:ip.html"><i class="fa fa-check"></i><b>11</b> Protocolo IP</a></li>
+<li class="chapter" data-level="12" data-path="esquema-de-direccionamiento.html"><a href="esquema-de-direccionamiento.html"><i class="fa fa-check"></i><b>12</b> Esquema de direccionamiento</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="esquema-de-direccionamiento.html"><a href="esquema-de-direccionamiento.html#clases-de-direcciones-ip"><i class="fa fa-check"></i><b>12.1</b> Clases de direcciones IP</a></li>
+<li class="chapter" data-level="12.2" data-path="esquema-de-direccionamiento.html"><a href="esquema-de-direccionamiento.html#muxe1scaras-de-longitud-variable"><i class="fa fa-check"></i><b>12.2</b> Máscaras de longitud variable</a></li>
+<li class="chapter" data-level="12.3" data-path="esquema-de-direccionamiento.html"><a href="esquema-de-direccionamiento.html#cidr"><i class="fa fa-check"></i><b>12.3</b> CIDR</a></li>
+<li class="chapter" data-level="12.4" data-path="esquema-de-direccionamiento.html"><a href="esquema-de-direccionamiento.html#asignaciuxf3n-de-direcciones-a-dispositivos"><i class="fa fa-check"></i><b>12.4</b> Asignación de direcciones a dispositivos</a></li>
+<li class="chapter" data-level="12.5" data-path="esquema-de-direccionamiento.html"><a href="esquema-de-direccionamiento.html#direcciones-privadas"><i class="fa fa-check"></i><b>12.5</b> Direcciones privadas</a>
+<ul>
+<li class="chapter" data-level="" data-path="esquema-de-direccionamiento.html"><a href="esquema-de-direccionamiento.html#network-address-translation---nat"><i class="fa fa-check"></i>Network Address Translation - NAT</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="protocolos-auxiliares.html"><a href="protocolos-auxiliares.html"><i class="fa fa-check"></i><b>13</b> Protocolos auxiliares</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="protocolos-auxiliares.html"><a href="protocolos-auxiliares.html#icmp"><i class="fa fa-check"></i><b>13.1</b> ICMP</a></li>
+<li class="chapter" data-level="13.2" data-path="protocolos-auxiliares.html"><a href="protocolos-auxiliares.html#arp"><i class="fa fa-check"></i><b>13.2</b> ARP</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="ipv6.html"><a href="ipv6.html"><i class="fa fa-check"></i><b>14</b> IPv6</a></li>
+<li class="chapter" data-level="15" data-path="enrutamiento.html"><a href="enrutamiento.html"><i class="fa fa-check"></i><b>15</b> Enrutamiento</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="enrutamiento.html"><a href="enrutamiento.html#enrutamiento-estuxe1tico"><i class="fa fa-check"></i><b>15.1</b> Enrutamiento estático</a></li>
+<li class="chapter" data-level="15.2" data-path="enrutamiento.html"><a href="enrutamiento.html#enrutamiento-dinuxe1mico"><i class="fa fa-check"></i><b>15.2</b> Enrutamiento dinámico</a>
+<ul>
+<li class="chapter" data-level="15.2.1" data-path="enrutamiento.html"><a href="enrutamiento.html#sistemas-autuxf3nomos"><i class="fa fa-check"></i><b>15.2.1</b> Sistemas autónomos</a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="enrutamiento.html"><a href="enrutamiento.html#protocolos-de-enrutamiento-interno"><i class="fa fa-check"></i><b>15.3</b> Protocolos de enrutamiento interno</a>
+<ul>
+<li class="chapter" data-level="15.3.1" data-path="enrutamiento.html"><a href="enrutamiento.html#enrutamiento-interno---vector-de-distancias"><i class="fa fa-check"></i><b>15.3.1</b> Enrutamiento interno - Vector de distancias</a></li>
+<li class="chapter" data-level="" data-path="enrutamiento.html"><a href="enrutamiento.html#rip"><i class="fa fa-check"></i>RIP</a></li>
+<li class="chapter" data-level="15.3.2" data-path="enrutamiento.html"><a href="enrutamiento.html#enrutamiento-interno---estado-de-enlace"><i class="fa fa-check"></i><b>15.3.2</b> Enrutamiento interno - Estado de enlace</a></li>
+<li class="chapter" data-level="" data-path="enrutamiento.html"><a href="enrutamiento.html#ospf"><i class="fa fa-check"></i>OSPF</a></li>
+</ul></li>
+<li class="chapter" data-level="15.4" data-path="enrutamiento.html"><a href="enrutamiento.html#protocolos-de-enrutamiento-externo"><i class="fa fa-check"></i><b>15.4</b> Protocolos de enrutamiento externo</a>
+<ul>
+<li class="chapter" data-level="15.4.1" data-path="enrutamiento.html"><a href="enrutamiento.html#bgp.-caracteruxedsticas-generales"><i class="fa fa-check"></i><b>15.4.1</b> BGP. Características generales</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="problemas-4.html"><a href="problemas-4.html"><i class="fa fa-check"></i><b>16</b> Problemas</a></li>
+<li class="chapter" data-level="17" data-path="introducción-4.html"><a href="introducción-4.html"><i class="fa fa-check"></i><b>17</b> Introducción</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="introducción-4.html"><a href="introducción-4.html#comunicación-mediante-sockets"><i class="fa fa-check"></i><b>17.1</b> Comunicación mediante Sockets</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="udp-user-datagram-protocol.html"><a href="udp-user-datagram-protocol.html"><i class="fa fa-check"></i><b>18</b> UDP (<em>User Datagram Protocol</em>)</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="udp-user-datagram-protocol.html"><a href="udp-user-datagram-protocol.html#formato-del-datagrama-udp"><i class="fa fa-check"></i><b>18.1</b> Formato del datagrama UDP</a></li>
+<li class="chapter" data-level="18.2" data-path="udp-user-datagram-protocol.html"><a href="udp-user-datagram-protocol.html#análisis-de-un-datagrama-udp"><i class="fa fa-check"></i><b>18.2</b> Análisis de un datagrama UDP</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="tcp-transmission-control-protocol.html"><a href="tcp-transmission-control-protocol.html"><i class="fa fa-check"></i><b>19</b> TCP (<em>Transmission Control Protocol</em>)</a>
+<ul>
+<li class="chapter" data-level="19.1" data-path="tcp-transmission-control-protocol.html"><a href="tcp-transmission-control-protocol.html#formato-del-segmento-tcp"><i class="fa fa-check"></i><b>19.1</b> Formato del segmento TCP</a></li>
+<li class="chapter" data-level="19.2" data-path="tcp-transmission-control-protocol.html"><a href="tcp-transmission-control-protocol.html#análisis-de-un-segmento-tcp"><i class="fa fa-check"></i><b>19.2</b> Análisis de un segmento TCP</a></li>
+<li class="chapter" data-level="19.3" data-path="tcp-transmission-control-protocol.html"><a href="tcp-transmission-control-protocol.html#establecimiento-y-liberación-de-una-conexión"><i class="fa fa-check"></i><b>19.3</b> Establecimiento y liberación de una conexión</a></li>
+<li class="chapter" data-level="19.4" data-path="tcp-transmission-control-protocol.html"><a href="tcp-transmission-control-protocol.html#control-de-errores-1"><i class="fa fa-check"></i><b>19.4</b> Control de errores</a></li>
+<li class="chapter" data-level="19.5" data-path="tcp-transmission-control-protocol.html"><a href="tcp-transmission-control-protocol.html#control-de-flujo"><i class="fa fa-check"></i><b>19.5</b> Control de flujo</a></li>
+<li class="chapter" data-level="19.6" data-path="tcp-transmission-control-protocol.html"><a href="tcp-transmission-control-protocol.html#control-de-congestión"><i class="fa fa-check"></i><b>19.6</b> Control de congestión</a>
+<ul>
+<li class="chapter" data-level="19.6.1" data-path="tcp-transmission-control-protocol.html"><a href="tcp-transmission-control-protocol.html#arranque-lento-slow-start-y-prevención-de-congestión-congestion-avoidance"><i class="fa fa-check"></i><b>19.6.1</b> Arranque lento (<em>Slow start</em>) y prevención de congestión (<em>Congestion avoidance</em>)</a></li>
+<li class="chapter" data-level="19.6.2" data-path="tcp-transmission-control-protocol.html"><a href="tcp-transmission-control-protocol.html#retransmisión-rápida-fast-retransmission-y-recuperación-rápida-fast-recovery"><i class="fa fa-check"></i><b>19.6.2</b> Retransmisión rápida (<em>fast retransmission</em>) y recuperación rápida (<em>fast recovery</em>)</a></li>
+<li class="chapter" data-level="19.6.3" data-path="tcp-transmission-control-protocol.html"><a href="tcp-transmission-control-protocol.html#otros-mecanismos-de-control-de-congestión-en-tcp"><i class="fa fa-check"></i><b>19.6.3</b> Otros mecanismos de control de congestión en TCP</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="problemas-5.html"><a href="problemas-5.html"><i class="fa fa-check"></i><b>20</b> Problemas</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Redes de Computadoras</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="enrutamiento" class="section level1 hasAnchor" number="15">
+<h1><span class="header-section-number">Capítulo 15</span> Enrutamiento<a href="enrutamiento.html#enrutamiento" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Recordemos una vez más que la función principal de la capa de red es
+encontrar una trayectoria por la cual se encaminarán los paquetes desde
+la fuente hasta su destino. Si tanto el emisor como el receptor se
+encuentran en la misma red local, el encaminamiento sería
+responsabilidad de los protocolos de capa 2, como el protocolo Spanning
+Tree. En la figura <a href="enrutamiento.html#fig:dirindir" reference-type="ref" reference="fig:dirindir">12</a>. llamamos a este encaminamiento <em>entrega
+directa</em>.</p>
+<p>En el caso general, sin embargo, el emisor y receptor se encuentran en
+distintas redes que están interconectadas (IP, <em>Interconexión de Redes</em>)
+por medio de <strong>enrutadores</strong>, que son los dispositivos encargados de
+encaminar los datagramas desde la red donde se encuentra el emisor hasta
+la red que hospeda al receptor. Esto se ejemplifica con la trayectoria
+de <em>entrega indirecta</em> mostrada en la
+figura <a href="enrutamiento.html#fig:dirindir" reference-type="ref" reference="fig:dirindir">12</a>.</p>
+<div class="float" id="fig:dirindir">
+<img src="figuras/c5/dirindir.jpg" alt="Entrega directa y entrega indirecta de datagramas IP." />
+<div class="figcaption"><em>Entrega directa y entrega indirecta de datagramas
+IP</em>.</div>
+</div>
+<p>Como se observa en la figura <a href="enrutamiento.html#fig:dirindir" reference-type="ref" reference="fig:dirindir">12</a>, los datagramas pasan de un enrutador a otro a
+través de distintas redes hasta que llegan al enrutador conectado a la
+red del destinatario, desde el cual se hará la entrega directa con los
+mecanismos de la red local del destinatario.</p>
+<p>Estos dispositivos emplean tablas llamadas de enrutamiento para
+encaminar los datagramas. Estas tablas tienen una entrada por cada red
+de la que conocen por dónde encaminar el datagrama. Junto con otra
+información que iremos conociendo más adelante, la tabla tiene la
+dirección IP del enrutador que consituye el siguiente “salto” en la ruta
+hacia la red del receptor y es a ese enrutador que le entregará el
+datagrama. Como se mencionó en la
+seccion <a href="sec:ip.html#sec:ip" reference-type="ref" reference="sec:ip">2</a>, si el
+enrutador no tiene una entrada en la tabla para la red destinataria, el
+datagrama se envía a un enrutador vecino previamente configurado como el
+enrutador por omisión (<em>default gateway</em>), quien se encargará de
+encaminar el datagrama.</p>
+<p>Los equipos terminales también tienen una tabla de enrutamiento. Cuando
+deben transmitir un datagrama, consultan su tabla y si el destinatario
+se encuentra en la misma red (en la misma dirección de red IP), lo
+entrega a la capa inferior con la dirección MAC del destinatario. Si el
+destinatario se encuentra en otra red, entregará el datagrama a la capa
+inferior con la dirección MAC del enrutador por omisión que tiene
+configurado y que se encuentra en su misma red.</p>
+<p>Las tablas de enrutamiento pueden configurarse manualmente con rutas
+predefinidas, lo cual se conoce como <strong>enrutamiento estático</strong>, o bien,
+con información que intercambian los enrutadores mediante distintos
+protocolos de enrutamiento. Esta forma, llamada <strong>enrutamiento
+dinámico</strong>, es la más común para llenar las tablas de enrutamiento en
+redes medianas y grandes.</p>
+<div id="enrutamiento-estuxe1tico" class="section level2 hasAnchor" number="15.1">
+<h2><span class="header-section-number">15.1</span> Enrutamiento estático<a href="enrutamiento.html#enrutamiento-estuxe1tico" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>El enrutamiento estático se basa en rutas predefinidas y configuradas
+manualmente por el administrador de la red. Estas rutas permanecen
+constantes y no cambian a menos que el administrador las modifique. Este
+tipo de enrutamiento es sencillo y predecible, adecuado para redes
+pequeñas, donde los cambios en la topología de la red son infrecuentes,
+o para entradas específicas en la tabla de enrutamiento que no deben
+modificarse, como la entrada para la ruta por omisión.</p>
+<p>En la figura <a href="enrutamiento.html#fig:redst1" reference-type="ref" reference="fig:redst1">13</a> se muestran cinco redes además de la Internet.
+El enrtudor R1 está conectado a las redes 10.1.0.0/16, 10.2.0.0/16,
+10.3.0.0/16 y 10.4.0.0/16. En esta última también está R2, cuya interfaz
+<em>e1</em> está conectada a la red 192.168.1.0/24.</p>
+<div class="float" id="fig:redst1">
+<img src="figuras/c5/redst1.jpg" alt="Red para ejemplificar el enrutamiento estático." />
+<div class="figcaption"><em>Red para ejemplificar el enrutamiento
+estático</em>.</div>
+</div>
+<p>Desde R1, se accede a Internet a través de Rx, que está conectado a la
+red 10.3.0.0/16 en su interfaz <em>e0</em> con dirección IP 10.3.0.1. Es decir,
+cualquier datagrama que llega a R1 y que tiene como destino una red que
+no pertenece a esta organización, debe ser entregado a Rx, que es vecino
+de R1 en la red 10.3.0.0/16. De forma similar, cualquier datagrama que
+llegue a R1 cuyo destinatario es un equipo terminal en la red
+192.168.1.0/24, debe ser entregado a R2, que también es vecino de R1 en
+la red 10.4.0.0/16.</p>
+<p>Una versión muy simplificada de la tabla de enrutamiento de R1 es la
+siguiente:</p>
+<div class="center">
+<table>
+<thead>
+<tr class="header">
+<th align="left">C</th>
+<th align="left">10.1.0.0/16 directamente conectada, e3</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">C</td>
+<td align="left">10.2.0.0/16 directamente conectada, e1</td>
+</tr>
+<tr class="even">
+<td align="left">C</td>
+<td align="left">10.3.0.0/16 directamente conectada, e2</td>
+</tr>
+<tr class="odd">
+<td align="left">C</td>
+<td align="left">10.4.0.0/16 directamente conectada, e0</td>
+</tr>
+<tr class="even">
+<td align="left">S</td>
+<td align="left">192.168.1.0/24 via 10.4.0.2</td>
+</tr>
+<tr class="odd">
+<td align="left">S*</td>
+<td align="left">0.0.0.0 via 10.3.0.1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>En la tabla anterior, las entradas marcadas con <em>C</em> significan que la
+red está conectada al enrutador a través de alguna de sus interfaces.
+Estas entradas se añaden automáticamente a la tabla al momento de
+configurar la interfaz. Si se recibe un datagrama dirigido a la red
+10.2.0.0/16, éste se enviará a la interfaz <em>e1</em> en el que se activan los
+protocolos de red local para entregarlo al equipo terminal que
+corresponda.</p>
+<p>Las entradas marcadas con <em>S</em> significan que fueron configuradas
+manualmente (enrutamiento estático) la primera entrada indica que si se
+recibe un datagrama destinado a la red 192.168.1.0, éste debe ser
+enviado al vecino 10.4.0.2, es decir, la interfaz <em>e0</em> de R2, quien se
+encargará de enviarlo al receptor.</p>
+<p>La última entrada también fue configurada manualmente. La dirección
+0.0.0.0 es la convención para indicar la ruta por omisión, la cual
+también se señala en la tabla con el asterisco en <em>S*</em>. Cualquier
+datagrama para el que no se tiene una resolución en la tabla de
+enrutamiento, será entregado a Rx en la interfaz 10.3.0.1.</p>
+<p>La tabla de enrutamiento para R2 podría ser como la siguiente:</p>
+<div class="center">
+<table>
+<thead>
+<tr class="header">
+<th align="left">C</th>
+<th align="left">10.4.0.0/16 directamente conectada, e0</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">C</td>
+<td align="left">192.168.1.0/24 directamente conectada, e1</td>
+</tr>
+<tr class="even">
+<td align="left">S</td>
+<td align="left">10.1.0.0/16 via 10.4.0.1</td>
+</tr>
+<tr class="odd">
+<td align="left">S</td>
+<td align="left">10.2.0.0/16 via 10.4.0.1</td>
+</tr>
+<tr class="even">
+<td align="left">S</td>
+<td align="left">10.2.0.0/16 via 10.4.0.1</td>
+</tr>
+<tr class="odd">
+<td align="left">S*</td>
+<td align="left">0.0.0.0 via 10.4.0.1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>De hecho, podría ser mucho más compacta, pues todas las redes, excepto a
+las que está directamente conectado, se acceden a través de R1 (es su
+enrutador por omisión):</p>
+<div class="center">
+<table>
+<thead>
+<tr class="header">
+<th align="left">C</th>
+<th align="left">10.4.0.0/16 directamente conectada, e0</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">C</td>
+<td align="left">192.168.1.0/24 directamente conectada, e1</td>
+</tr>
+<tr class="even">
+<td align="left">S*</td>
+<td align="left">0.0.0.0 via 10.4.0.1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Vamos a agregar un nuevo enrutador R3 entre las redes 10.4.0.0/16 y
+192.168.1.0/24 como se muestra en la
+figura <a href="enrutamiento.html#fig:redst2" reference-type="ref" reference="fig:redst2">14</a>.
+Este enrutador sirve de respaldo en caso de que R2 tenga alguna falla.</p>
+<div class="float" id="fig:redst2">
+<img src="figuras/c5/redst2.jpg" alt="Red con enrutador redundante para ejemplificar el enrutamiento estático." />
+<div class="figcaption"><em>Red con enrutador redundante para ejemplificar el enrutamiento
+estático</em>.</div>
+</div>
+<p>En esta red, ese enrutador parece excesivo, pero en redes más complejas
+en ambientes productivos, es deseable agregar cierto nivel de
+redundancia para aumentar la disponibilidad de la red. A diferencia de
+las redes locales, los ciclos que se forman en la topología no son un
+problema porque los enrutadores no generan “tormentas de tramas” cuando
+desconocen la dirección del destinatario o cuando reciben tramas de
+difusión (recordemos que los enrutadores “rompen” los dominios de
+difusión).</p>
+<p>La tabla de enrutamiento para R3 sería la siguiente:</p>
+<div class="center">
+<table>
+<thead>
+<tr class="header">
+<th align="left">C</th>
+<th align="left">10.4.0.0/16 directamente conectada, e0</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">C</td>
+<td align="left">192.168.1.0/24 directamente conectada, e1</td>
+</tr>
+<tr class="even">
+<td align="left">S*</td>
+<td align="left">0.0.0.0 via 10.4.0.1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Es idéntica a la tabla de R2 simplemente por la ubicación de los dos
+enrutadores en la topología de la red. Ahora bien, las entradas en la
+tabla para el enrutamiento estático, se configuran manualmente, lo cual
+siempre puede ser una fuente de error. Por ejemplo, si en la entrada
+para la ruta por omisión el administrador hubiera escrito 10.4.0.11 en
+vez de 10.4.0.1, ningún datagrama que llegue a R3 dirigido a cualquier
+red a la que no está directamente conectado, podría llegar a su destino.</p>
+<p>En nuestra configuración, tenemos otro problema. R3 se añadió como
+respaldo en caso de que R2 falle; sin embargo, ante una caída de R2, los
+datagramas que llegan a R1 dirigidos a la red 1922.168.1.0/24, no podrán
+llegar a su destino porque la ruta (estática) configurada en R1 indica
+que se deben reenviar a R2. Para que R3 pueda tomar el lugar de R2, el
+administrador de la red deberá configurar manualmente la nueva ruta:
+192.168.1.0/24 via 10.4.0.3. Para redes pequeñas como la mostrada en el
+ejemplo, esto sería lento pero factible; en redes de mediana
+complejidad, la configuración manual es inviable.</p>
+<p>En resumen, si bien el enrutamiento estático es sencillo y puede
+resultar adecuado en redes pequeñas o para rutas específicas en las que
+los cambios son muy infrecuentes, tiene varias limitaciones, entre las
+que sobresalen:</p>
+<ul>
+<li><p>Es propenso a errores humanos, sobre todo en redes medianas y
+grandes en las que se requeriría de configuraciones manuales con
+mucha frecuencia</p></li>
+<li><p>No se adapta ante cambios en la topología o ante fallos en la red.</p></li>
+</ul>
+</div>
+<div id="enrutamiento-dinuxe1mico" class="section level2 hasAnchor" number="15.2">
+<h2><span class="header-section-number">15.2</span> Enrutamiento dinámico<a href="enrutamiento.html#enrutamiento-dinuxe1mico" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>El enrutamiento dinámico utiliza algoritmos y protocolos para ajustar
+automáticamente las tablas de enrutamiento en función de las condiciones
+actuales de la red. Los protocolos de enrutamiento dinámico recopilan y
+comparten información de la red entre los enrutadores para determinar la
+mejor trayectoria disponible. Este enfoque es más adecuado para redes
+grandes y complejas, donde la topología puede cambiar con frecuencia
+debido a la adición o eliminación de dispositivos, cambios en el tráfico
+de la red o fallos en los enlaces.</p>
+<p>Existen dos grandes familias de protocolos de enrutamiento dinámico:
+enrutamiento interno (IGP, <em>Internal Gateway Protocol</em>) y enrutamiento
+externo (EGP, <em>External Gateway Protocol</em>), pero para poder
+distinguirlas, es necesario introducir el concepto de <em>Sistemas
+autónomos</em>.</p>
+<div id="sistemas-autuxf3nomos" class="section level3 hasAnchor" number="15.2.1">
+<h3><span class="header-section-number">15.2.1</span> Sistemas autónomos<a href="enrutamiento.html#sistemas-autuxf3nomos" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Hemos comentado en repetidas ocasiones que Internet es una red formada
+por la interconexión de redes -una red de redes-, aunque
+administrativamente es más apropiado afirmar que se trata de una
+interconexión de sistemas autónomos como se muestra en la
+figura <a href="enrutamiento.html#fig:AS" reference-type="ref" reference="fig:AS">15</a>.</p>
+<div class="float" id="fig:AS">
+<img src="figuras/c5/as.jpg" alt="Sistemas autónomos y protocolos de enrutamiento." />
+<div class="figcaption"><em>Sistemas autónomos y protocolos de
+enrutamiento</em>.</div>
+</div>
+<p>Un sistema autónomo (AS, <em>Autonomous System</em>), es un conjunto de redes
+IP bajo el control de una misma autoridad administrativa. Esta autroidad
+es la responsable de asignar direcciones, las políticas de tarificación,
+la seguridad y la organización de los dominios y políticas de
+enrutamiento al interior del sistema autónomo.</p>
+<p>Esas políticas de enrutamiento se implementan con la primera familia de
+protocolos: los protocolos de enrutamiento interno. Como veremos en un
+momento, su principal función es establecer trayectorias
+-presumiblemente óptimas- para encaminar datagramas dentro de su AS. Esa
+es la función de los enrutadores de color azul mostrados en la
+figura <a href="enrutamiento.html#fig:AS" reference-type="ref" reference="fig:AS">15</a>. Estos
+protocolos permiten que los enrutadores dentro de un AS intercambien
+información de enrutamiento para mantener una visión coherente y
+actualizada de la topología de la red.</p>
+<p>Los AS tienen un identificador único de 16 bits (ASN, <em>Autonomous System
+Number</em>) asignado por autoridades como LACNIC en América Latina y RIPE
+en Europa. Se interconectan entre sí mediante las redes de los
+Proveedores de acceso a Internet (ISP, <em>Internet Service Providers</em>) e
+intercambian información de ruteo mediante la segunda familia de
+protocolos: enrutamiento externo. Estos protocolos son implementados por
+los enrutadores en la frontera de los AS, como se indica con los
+enrutadores de color rojo en la
+figura <a href="enrutamiento.html#fig:AS" reference-type="ref" reference="fig:AS">15</a>. Estos
+enrutadores comparten la información sobre las rutas disponibles y
+seleccionan -con base en sus propias políticas- cuáles son las mejores
+rutas para encaminar el tráfico a través de múltiples AS hasta su
+destino.</p>
+</div>
+</div>
+<div id="protocolos-de-enrutamiento-interno" class="section level2 hasAnchor" number="15.3">
+<h2><span class="header-section-number">15.3</span> Protocolos de enrutamiento interno<a href="enrutamiento.html#protocolos-de-enrutamiento-interno" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Los protocolos de enrutamiento interno (IGP) son esenciales para
+gestionar el enrutamiento de datagramas dentro de un único sistema
+autónomo. Estos protocolos permiten que los enrutadores dentro del AS
+intercambien información sobre la topología de la red y determinen las
+rutas más eficientes para el tráfico de datos.</p>
+<p>Existen muchos protocolos de enrutamiento interno; casi todos ellos caen
+dentro de dos grandes categorías: Vector de distancia y Estado de
+enlace.</p>
+<div id="enrutamiento-interno---vector-de-distancias" class="section level3 hasAnchor" number="15.3.1">
+<h3><span class="header-section-number">15.3.1</span> Enrutamiento interno - Vector de distancias<a href="enrutamiento.html#enrutamiento-interno---vector-de-distancias" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Los algoritmos utilizados en los protocolos de Vector de distancia son
+los más simples y fueron diseñados para redes pequeñas. En ellos, cada
+enrutador intercambia información con sus <em>vecinos</em>, es decir, con los
+enrutandores con los que tiene un enlace directo (están en la misma red
+local).</p>
+<p>Se define una <em>métrica de costo</em>, típicamente proporcional a la
+estimación de la distancia hacia cada destino posible (cada red) en el
+AS, como el retardo medio o el número de “saltos” entre enrutadores
+hasta llegar al destinatario. Esta última métrica es utilizada por RIP,
+uno de los protocolos de vector de distancia más antiguos y más
+utilizados; por ello, es común escuchar (incorrectamente) que en los
+protocolos de vector de distancia la métrica es el número de saltos.</p>
+<p>Los enrutadores difunden periódicamente a sus vecinos una tabla o
+“vector de distancias” que contiene las redes que conoce hasta el
+momento y el costo de llegar a ellas a través de él. Cuando reciben
+estos vectores, los enrutadores ejecutan el <em>Algoritmo de Bellman-Ford</em>
+para cada entrada en la tabla: - Si desconoce la red, la añade a su
+tabla de enrutamiento con un costo igual al anunciado por el vecino, más
+uno: el “salto” que implica entregar el datagrama a ese vecino para que
+éste lo acerque al destino final. - Si el costo de la ruta recibida es
+menor que el que tiene en su tabla de enrutamiento, modifica la tabla de
+enrutamiento para tomar en cuenta la nueva ruta. - De lo contrario, se
+ignora esa entrada.</p>
+<p>Inicialmente, un enrutador sólo conoce las redes a las que está
+directamente conectado y con ellas forma un vector de distancias con un
+costo de 1 para todas esas redes. Poco a poco ira recibiendo información
+actualizada sobre la topología de la red y con base en ella se formará
+la tabla de enrutamiento de menor costo hacia todas las redes.</p>
+<p>Veamos estos conceptos en el ejemplo de la
+figura <a href="enrutamiento.html#fig:ejvd" reference-type="ref" reference="fig:ejvd">16</a> para
+el enrutador R1 que tiene como vecinos a R2, R3 y R4, utilizando como
+métrica el número de saltos.</p>
+<div class="float" id="fig:ejvd">
+<img src="figuras/c5/ejvd.jpg" alt="Red para ejemplificar el algoritmo de enrutamiento por vector de distancias." />
+<div class="figcaption"><em>Red para ejemplificar el algoritmo de enrutamiento por vector de
+distancias</em>.</div>
+</div>
+<p>En algún momento, recibe de R2 el vector de distancias
+<span class="math inline">\([1, 1, 2, 3, 3, 2]\)</span>, para las redes 1.0 a 6.0 respectivamente. El
+vector se interpreta así:</p>
+<ul>
+<li><p>Si R2 recibe un datagrama destinado a un dispositivo en las redes
+1.0 o 2.0, lo entrega en un salto (directamente al destinatario)
+pues está conectado a esas redes.</p></li>
+<li><p>Si es para la red 3.0, lo entrega en dos saltos, ya sea de R2 a R4 y
+de ahí al destinatario, o de R2 a R y de ahí al destinatario.<br />
+</p></li>
+<li><p>Si es para la red 4.0, lo entrega en tres saltos:
+<span class="math inline">\(R4\rightarrow R3\rightarrow \text{destinatario}\)</span>, o
+<span class="math inline">\(R1\rightarrow R3\rightarrow \text{destinatario}\)</span>.</p></li>
+<li><p>Si es para la red 5.0, lo entrega en tres saltos:
+<span class="math inline">\(R4\rightarrow R5\rightarrow \text{destinatario}\)</span>.</p></li>
+<li><p>Si es para la red 6.0, lo entrega en 2 saltos:
+<span class="math inline">\(R4\rightarrow  \text{destinatario}\)</span>.</p></li>
+</ul>
+<p>De su vecino R3 recibe el siguiente vector de distancias:
+<span class="math inline">\([2, 2, 1, 1, 2, 2]\)</span> y de R4, el vector <span class="math inline">\([2, 1, 1, 2, 2, 1]\)</span>.</p>
+<p>Con base en la información recibida, R1 tiene para su consideración las
+siguientes distancias, sumando 1 a los costos de los vectores recibidos,
+para reflejar el costo de entregar un datagrama a alguno de sus vecinos
+y que éste lo aproxime a su destinatario:</p>
+<div class="center">
+<table>
+<thead>
+<tr class="header">
+<th align="center">Red</th>
+<th align="center">R1 via e1</th>
+<th align="center">R3 via e2</th>
+<th align="center">R4 via e2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">1.0</td>
+<td align="center">2</td>
+<td align="center">3</td>
+<td align="center">3</td>
+</tr>
+<tr class="even">
+<td align="center">2.0</td>
+<td align="center">2</td>
+<td align="center">3</td>
+<td align="center">2</td>
+</tr>
+<tr class="odd">
+<td align="center">3.0</td>
+<td align="center">3</td>
+<td align="center">2</td>
+<td align="center">2</td>
+</tr>
+<tr class="even">
+<td align="center">4.0</td>
+<td align="center">4</td>
+<td align="center">2</td>
+<td align="center">3</td>
+</tr>
+<tr class="odd">
+<td align="center">5.0</td>
+<td align="center">4</td>
+<td align="center">3</td>
+<td align="center">3</td>
+</tr>
+<tr class="even">
+<td align="center">6.0</td>
+<td align="center">3</td>
+<td align="center">3</td>
+<td align="center">2</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Para construir su tabla de enrutamiento, R1 tomará las alternativas de
+menor costo; en caso de empate, puede tomar cualquiera de ellas. Así, la
+tabla de enrutamiento de R1 podría ser la siguiente (se añaden campos
+para que el ejemplo quede más claro):</p>
+<div class="center">
+<table>
+<thead>
+<tr class="header">
+<th align="center">Red</th>
+<th align="center">Sig. salto</th>
+<th align="center">Interfaz</th>
+<th align="center">Distancia</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">1.0</td>
+<td align="center">Directo</td>
+<td align="center">e1</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td align="center">2.0</td>
+<td align="center">1.2 (R2)</td>
+<td align="center">e1</td>
+<td align="center">2</td>
+</tr>
+<tr class="odd">
+<td align="center">3.0</td>
+<td align="center">Directo</td>
+<td align="center">e2</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td align="center">4.0</td>
+<td align="center">3.2 (R3)</td>
+<td align="center">e2</td>
+<td align="center">2</td>
+</tr>
+<tr class="odd">
+<td align="center">5.0</td>
+<td align="center">3.2 (R3)</td>
+<td align="center">e2</td>
+<td align="center">3</td>
+</tr>
+<tr class="even">
+<td align="center">6.0</td>
+<td align="center">3.3 (R4)</td>
+<td align="center">e2</td>
+<td align="center">2</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>En la red de la figura <a href="enrutamiento.html#fig:ejvd" reference-type="ref" reference="fig:ejvd">16</a> se indican con las flechas rojas los dos saltos
+que tomaría un datagrama que llega a R1, dirigido a la computadora 4.3.</p>
+<p>Si en algún momento algún enrutador, por ejemplo R3, tuviera una falla,
+dejaría de enviar su vector de distancias y R1 reconfiguraría su tabla
+de enrutamiento con base en la información recibida por sus otros
+vecinos (R2 y R4).</p>
+<p>Si bien los protocolos basados en vector de distancia son muy sencillos
+de implementar y administrar, presentan ciertas limitaciones, como la
+convergencia lenta (es decir, el tiempo que toma a todos los enrutadores
+configurar sus tablas -óptimas- de enrutamiento) y la posibilidad de que
+se formen “lazos” ante la caída de un enrutador, que aumentan el tiempo
+de convergencia.</p>
+<div id="el-problema-de-convergencia" class="section level4 unnumbered hasAnchor">
+<h4>El problema de convergencia<a href="enrutamiento.html#el-problema-de-convergencia" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Considere la red de la figura <a href="enrutamiento.html#fig:split1" reference-type="ref" reference="fig:split1">17</a>. Si los protocolos de enrutamiento ya han
+convergido, la tabla de enrutamiento para R sería:</p>
+<div class="center">
+<table>
+<thead>
+<tr class="header">
+<th align="center">Red</th>
+<th align="center">Sig. salto</th>
+<th align="center">Distancia</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">10.0.0.0</td>
+<td align="center">20.0.0.5</td>
+<td align="center">2</td>
+</tr>
+<tr class="even">
+<td align="center">20.0.0.0</td>
+<td align="center">Directa</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td align="center">30.0.0.0</td>
+<td align="center">Directa</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td align="center">40.0.0.0</td>
+<td align="center">30.0.0.7</td>
+<td align="center">2</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="float" id="fig:split1">
+<img src="figuras/c5/split1.jpg" alt="Red para ejemplificar el problema de convergencia en el enrutamiento por vector de distancias." />
+<div class="figcaption"><em>Red para ejemplificar el problema de convergencia en el enrutamiento
+por vector de distancias</em>.</div>
+</div>
+<p>En un momento dado, Q falla y deja de enviar su vector de distancias. Al
+no recibir la actualización de Q, R borraría la entrada a la red
+10.0.0.0, que la hace inaccesible desde R.</p>
+<p>Sin embargo, S enviará su vector de distancias donde indica que sabe
+llegar a la red 10.0.0.0 con un costo de 3; entonces, R tomará esa
+indicación como válida y pondrá en su tabla de enrutamiento una entrada
+para llegar a esa red a través de S, con un costo de 4. Cuando R envíe
+su vector de distancias a S, este enrutador actualizará su entrada para
+la red 10.0.0.0 con un costo de 5, y así sucesivamente.</p>
+<p>Este problema, llamado de <strong>cuenta al infinito</strong> se muestra en la
+figura <a href="enrutamiento.html#fig:split2" reference-type="ref" reference="fig:split2">18</a> y
+haría que la red nunca converja.</p>
+<div class="float" id="fig:split2">
+<img src="figuras/c5/split2.jpg" alt="El problema de cuenta al infinito." />
+<div class="figcaption"><em>El problema de cuenta al
+infinito</em>.</div>
+</div>
+</div>
+<div id="ruta-inalcanzable" class="section level4 unnumbered hasAnchor">
+<h4>Ruta inalcanzable<a href="enrutamiento.html#ruta-inalcanzable" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Una forma de resolver este problema, es limitar la distancia máxima (o
+el máximo número de saltos) entre dos redes. Por ejemplo, en el
+protocolo RIP que se presenta más adelante, la distancia máxima es de
+15. Un valor de distancia de 16, significa que se trata de una <strong>ruta
+inalcanzable</strong>. Esto no suele ser un problema si se considera que estos
+protocolos sólo deben implementarse en redes pequeñas.</p>
+</div>
+<div id="horizonte-dividido" class="section level4 unnumbered hasAnchor">
+<h4>Horizonte dividido<a href="enrutamiento.html#horizonte-dividido" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Otra solución para acelerar la convergencia consiste en impedir que un
+enrutador anuncie una ruta al vecino del que la aprendió, evitando así
+la cuenta al infinito. En nuestro ejemplo, S no incluirá en el vector de
+distancias que le envía a R el costo para llegar a la red 10.0.0.0, pues
+esa ruta la aprendió de información que R le había enviado previamente.</p>
+</div>
+<div id="ruta-envenenada" class="section level4 unnumbered hasAnchor">
+<h4>Ruta envenenada<a href="enrutamiento.html#ruta-envenenada" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>La técnica de horizonte dividido únicamente resuelve los problemas de
+lazos directos pero no puede impedir lazos en otras topologías. Por
+ejemplo, en la red de la figura <a href="enrutamiento.html#fig:split3" reference-type="ref" reference="fig:split3">19</a>, cuando R detecta que Q dejó de enviar su vector
+de distancias, borra la entrada a la red 10.0.0.0 en su tabla de
+enrutamiento y ni S ni T enviarán información sobre la red 10.0.0.0 en
+los vectores de distancias que le enviarán a R.</p>
+<p>Sin embargo, T sí enviará un anuncio a S (a través de la red 40.0.0.0)
+indicando que sabe llegar a la red 10.0.0.0 con un costo de 3 pues es
+una ruta que no aprendió de S. S actualizará su tabla de enrutamiento y
+ahora le envíará un anuncio a R indicándole que sabe cómo alcanzar la
+red con un costo de 4,</p>
+<div class="float" id="fig:split3">
+<img src="figuras/c5/split3.jpg" alt="Topología para ruta envenenada." />
+<div class="figcaption"><em>Topología para ruta envenenada</em>.</div>
+</div>
+<p>Este problema puede mitigarse si cuando R detecta la posible falla de Q,
+en vez de eliminar la entrada de la red 10.0.0.0 en su tabla, le pone un
+costo infinito (16 en RIP) y anuncia ese costo en su vector de
+distancias. Cuando S y T reciben ese vector, automáticamente ponen la
+ruta a la red 10.0.0.0 como inalcanzable. A esta técnica se le conoce
+como ruta envenenada.</p>
+</div>
+<div id="retenciuxf3n-de-camino" class="section level4 unnumbered hasAnchor">
+<h4>Retención de camino<a href="enrutamiento.html#retenciuxf3n-de-camino" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>La retención de camino (<em>hold down</em>) es una técnica adicional utilizada
+para estabilizar la red en presencia de cambios de topología y para
+prevenir la propagación de información incorrecta de enrutamiento.
+Cuando un enrutador detecta que una ruta ya no es válida, entra en un
+período de retención durante el cual ignora cualquier actualización de
+enrutamiento que sugiera que la ruta problemática se ha restaurado, a
+menos que venga de la fuente original de la ruta.</p>
+</div>
+</div>
+<div id="rip" class="section level3 unnumbered hasAnchor">
+<h3>RIP<a href="enrutamiento.html#rip" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>RIP (<em>Routing Information Protocol</em>) es uno de los protocolos de
+enrutamiento interno más antiguos y ampliamente utilizados. Fue adoptado
+por IP a principios de los años 80 y formalizado en el RFC 1058 en 1988.</p>
+<p>Está basado en el algoritmo de vector de distancia y, como se ha
+mencionado, utiliza la métrica del número de saltos para determinar la
+mejor ruta hacia un destino. Los enrutadores envían a sus vecinos su
+vector de distancia <strong>cada 30 segundos</strong> por default, aunque este valor
+puede modificarse. Si un vector no se recibe después de <strong>180 segundos</strong>
+(seis pérdidas del anuncio del vector de distancia, aunque también este
+valor se puede modificar), se asume que el vecino ha fallado y las rutas
+aprendidas a través de él se marcan como inalcanzables con el valor de
+distancia infinita, que para RIP es de <strong>16 saltos</strong>.</p>
+<p>Los mensajes RIP se encapsulan en <strong>datagramas UDP en el puerto 520</strong>. A
+pesar de que se trata de un protocolo de enrutamiento, el algoritmo se
+ejecuta en la capa de aplicación, lo que consume tiempo de procesamiento
+del enrutador.</p>
+<p>El formato del mensaje RIP se muestra en la
+figura <a href="enrutamiento.html#fig:ripv1" reference-type="ref" reference="fig:ripv1">20</a>. En
+un mensaje se pueden enviar hasta 25 entradas del vector de distancia.
+Si el vector tiene más entradas, se utilizan varios mensajes RIP.</p>
+<div class="float" id="fig:ripv1">
+<img src="figuras/c5/ripv1.jpg" alt="Formato del mensaje RIP (versión 1)." />
+<div class="figcaption"><em>Formato del mensaje RIP (versión
+1)</em>.</div>
+</div>
+<ul>
+<li><p>El campo comando puede ser 1 si es una solicitud (algún nodo
+solicita el vector de distancias) o 0, el valor más común, cuando el
+enrutador envía su vector de distancias.</p></li>
+<li><p>La versión debe ser 1; existe una versión 2 que se presenta más
+adelante.</p></li>
+<li><p>El identificador de familia debe ser 2, que es el valor reservado
+para IP. RIP no se ha utilizado en ningún otro tipo de red.</p></li>
+<li><p>La dirección IP contiene una dirección de red, por ejemplo,
+148.205.0.0. También podría contener una dirección de subred, pero
+como RIPv1 no entiende de máscaras de red, esto sólo puede funcionar
+si en todo el SA existe una configuración local de máscara de red</p></li>
+<li><p>El costo, en RIP, es el número de saltos para llegar a ese destino.</p></li>
+</ul>
+<div id="ripv2" class="section level4 hasAnchor" number="15.3.1.1">
+<h4><span class="header-section-number">15.3.1.1</span> RIPv2<a href="enrutamiento.html#ripv2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>En 1994 se publica en el RFC 1723 una actualización del protocolo RIP,
+RIPv2, que ofrece más funcionalidades manteniendo la compatibilidad con
+RIPv1. Entre los cambios más importantes introducidos en esta versión
+destacan:</p>
+<ul>
+<li><p>RIPv2 entiende de subredes. Además de la dirección IP se envía una
+máscara, por lo que se puede utilizar CIDR y VLSM.</p></li>
+<li><p>Utiliza la dirección multicast 224.0.0.9 para no sobrecargar a los
+demás nodos con mensajes que no les conciernen, como ocurre con
+RIPv1, que utiliza direcciones de difusión. Los enrutadores RIPv1 no
+podrán procesar los mensajes de RIPv2, pero RIPv2 sí puede recibir y
+procesar mensajes RIPv1.</p></li>
+<li><p>Soporta autenticación, lo que lo hace más seguro que RIPv1. La
+autenticación consiste en firmar digitalmente los mensajes con un
+compendio (<em>hash</em>) MD5 (RFC 2082) o SHA1 (RFC 4822, recomendado).</p></li>
+</ul>
+<p>El formato del mensaje RIPv2 se muestra en la
+figura <a href="enrutamiento.html#fig:ripv2" reference-type="ref" reference="fig:ripv2">21</a>. En
+un mensaje se pueden enviar hasta 25 entradas del vector de distancia.
+Si el vector tiene más entradas, se utilizan varios mensajes RIP.</p>
+<div class="float" id="fig:ripv2">
+<img src="figuras/c5/ripv2.jpg" alt="Formato del mensaje RIPv2." />
+<div class="figcaption"><em>Formato del mensaje RIPv2</em>.</div>
+</div>
+<ul>
+<li><p>El campo comando se mantiene igual que en la versión 1.</p></li>
+<li><p>La versión debe ser 2.</p></li>
+<li><p>El dominio de enrutamiento contiene un número del <em>plan de
+enrutamiento</em>. Con ello, dentro de la misma red local se pueden
+asignar distintos planes de enrutamiento. Los enrutadores sólo
+atenderán mensajes que tienen el mismo dominio de enrutamiento, lo
+que permite una partición lógica a nivel capa 3. Esto aumenta la
+escalabilidad de la red. Si el campo es cero, todos los enrutadores
+comparten la misma información.</p></li>
+<li><p>La etiqueta de ruta permite distinguir entre rutas aprendidas
+internamente y rutas recibidas desde otros dominios (por ejemplo, en
+número de SA que anuncia esas rutas)</p></li>
+<li><p>La dirección de red ahora puede tener cualquier prefijo IP. La
+máscara de red que determina la longitud del prefijo, se indica en
+el siguiente campo.</p></li>
+<li><p>El siguiente salto indica el “vecino” que será insertado en la tabla
+de enrutamiento del destinatario. Por regla general, se trata de la
+dirección IP del emisor del vector de distancias.</p></li>
+<li><p>El campo de costo se mantiene igual que en la versión 1.</p></li>
+</ul>
+</div>
+</div>
+<div id="enrutamiento-interno---estado-de-enlace" class="section level3 hasAnchor" number="15.3.2">
+<h3><span class="header-section-number">15.3.2</span> Enrutamiento interno - Estado de enlace<a href="enrutamiento.html#enrutamiento-interno---estado-de-enlace" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Ya se han comentado varias de las limitaciones de los protocolos de
+vector de distancia en general, así como de RIP en particular. La más
+importante es la posible formación de lazos de enrutamiento que
+ralentizan su convergencia. Para evitar esos lazos, es necesario que
+cada enrutador tenga una vista completa de la topología de la red a
+partir de la cual pueda construir sus tablas de enrutamiento. Esa es la
+idea detrás de los protocolos de estado de enlace.</p>
+<p>En términos generales, los enrutadores descubren y mantienen información
+detallada sobre el estado de cada enlace en la red mediante la
+transmisión de paquetes anunciando el estado de los enlaces (LSAs, <em>Link
+State Advertisements</em>). Con esta información, cada enrutador construye
+un gráfico de la red que se emplea para calcular las rutas óptimas.</p>
+<p>Debido a que cada enrutador tiene una vista completa y precisa de la
+topología de la red, puede responder rápidamente a los cambios en el
+estado de los enlaces, recalculando las rutas y difundiendo esta nueva
+información eficientemente. Esta capacidad de adaptarse rápidamente a
+las condiciones cambiantes de la red es particularmente beneficiosa en
+entornos grandes y dinámicos, donde la estabilidad y la eficiencia del
+enrutamiento son cruciales.</p>
+<p>Así, el enrutamiento de estado de enlace ofrece varias ventajas clave,
+como una convergencia rápida, el no cargar a la red con mensajes
+innecesarios pues los anuncios de estado de enlace solo se generan
+cuando hay cambios en la topología, y con todo ello, una mejor
+escalabilidad.</p>
+</div>
+<div id="ospf" class="section level3 unnumbered hasAnchor">
+<h3>OSPF<a href="enrutamiento.html#ospf" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>OSPF (<em>Open Shortest Path First</em>) es uno de los protocolos de
+enrutamiento de estado de enlace más utilizados y confiables en redes IP
+y es en el que se basan estas notas. Para calcular las rutas más cortas
+y óptimas, utiliza una métrica de costo que, típicamente, es
+inversamente proporcional a la velocidad de los enlaces.</p>
+<p>Una característica distintiva de OSPF es su capacidad para dividir una
+red en áreas o zonas, mejorando la escalabilidad y reduciendo la
+sobrecarga de procesamiento en grandes redes. En principio, un área no
+debe tener más de 50 enrutadores. Los enrutadores dentro de una misma
+área intercambian información de estado de enlace, mientras que los los
+que se encuentran en la frontera de un área (ABR, <em>Area Border Router</em>)
+intercambian entre ellos resúmenes de la información del área que les
+corresponde. La figura <a href="enrutamiento.html#fig:areasospf" reference-type="ref" reference="fig:areasospf">22</a> muestra una red con tres áreas.</p>
+<div class="float" id="fig:areasospf">
+<img src="figuras/c5/areasospf.jpg" alt="División de áreas en OSPF." />
+<div class="figcaption"><em>División de áreas en OSPF</em>.</div>
+</div>
+<p>En OSPF, siempre debe existir un área 0 llamada de <em>Backbone</em> y todas
+las demás áreas deben estar conectadas al área 0 a través de sus ABR. Se
+llama <em>enrutadores internos</em> a aquellos que tienen todas sus interfaces
+dentro de un área. Tienen la misma base de datos de Estado de Enlace.
+También existen los llamados <em>enrutadores de Borde de Sistema Autónomo</em>
+(ASBR), que interconectan al Sistema Autónomo con otro AS
+redistribuyendo entre ellos información de enrutamiento.</p>
+<div id="principio-de-operaciuxf3n-1" class="section level4 unnumbered hasAnchor">
+<h4>Principio de operación<a href="enrutamiento.html#principio-de-operaciuxf3n-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>OSPF es un protocolo complejo, que se resume brevemente en la
+figura <a href="enrutamiento.html#fig:operaospf" reference-type="ref" reference="fig:operaospf">23</a>. Opera mediante la creación y mantenimiento
+de una base de datos de estado de enlace (LSDB, <em>Link State Data Base</em>)
+que contiene información sobre todos los enrutadores y enlaces en la red
+(en el área). Esta base de datos se genera con base en la información
+recibida en los LSA de los enrutadores vecinos. A partir de la LSDB, se
+calculan las trayectorias óptimas (las de menor costo) mediante el
+algoritmo SPF (<em>Shortest Path First</em>) propuesto por Dijkstray se
+construye la tabla de enrutamiento.</p>
+<div class="float" id="fig:operaospf">
+<img src="figuras/c5/operaospf.jpg" alt="Principio de operación de OSPF." />
+<div class="figcaption"><em>Principio de operación de
+OSPF</em>.</div>
+</div>
+<p>El primer paso en la operación de OSPF es el descubrimiento de vecinos,
+donde los enrutadores adyacentes se identifican y establecen una
+relación de vecindad utilizando paquetes <em>Hello</em>. Estos paquetes se
+envían periódicamente para mantener la relación de vecindad y detectar
+fallos en los enlaces.</p>
+<p>Cada enrutador determina el costo de sus enlaces con base en la métrica
+elegida por el administrador de la red. Como se ha mencionado, esta
+métrica es típicamente inversamente proporcional a la velocidad del
+enlace, aunque pueden utilizarse otras métricas relacionadas con la
+calidad de servicio como el retraso medio.</p>
+<p>Los LSA contienen información de los enlaces y su costo asociado; se
+envían mediante un protocolo de inundación, asegurando que todos los
+enrutadores tengan la información de todos los enlaces.</p>
+</div>
+<div id="algoritmo-spf" class="section level4 unnumbered hasAnchor">
+<h4>Algoritmo SPF<a href="enrutamiento.html#algoritmo-spf" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Algoritmo propuesto por Dijikstra, tiene como objetivo encontrar la
+trayectoria de menor costo entre dos nodos (en este caso entre dos
+enrutadores). Si bien todos los enrutadores en el área eventualmente
+tendrán la misma LSDB, cada enrutador tendrá una tabla de enrutamiento
+distinta generada a partir del protocolo SPF colocándose él como la raíz
+del árbol.</p>
+<p>Para ejemplificar la operación del algoritmo, utilizaremos la red de la
+figura <a href="enrutamiento.html#fig:spf1" reference-type="ref" reference="fig:spf1">24</a> para
+calcular la tabla de enrutamiento del enrutador B. Cada enrutador en la
+figura tiene un identificador y cada linea que une a cada par de
+enrutadores representa un enlace con su costo asociado. Por ejemplo, el
+enlace que conecta a los enrutadores <em>D</em> y <em>C</em> tiene un costo de cuatro.</p>
+<div class="float" id="fig:spf1">
+<img src="figuras/c5/spf1.jpg" alt="Red de referencia para ejemplificar la operación del algoritmo Shortest Path First." />
+<div class="figcaption"><em>Red de referencia para ejemplificar la operación del algoritmo
+Shortest Path First</em>.</div>
+</div>
+<p>Para encontar la ruta mas corta entre pares de ruteadores (en este caso
+desde el ruteador B a los demás ruteadores) el algoritmo encuentra la
+trayectoria de menor costo. El algoritmo utiliza dos estructuras con
+tuplas de identificación de enrutador, costo y nodo de salida. La
+estructura llamada TRAYECTORIA, contiene las rutas con costos mínimos
+para alcanzar a un determinado enrutador. La estructura llamada
+ALTERNATIVAS, contiene rutas alternativas que aún no han sido
+consideradas. Cuando esta estructura está vacía, el algoritmo ha
+terminado y la tabla de enrutamiento se forma a partir de la información
+en la estructura TRAYECTORIAS.</p>
+<p>Tras la difusión de los LSA entre vecinos, cada enrutador tendrá la
+siguiente información:</p>
+<div class="float" id="fig:spf1a">
+<img src="figuras/c5/spf1a.jpg" alt="Tablas con el estado de enlace de los vecinos para cada enrutador en el ejemplo." />
+<div class="figcaption"><em>Tablas con el estado de enlace de los vecinos para cada enrutador en
+el ejemplo</em>.</div>
+</div>
+<ol style="list-style-type: decimal">
+<li><p>Los vecinos inmediatos de B se colocan en la estructura
+ALTERNATIVAS: &lt;C, 1, C&gt;, &lt;A, 4, A&gt; Las tuplas se leen como
+&lt;Identificador, Costo, Vecino&gt;.</p>
+<p>Como de las alternativas, la tupla hacia C es la de menor costo,
+ésta se pasa a la tupla de TRAYECTORIAS. Hasta el momento, el árbol
+con los caminos más cortos (de menor costo) es el de la
+figura <a href="enrutamiento.html#fig:spf2" reference-type="ref" reference="fig:spf2">26</a>.
+La línea fija muestra entradas seleccionadas, y la punteada, las
+entradas alternativas.</p>
+<div class="float" id="fig:spf2">
+<img src="figuras/c5/spf2.jpg" alt="Árbol de menor costo tras la primera iteración de SPF aplicado al enrutador B." />
+<div class="figcaption"><em>Árbol de menor costo tras la primera iteración de SPF aplicado al
+enrutador B</em>.</div>
+</div></li>
+<li><p>Dado que C fue seleccionado, ahora se agregan a la estructura
+ALTERNATIVAS los vecinos de C; la estructura resultante es: &lt;A, 4,
+A&gt;, &lt;D, 5, C&gt;, &lt;E, 3, C&gt;. Hemos añadido el costo del enlace
+B-C (1) a los costos de los vecinos de C.</p>
+<p>Ahora se pasa a la estructura de TRAYECTORIAS la tupla hacia E vía</p>
+<ol start="3" style="list-style-type: upper-alpha">
+<li></li>
+</ol>
+<div class="float" id="fig:spf3">
+<img src="figuras/c5/spf3.jpg" alt="Árbol de menor costo tras la segunda iteración de SPF aplicado al enrutador B." />
+<div class="figcaption"><em>Árbol de menor costo tras la segunda iteración de SPF aplicado al
+enrutador B</em>.</div>
+</div></li>
+<li><p>Se repite el proceso añadiendo a ALTERNATIVAS los vecinos de E: &lt;A,
+4, A&gt;, &lt;D, 5, C&gt;, &lt;D, 4, C&gt;, &lt;F, 5, C&gt;. Las tuplas &lt;A, 4,
+A&gt; y &lt;D, 4, C&gt; se pasan a la estructura TRAYECTORIAS; la última
+tupla sustituye a la alternativa que se tenía para alcanzar a D, que
+era más costosa. El árbol hasta ahora es:</p>
+<div class="float" id="fig:spf4">
+<img src="figuras/c5/spf4.jpg" alt="Árbol de menor costo tras la tercera iteración de SPF aplicado al enrutador B." />
+<div class="figcaption"><em>Árbol de menor costo tras la tercera iteración de SPF aplicado al
+enrutador B</em>.</div>
+</div></li>
+<li><p>Ahora se añaden a ALTERNATIVAS los vecinos faltantes de A: &lt;F, 5,
+C&gt;, &lt;G, 6, A&gt;. Se pasa a TRAYECTORIAS la tupla hacia F, dejando
+el siguiente árbol:</p>
+<div class="float" id="fig:spf5">
+<img src="figuras/c5/spf5.jpg" alt="Árbol de menor costo tras la cuarta iteración de SPF aplicado al enrutador B." />
+<div class="figcaption"><em>Árbol de menor costo tras la cuarta iteración de SPF aplicado al
+enrutador B</em>.</div>
+</div></li>
+<li><p>Se añaden los vecinos de F a ALTERNATIVAS: &lt;G, 6, A&gt;, &lt;G, 7, C&gt;.
+Efectivamente, tenemos dos rutas para llegar a G y se pasa a
+TRAYECTORIAS la de menor costo. Con ello, la estructura ALTERNATIVAS
+ha quedado vacía y el protocolo ha terminado dejando el siguiente
+árbol:</p>
+<div class="float" id="fig:spf6">
+<img src="figuras/c5/spf6.jpg" alt="Árbol de menor costo al final del algoritmo SPF aplicado al enrutador B." />
+<div class="figcaption"><em>Árbol de menor costo al final del algoritmo SPF aplicado al
+enrutador B</em>.</div>
+</div></li>
+</ol>
+</div>
+<div id="protocolo-ospf" class="section level4 hasAnchor" number="15.3.2.1">
+<h4><span class="header-section-number">15.3.2.1</span> Protocolo OSPF<a href="enrutamiento.html#protocolo-ospf" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>A diferencia de RIP, OSPF no utiliza encapsulación de capa 4 (TCP, UDP);
+se trata auténticamente de un protocolo que opera en la capa 3, sus
+mensajes se transportan en datagramas IP y se reconocen por el valor 89
+en el campo de tipo de protocolo.</p>
+<p>Al igual que RIPv2, en redes de difusión, como las redes LAN, utiliza
+direcciones multicast para comunicarse con sus vecinos. La dirección
+224.0.0.5 se utiliza para comunicarse con todos los enrutadores en la
+red y la dirección 224.0.0.6 para comunicarse con los enrutadores
+designados, que se presentan más adelante.</p>
+<p>El formato de los paquetes OSPF se muestra en la
+figura <a href="enrutamiento.html#fig:hdrospf" reference-type="ref" reference="fig:hdrospf">31</a>.</p>
+<div class="float" id="fig:hdrospf">
+<img src="figuras/c5/hdrospf.jpg" alt="Formato de los paquetes OSPF" />
+<div class="figcaption"><em>Formato de los paquetes OSPF</em></div>
+</div>
+<p>.<span id="fig:hdrospf" label="fig:hdrospf"></span></p>
+<ul>
+<li><p><strong>Versión.</strong> El primer campo, de ocho bits, contiene la versión del
+protocolo. La versión actual para IPv4 es la 2 y para IPv6, la 3.</p></li>
+<li><p><strong>Tipo de paquete.</strong> Este campo, de ocho bits, identifica cinco
+posibles tipos de paquete. Los distintos tipos se describen en los
+siguientes párrafos. Pueden ser:</p>
+<ul>
+<li><p><strong>HELLO</strong>.- Sirve para descubrir y mantener relación con los
+vecinos.</p></li>
+<li><p><strong>Database Description</strong>.- Describe el conjunto de LSAs
+contenidos en la base de datos.</p></li>
+<li><p><strong>Link State Request</strong>.- Permite solicitar instancias de LSAs.</p></li>
+<li><p><strong>Link State Update</strong>.- Provee descripción detallada de los
+LSAs.</p></li>
+<li><p><strong>Link State Acknowledgement</strong>.- Acuse de recibo de un LSA.</p></li>
+</ul></li>
+<li><p><strong>Longitud total.</strong> Indica la longitud total del datagrama:
+Encabezado y datos. Este campo es de 16 bits.</p></li>
+<li><p><strong>ID del enrutador</strong> Este campo, de 32 bits, contiene el
+identificador del enrutador que ha emitido el paquete. Generalmente
+se utiliza la dirección IP más baja del enrutador.</p></li>
+<li><p><strong>ID del área.</strong> Es un campo de 32 bits que indica el área en la que
+el paquete está activo.</p></li>
+<li><p><strong>Checksum.</strong> Campo de 16 bits para verificar la integrudad del
+encabezado.</p></li>
+<li><p><strong>Tipo de autenticación.</strong> Campo de 16 bits únicamente válido para
+la versión 2 de OSPF, indica el algoritmo de autenticación
+utilizado:</p></li>
+<li><p>0.- No se utiliza autenticación</p></li>
+<li><p>1.- Autenticación con base en contraseña (que se transmite sin
+encripción)</p></li>
+<li><p>2.- Autenticación basada en firma digital utilizando algoritmos como
+MD5 o SHA256.</p></li>
+<li><p><strong>Datos de autenticación.</strong> Si el tipo de autenticación no es cero,
+este campo, de 64 bits, contiene los datos de autenticación según el
+mecanismo de autenticación utilizado.</p></li>
+</ul>
+<div id="paquetes-hello" class="section level5 unnumbered hasAnchor">
+<h5>Paquetes HELLO<a href="enrutamiento.html#paquetes-hello" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<p>Los paquetes HELLO se emiten periódicamente, por omisión cada 10
+segundos, y permiten asegurar que el equipo que lo envía (y, obviamente
+el enlace por el que se recibe), sigue activo. Cuando se dejan de
+recibir estos mensajes durante un cierto intervalo (por omisión, cuatro
+periodos de mensajes Hello, es decir, 40 segundos), se considera que el
+enrutador ha dejado de funcionar y se inicia un proceso para
+reconfigurar la tabla de enrutamiento.</p>
+<p>Los paquetes Hello también se utilizan cuando se activa un enrutador en
+la red para encontrar a sus vecinos y poder intercambiar información con
+ellos. En la figura <a href="enrutamiento.html#fig:hello" reference-type="ref" reference="fig:hello">32</a>, el enrutador A se inicia y envía un mensaje
+HELLO por sus interfaces.</p>
+<div class="float" id="fig:hello">
+<img src="figuras/c5/hello.jpg" alt="Paquetes HELLO en la activación de un enrutador." />
+<div class="figcaption"><em>Paquetes HELLO en la activación de un
+enrutador.</em></div>
+</div>
+<p>Al recibir este mensaje, el enrutador B añade a A a su tabla de vecinos
+y responde con otro mensaje HELLO con la información de otros vecinos de
+B.</p>
+<p>Cuando A recibe este mensaje, añade B y su lista de vecinos a su propia
+tabla.En este punto, los ruteadores pueden iniciar comunicación
+bireccional para intercambiar información de estado de enlace.</p>
+</div>
+<div id="elecciuxf3n-de-enrutador-designado" class="section level5 unnumbered hasAnchor">
+<h5>Elección de enrutador designado<a href="enrutamiento.html#elecciuxf3n-de-enrutador-designado" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<p>En redes de difusión, como las redes locales, resultaría muy ineficiente
+que todos los enrutadores intercambien información entre sí para
+mantener actualizadas sus bases de datos. En estas configuraciones, se
+elige un <strong>enrutador designado</strong> (DR, <em>Designated Router</em>). Los demás
+enrutadores en la red local sólo se comunican con él para intercambiar
+información. Por ejemplo, en caso de un cambio en el estado de un
+enlace), el enrutador correspondiente envía esta actualización al DR y
+éste la reenvía a todos los enrutadores en la red.</p>
+<p>Se elige como DR a aquél que tenga el valor de prioridad más grande. Se
+trata de un parámetro configurado por el administrador. En caso de
+empate, se elige al enrutador con el identificador más grande.</p>
+<p>También se elige un segundo enrutador llamado de respaldo (BDR, <em>Backup
+Designated Router</em>) cuya función es verificar que el DR esté activo; en
+caso de que detecte un fallo, tomará el rol de DR en la red y se eligirá
+un nuevo BDR.</p>
+</div>
+<div id="descubrimiento-de-rutas-y-actualizaciuxf3n-de-informaciuxf3n" class="section level5 unnumbered hasAnchor">
+<h5>Descubrimiento de rutas y actualización de información<a href="enrutamiento.html#descubrimiento-de-rutas-y-actualizaciuxf3n-de-informaciuxf3n" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<p>Periódicamente el DR envía la descripción de su base de datos que
+incluyen los vecinos que conoce, su costo y un número de secuencia. Los
+vecinos comparan esta información con la que tienen; en caso de detectar
+una diferencia, se envía un mensaje LS Request solicitando información
+detallada de los cambios detectados. El DR responde con la información
+solicitada en un mensaje LS Update. La correcta recepción de todos estos
+mensajes se controla a través de paquetes de acuse de recibo, LSAck.
+Estos intercambios se muestran en la
+figura <a href="enrutamiento.html#fig:descrut" reference-type="ref" reference="fig:descrut">33</a>.</p>
+<div class="float" id="fig:descrut">
+<img src="figuras/c5/descrut.jpg" alt="Descubrimiento de rutas en OSPF." />
+<div class="figcaption"><em>Descubrimiento de rutas en
+OSPF.</em></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="protocolos-de-enrutamiento-externo" class="section level2 hasAnchor" number="15.4">
+<h2><span class="header-section-number">15.4</span> Protocolos de enrutamiento externo<a href="enrutamiento.html#protocolos-de-enrutamiento-externo" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Como se ha mencionado, Internet está conformada la interconexión de
+múltiples sistemas autónomos (SA) administrados de manera independiente.
+Es necesario contar con mecanismos que permitan coordinar el flujo de
+paquetes sin problemas entre estos SA. Esa es la función de los
+protocolos de enrutamiento externo (EGP, <em>External Gateway Protocol</em>)</p>
+<p>A diferencia de los protocolos de enrutamiento interno, cuyo objetivo es
+optimizar las rutas al interior de un SA y asegurar la rápida
+convergencia ante cambios en la topología, los protocolos EGP necesitan
+lidiar con la transmisión eficiente de datos a través de las fronteras
+administrativas que representan los distintos SA.</p>
+<p>Los protocolos EGP deben lidiar con una mayor escala y heterogeneidad en
+comparación con los protocolos IGP. Mientras que éstos se encargan de
+rutas dentro de una única organización, un EGP debe gestionar rutas que
+abarcan múltiples organizaciones, cada una con sus propias políticas y
+estructuras de red. Esto requiere que los EGP sean extremadamente
+flexibles y robustos, capaces de manejar un gran número de rutas y
+adaptarse a diversas políticas de enrutamiento. Esta flexibilidad y
+robustez son esenciales para mantener la estabilidad y la eficiencia de
+Internet a nivel global.</p>
+<p>Los protocolos EGP son protocolos basados en políticas, es decir que las
+decisiones de encaminamiento no consisten en encontrar una ruta óptima
+sino una ruta que cumpla con las preferencias y restricciones de los
+administradores de los SA.</p>
+<p>Para ejemplificar lo anterior, consideremos la red de la
+figura <a href="enrutamiento.html#fig:redsa" reference-type="ref" reference="fig:redsa">34</a> que
+simboliza un subconjunto de la Internet. Los sistemas autónomos SA A, B
+y C representan redes de tres organizaciones distintas. Los sistemas
+autónomos SA T1, T2, T3, T4 y T5, representan redes de transporte de
+datos o proveedores de acceso a Internet (ISP, <em>Internet Service
+Provider</em>).</p>
+<div class="float" id="fig:redsa">
+<img src="figuras/c5/redsa.jpg" alt="Red conformada por varios sistemas autónomos." />
+<div class="figcaption"><em>Red conformada por varios sistemas
+autónomos.</em></div>
+</div>
+<p>El SA A tiene dos salidas a Internet; se trata de una red multiconectada
+(<em>multihommed</em>). Hay varios retos de enrutamiento que se presentan para
+este sistema autónomo; entre ellos:</p>
+<ul>
+<li><p>Tiene que decidir cómo anuncia sus propias redes al resto de
+Internet, a través de SA T3, o de SA T1, o si conviene hacer un
+balance de tráfico y anunciar algunas redes a través de cada ISP</p></li>
+<li><p>Si SA T3 tiene tráfico que debe enviar a SA C, por ejemplo, debe
+evitar que ese tráfico cruce a través de sus propias redes. SA T3
+podría tratar de hacer eso para evitar posibles cargos que SA T1
+(una red de transporte) pudiera hacerle por cruzar ese tráfico.</p></li>
+<li><p>Si tiene tráfico que debe enviar a un cliente de SA T4 pero quiere
+evitar que ese tráfico cruce redes de SA T5 (quizás se trata de
+redes de un competidor), debe ser capaz de seleccionar trayectorias
+que no pasen por ese sistema autónomo.</p></li>
+</ul>
+<p>Los protocolos EGP deben ser capaces de satisfacer estas y otras
+restricciones. Las decisiones de enrutamiento no están basadas en
+métricas para optimizar trayectorias, sino en criterios de negocio,
+políticos, de confiabilidad, de seguridad entre otros..</p>
+<div id="bgp.-caracteruxedsticas-generales" class="section level3 hasAnchor" number="15.4.1">
+<h3><span class="header-section-number">15.4.1</span> BGP. Características generales<a href="enrutamiento.html#bgp.-caracteruxedsticas-generales" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>La cuarta versión de BGP (<em>Border Gateway Protocol</em>), BGP-4, definida en
+el RFC 1771, es el protocolo de enrutamiento externo más utilizado en
+Internet. Su principal función es intercambiar información de
+enrutamiento entre sistemas autónomos, permitiendo que los datos
+encuentren la mejor ruta posible para llegar a su destino. Una de las
+características distintivas de BGP es su capacidad para manejar grandes
+volúmenes de rutas, lo que es crucial para la operación de la red global
+de Internet.</p>
+<p>BGP opera en la capa de aplicación y utiliza TCP como protocolo de
+transporte para garantizar una entrega fiable de mensajes entre los
+enrutadores. Los mensajes BGP utilizan el puerto 179 de TCP. Entiende de
+prefijos de red, por lo que puede sumarizar rutas y así reducir la
+cantidad de información intercambiada.</p>
+<p>El intercambio de información se asemeja un poco a los algoritmos de
+vector de distancias, pero la información intercambiada se refiere a SAs
+y a “alcanzabilidad” de rutas, no a alguna métrica, por lo que se dice
+que este protocolo utiliza un algoritmo de <em>Vector de Rutas</em>.</p>
+<div id="principio-de-operaciuxf3n-2" class="section level4 unnumbered hasAnchor">
+<h4>Principio de operación<a href="enrutamiento.html#principio-de-operaciuxf3n-2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>El funcionamiento de BGP se basa en el intercambio de información de
+enrutamiento entre pares de enrutadores llamados vecinos o <em>peers</em>.
+Estos pares establecen una conexión TCP entre sí y utilizan esta
+conexión para intercambiar mensajes de actualización que contienen
+información sobre las rutas que cada uno conoce. El proceso de
+establecimiento de la conexión y el intercambio de mensajes es
+fundamental para la operación de BGP y se conoce como la formación de
+una sesión BGP.</p>
+<p>Una vez establecida la sesión BGP, los enrutadores intercambian mensajes
+de actualización que contienen anuncios de rutas. Cada anuncio incluye
+una serie de atributos que describen la ruta, como el prefijo de la red,
+la longitud del prefijo, la lista de SA por los que la ruta ha pasado
+(AS_PATH), y otros atributos relevantes. Estos atributos permiten a los
+enrutadores BGP no solo conocer las rutas disponibles, sino también
+tomar decisiones informadas sobre la mejor ruta a utilizar, basándose en
+las políticas de enrutamiento configuradas. En términos generales, el
+flujo se describe en la figura <a href="enrutamiento.html#fig:procbgp" reference-type="ref" reference="fig:procbgp">35</a>.</p>
+<div class="float" id="fig:procbgp">
+<img src="figuras/c5/procbgp.jpg" alt="Proceso para selección, actualización y anuncio de rutas en BGP." />
+<div class="figcaption"><em>Proceso para selección, actualización y anuncio de rutas en
+BGP.</em></div>
+</div>
+<p>Las actualizaciones de ruteo son recibidas de otros enrutadores BGP. El
+módulo de políticas de entrada filtra las rutas y realiza manipulación
+de los atributos. El proceso de decisión determina qué rutas de BGP
+serán usadas. El módulo de políticas de salida filtra las rutas y
+realiza la manipulación de atributos de las rutas que serán anunciadas.
+Las actualizaciones de ruteo son anunciadas a otros enrutadores BGP.</p>
+<p>El proceso de selección de rutas en BGP es un aspecto crítico de su
+operación. Cuando un enrutador BGP recibe múltiples anuncios para la
+misma red de destino, debe decidir cuál de estas rutas utilizar. Este
+proceso de selección se basa en una serie de reglas predefinidas que
+consideran los atributos de las rutas. Por ejemplo, una de las reglas
+más importantes es la longitud del AS_PATH: en general, BGP prefiere
+rutas con un AS_PATH más corto, ya que esto indica menos saltos entre
+sistemas autónomos. Sin embargo, las políticas de enrutamiento pueden
+modificar este comportamiento para cumplir con los objetivos específicos
+de la red.</p>
+<p>A cada SA se le asigna un peso y la ruta preferida al destino es aquella
+con el menor peso agregado. BGP debe de incluir una política para
+excluir un SA de todas las posibles trayectorias; esto se logra
+asignando un peso de infinito a un SA.</p>
+</div>
+<div id="componentes" class="section level4 hasAnchor" number="15.4.1.1">
+<h4><span class="header-section-number">15.4.1.1</span> Componentes<a href="enrutamiento.html#componentes" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>BGP consta de varios componentes clave que trabajan juntos para
+proporcionar sus funcionalidades de enrutamiento. Los más importantes se
+muestran en la figura <a href="enrutamiento.html#fig:compbgp" reference-type="ref" reference="fig:compbgp">36</a>. Estos componentes incluyen los enrutadores,
+las sesiones BGP, los mensajes BGP y las tablas de enrutamiento.</p>
+<div class="float" id="fig:compbgp">
+<img src="figuras/c5/compbgp.jpg" alt="Principales componentes de BGP." />
+<div class="figcaption"><em>Principales componentes de
+BGP.</em></div>
+</div>
+<p>Los enrutadores BGP son los dispositivos que ejecutan el protocolo BGP y
+se encargan de intercambiar información de enrutamiento con otros
+enrutadores. Estos pueden estar ubicados en diferentes sistemas
+autónomos y deben estar configurados para establecer sesiones BGP entre
+sí. La configuración de los enrutadores BGP incluye la definición de las
+políticas de enrutamiento, la selección de vecinos BGP y la gestión de
+las sesiones BGP. Un enrutador que establece una sesión BGP se conoce
+como <em>BGP Speaker</em>.</p>
+<p>Las sesiones BGP permiten el intercambio de mensajes BGP y son
+esenciales para la operación del protocolo. Hay dos tipos principales de
+sesiones BGP: sesiones internas (iBGP), que se establecen entre
+enrutadores BGP dentro del mismo sistema autónomo, y sesiones externas
+(eBGP), que se establecen entre enrutadores BGP en diferentes sistemas
+autónomos. Las sesiones iBGP y eBGP tienen diferentes reglas y
+comportamientos que influyen en cómo se propaga la información de
+enrutamiento.</p>
+</div>
+<div id="formato-de-los-paquetes" class="section level4 unnumbered hasAnchor">
+<h4>Formato de los paquetes<a href="enrutamiento.html#formato-de-los-paquetes" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Los mensajes BGP son las unidades de información que se intercambian
+entre los enrutadores BGP. Hay varios tipos de mensajes BGP, incluyendo
+mensajes de apertura, actualización, notificación y keepalive. Los
+mensajes de apertura se utilizan para establecer una sesión BGP,
+mientras que los mensajes de actualización contienen información sobre
+las rutas y sus atributos. Los mensajes de notificación se utilizan para
+indicar errores, y los mensajes keepalive se envían periódicamente para
+mantener activa la sesión BGP.</p>
+<p>El mensaje de apertura (figura <a href="enrutamiento.html#fig:openbgp" reference-type="ref" reference="fig:openbgp">37</a>) es el primero que se envía cuando se establece
+una sesión BGP. Este mensaje incluye información esencial como la
+versión del protocolo BGP, el número de sistema autónomo del remitente,
+el tiempo de espera (<em>hold time</em>) y el identificador BGP (una dirección
+IP única del enrutador BGP). La recepción de un mensaje de apertura
+correcto establece la sesión BGP y permite que los enrutadores comiencen
+a intercambiar información.</p>
+<div class="float" id="fig:openbgp">
+<img src="figuras/c5/openbgp.jpg" alt="Mensaje de apertura BGP." />
+<div class="figcaption"><em>Mensaje de apertura BGP.</em></div>
+</div>
+<p>Todos los mensajes BGP consisten de un encabezado común mas el contenido
+específico del paquete. Este encabezado permite resincronizar los flujos
+(que vienen en segmentos TCP) cuando sea necesario, e identificar el
+tipo de mensaje que se está transmitiendo.</p>
+<p>Si no se recibe ningún tipo de mensaje dentro del tiempo de hold time,
+el enrutador asume una condición de error, envía una notificación y
+cierra la conexión. Se recomienda que se envíen mensajes <em>keepalive</em>
+cada 40 segundos y que el <em>hold time</em> sea de 90 segundos.</p>
+<p>El mensaje de apertura provee parámetros opcionales que pueden ser
+usados para autenticar al vecino BGP. Una aceptación del mensaje open se
+reconoce mediante la recepción de mensajes <em>keepalive</em>.</p>
+<p>Los mensajes de actualización son quizás los más importantes en BGP, ya
+que contienen información sobre las rutas que se están anunciando o
+retirando. Su formato se muestra en la
+figura <a href="enrutamiento.html#fig:updatebgp" reference-type="ref" reference="fig:updatebgp">38</a> y está formado por varios campos además del
+encabezado común.</p>
+<div class="float" id="fig:updatebgp">
+<img src="figuras/c5/updatebgp.jpg" alt="Mensaje de actualización BGP." />
+<div class="figcaption"><em>Mensaje de actualización
+BGP.</em></div>
+</div>
+<p>Después del encabezado común Los mensajes de actualización consisten de
+dos partes; la primera de ellas, informa de rutas que ya no son válidas
+y deben ser retiradas. El primer campo, de 16 bits, muestra la longitud
+en octetos que ocupan las rutas a retirar. Dado que BGP opera con
+direcciones sin clase, el formato de cada entrada en esta sección es
+longitud de los bits de la ruta (es decir, del prefijo), seguida del
+valor. De ser necesario, se utilizan bits de relleno para que la entrada
+sea un múltiplo de ocho bits.</p>
+<p>La segunda parte del mensaje informa sobre las rutas que deben ser tomar
+en consideración, es decir, las rutas alcanzables (NLRI, <em>Network Layer
+Reachability Information</em>). Al igual que en la sección anterior, el
+primer campo indica la longitud que ocupan las entradas NLRI y cada una
+de estas entradas se representa mediante la tupla &lt;longitud, prefijo&gt;.
+Por ejemplo, la entrada &lt;16,148.205.0.0&gt; indica una dirección en la
+que los primeros 16 bits deben ser tomados en cuenta (la red
+148.205.0.0/16).</p>
+<p>Cada NLRI está precedido de un atributo que consiste de una tupla de 3
+elementos: bandera, tipo y valor. Existen muchos tipos de atributos que
+en conjunto definen una ruta anunciada. Se presentan siete de ellos,
+aunque únicamente los tres primeros son obligatorios:</p>
+<ul>
+<li><p><strong>ORIGIN</strong> (tipo 1).- Indica el origen del prefijo de red, es decir,
+cómo fue introducido en BGP: IGP (se originó dentro del SA), EGP (se
+originó en otro SA y se obtuvo a través de una sesión BGP) o
+INCOMPLETE cuando no se sabe o no se especifica el origen.</p></li>
+<li><p><strong>AS_PATH</strong> (tipo 2).- Define el conjunto de SAs que deben de ser
+cruzados para llegar a la ruta anunciada. Se trata del AS_PATH que
+suele utilizarse para comparar con las políticas de enrutamiento.
+También ayuda a evitar la creación de bucles en el enrutamiento.</p></li>
+<li><p><strong>NEXT_HOP</strong> (tipo 3).-Indica la dirección IP del siguiente salto
+hacia la red de destino. Es crucial para que los enrutadores sepan a
+dónde enviar los paquetes para alcanzar la red anunciada.</p></li>
+<li><p><strong>MULTI_EXIT_DISC</strong> (MED) (tipo 4): Este campo es utilizado para
+influir en la selección de rutas cuando existen múltiples enlaces
+hacia un SA vecino. Ayuda a determinar la preferencia de la ruta
+para el tráfico de salida.</p></li>
+<li><p><strong>LOCAL_PREF</strong> (tipo 5).- Indica la preferencia de una ruta. Una
+ruta con un valor LOCAL_PREF más alto será preferida sobre otras con
+valores más bajos.</p></li>
+<li><p><strong>ATOMIC_AGGREGATE</strong> (tipo 6).- Este atributo indica que el prefijo
+de red ha sido agregado (combinado) y que la información AS_PATH ha
+sido modificada para reflejar dicha agregación. Es una señal para
+evitar bucles y problemas de enrutamiento debido a la pérdida de
+información.</p></li>
+<li><p><strong>AGGREGATOR</strong> (tipo 7).- Proporciona información sobre el SA y la
+dirección IP del enrutador que realizó la agregación. Es útil para
+la resolución de problemas y para rastrear la fuente de la
+información agregada.</p></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="ipv6.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="problemas-4.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/04-CapaRed.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdown_RedesComputadoras.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

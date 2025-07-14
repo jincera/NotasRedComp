@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 6 Taxonomía | Redes de Computadoras</title>
+  <meta name="description" content="Notas del curso Redes de Computadoras en HTML." />
+  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 6 Taxonomía | Redes de Computadoras" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Notas del curso Redes de Computadoras en HTML." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 6 Taxonomía | Redes de Computadoras" />
+  
+  <meta name="twitter:description" content="Notas del curso Redes de Computadoras en HTML." />
+  
+
+<meta name="author" content="José Incera" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="arquitecturas-de-red.html"/>
+<link rel="next" href="problemas.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Redes de Computadoras. Notas de Curso</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> link-citations: yes</a></li>
+<li class="chapter" data-level="2" data-path="capintro.html"><a href="capintro.html"><i class="fa fa-check"></i><b>2</b> Introducción</a>
+<ul>
+<li class="chapter" data-level="" data-path="capintro.html"><a href="capintro.html#resumen"><i class="fa fa-check"></i>Resumen</a></li>
+<li class="chapter" data-level="2.1" data-path="capintro.html"><a href="capintro.html#requisitos"><i class="fa fa-check"></i><b>2.1</b> Conceptos básicos</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="capintro.html"><a href="capintro.html#sistemas-de-comunicaciones"><i class="fa fa-check"></i><b>2.1.1</b> Sistemas de comunicaciones</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="capintro.html"><a href="capintro.html#redes-de-telecomunicaciones"><i class="fa fa-check"></i><b>2.2</b> Redes de telecomunicaciones</a></li>
+<li class="chapter" data-level="2.3" data-path="capintro.html"><a href="capintro.html#señal"><i class="fa fa-check"></i><b>2.3</b> Señal</a></li>
+<li class="chapter" data-level="2.4" data-path="capintro.html"><a href="capintro.html#conversión-analógica-a-digital-ad"><i class="fa fa-check"></i><b>2.4</b> Conversión analógica a digital (A/D)</a>
+<ul>
+<li class="chapter" data-level="" data-path="capintro.html"><a href="capintro.html#teorema-de-nyquist"><i class="fa fa-check"></i>Teorema de Nyquist</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="conmutación.html"><a href="conmutación.html"><i class="fa fa-check"></i><b>3</b> Conmutación</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="conmutación.html"><a href="conmutación.html#conmutación-de-mensajes"><i class="fa fa-check"></i><b>3.1</b> Conmutación de mensajes</a></li>
+<li class="chapter" data-level="3.2" data-path="conmutación.html"><a href="conmutación.html#conmutación-de-circuitos"><i class="fa fa-check"></i><b>3.2</b> Conmutación de circuitos</a></li>
+<li class="chapter" data-level="3.3" data-path="conmutación.html"><a href="conmutación.html#conmutación-de-paquetes"><i class="fa fa-check"></i><b>3.3</b> Conmutación de paquetes</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="multiplexaje.html"><a href="multiplexaje.html"><i class="fa fa-check"></i><b>4</b> Multiplexaje</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="multiplexaje.html"><a href="multiplexaje.html#multiplexaje-en-el-tiempo"><i class="fa fa-check"></i><b>4.1</b> Multiplexaje en el tiempo</a></li>
+<li class="chapter" data-level="4.2" data-path="multiplexaje.html"><a href="multiplexaje.html#multiplexaje-en-frecuencia"><i class="fa fa-check"></i><b>4.2</b> Multiplexaje en frecuencia</a></li>
+<li class="chapter" data-level="4.3" data-path="multiplexaje.html"><a href="multiplexaje.html#s:cdm"><i class="fa fa-check"></i><b>4.3</b> Multiplexaje por división de código</a></li>
+<li class="chapter" data-level="4.4" data-path="multiplexaje.html"><a href="multiplexaje.html#multiplexaje-espacial"><i class="fa fa-check"></i><b>4.4</b> Multiplexaje espacial</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="arquitecturas-de-red.html"><a href="arquitecturas-de-red.html"><i class="fa fa-check"></i><b>5</b> Arquitecturas de red</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="arquitecturas-de-red.html"><a href="arquitecturas-de-red.html#modelo-isoosi"><i class="fa fa-check"></i><b>5.1</b> Modelo ISO/OSI</a></li>
+<li class="chapter" data-level="5.2" data-path="arquitecturas-de-red.html"><a href="arquitecturas-de-red.html#modelo-tcpip"><i class="fa fa-check"></i><b>5.2</b> Modelo TCP/IP</a></li>
+<li class="chapter" data-level="5.3" data-path="arquitecturas-de-red.html"><a href="arquitecturas-de-red.html#encapsulamiento"><i class="fa fa-check"></i><b>5.3</b> Encapsulamiento</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="taxonomía.html"><a href="taxonomía.html"><i class="fa fa-check"></i><b>6</b> Taxonomía</a></li>
+<li class="chapter" data-level="7" data-path="problemas.html"><a href="problemas.html"><i class="fa fa-check"></i><b>7</b> Problemas</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Redes de Computadoras</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="taxonomía" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">Capítulo 6</span> Taxonomía<a href="taxonomía.html#taxonomía" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Existen diversas maneras en las que las redes digitales pueden ser
+clasificadas, por ejemplo, por los servicios que ofrecen (telefonía fija
+y móvil, televisión, intercambio de información); por su función en la
+arquitectura de red (redes de acceso, redes de transporte); por la
+población de usuarios que las utilizan (redes públicas, privadas,
+corporativas, para el hogar); por su cobertura geográfica. Esta última
+clasificación es muy común en la literatura, por lo que se presentará
+brevemente.</p>
+<dl>
+<dt>Redes de área corporal (BAN, <em>Personal Area Network</em>)</dt>
+<dd>
+<p>Se trata de un concepto relativamente reciente en el que los
+dispositivos utilizan el cuerpo humano como medio de transmisión.
+Los dispositivos transmiten información entre sí con el simple hecho
+de tocarlos. Esta tecnología debe utilizar señales de baja potencia
+para reducir la interferencia entre dispositivos y, sobre todo para
+evitar efectos nocivos para la salud.</p>
+<p>Una ventaja del cuerpo como medio de transmisión es que la
+información no se irradia al ambiente. El Instituto de
+Investigaciones en Electrónica y Telecomunicación de Corea del Sur
+ha desarrollado un prototipo que permite intercambiar datos a 5kb/s.
+Esta clase de dispositivos podría usarse para ofrecer servicios de
+autenticación, pago electrónico o monitoreo clínico de pacientes. Su
+área de cobertura es de un par de metros.</p>
+</dd>
+<dt>Redes de área personal (PAN, <em>Body Area Network)</em></dt>
+<dd>
+<p>Son redes típicamente inalámbricas que interconectan dispositivos de
+cómputo en un área de cobertura pequeña, alrededor de 10 metros. Las
+primeras redes PAN utilizaban enlaces infrarrojo para la
+interconexión, ofrecían velocidades de 2.4kb/s hasta 16Mb/s en un
+rango de hasta un metro pero los dispositivos debían contar con una
+trayectoria directa entre ellos, es decir, sin objetos que la
+obstruyeran. A esto se le conoce en telecomunicaciones como línea de
+vista (LOS, <em>Line Of Sight</em>).</p>
+<p>Los estándares actuales, entre los que destacan IEEE 802.15.1, mejor
+conocido como Bluetooth, IEEE 802.15.4, llamado ZigBee <a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a> y
+Wireless USB<a href="#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a>, no requieren de LOS. Bluetooth 2.0 ofrece
+velocidades de 3Mb/s mientras que WUSB alcanza los 110Mb/s en
+distancias de 10 metros. ZigBee, más enfocada a la interconexión de
+dispositivos, es una red muy simple, de bajo costo, baja velocidad
+(hasta 250 kb/s) y relativamente segura.</p>
+<p>Todas ellas están diseñadas para operar en modo ad-hoc, en el que
+los dispositivos electrónicos se conectan entre sí sin la
+intervención del usuario. Es decir, los dispositivos identifican a
+la red, solicitan su ingreso, reciben una dirección y establecen la
+comunicación por sí mismos.</p>
+</dd>
+<dt>Redes de área local (LAN, <em>Local Area Network)</em></dt>
+<dd>
+<p>Son las más conocidas en las organizaciones y, de manera creciente,
+en los hogares. En el
+capítulo <a href="#c:lan" reference-type="ref" reference="c:lan"><span class="math display">\[c:lan\]</span></a>
+se presentan estas redes. Permiten conectar dispositivos con una
+cobertura de cientos de metros hasta un par de kilómetros.
+Históricamente, la tecnología dominante en estas redes ha sido
+Ethernet, creada por Robert Metcalfe en los laboratorios Xerox PARC
+a mediados de los años 70 <span class="citation">[8]</span> y estandarizada por la
+IEEE bajo el grupo de trabajo 802.3 <a href="#fn8" class="footnote-ref" id="fnref8"><sup>8</sup></a>.</p>
+<p>En sus primeras versiones, los dispositivos se conectan a un medio
+compartido (un cable coaxial, o un concentrador) en el que se
+difunde la señal transmitida, que puede ser escuchada por todos.
+Cuando un dispositivo desea enviar información, verifica que el
+medio esté libre y la transmite en una trama que tiene, entre otros
+campos, identificadores del remitente y del receptor. Este último
+toma la trama del medio; los demás la ignoran.</p>
+<p>Debido a su gran flexibilidad, facilidad de integración y bajos
+costos de implementación, se ha observado un crecimiento exponencial
+de redes locales inalámbricas basadas en la familia de estándares
+IEEE 802.11<a href="#fn9" class="footnote-ref" id="fnref9"><sup>9</sup></a> tanto en las organizaciones privadas como en el
+hogar y en áreas públicas como aeropuertos, parques y cafeterías,
+sobre todo para dar acceso a la red Internet en los llamados
+hot-spots. Estas redes, también conocidas como WiFi, ofrecen
+velocidades nominales que alcanzan los 200 Mb/s.</p>
+</dd>
+<dt>Redes de área de campus (CAN, <em>Campus Area Network)</em></dt>
+<dd>
+<p>Conforme fueron diseminándose las redes locales surgió la necesidad
+de conectarlas entre sí de manera eficiente en áreas que podían
+abarcar unos cuantos kilómetros, como hospitales, aeropuertos,
+campus universitarios, y edificios corporativos. Esta interconexión
+podía realizarse por medio de conmutadores ATM, o por medio de
+tecnologías específicas para ello, como FDDI (Fiber Distributed Data
+Interface). En la actualidad, la interconexión suele darse a través
+de enlaces punto a punto (típicamente enlaces ópticos) entre
+conmutadores Ethernet o enrutadores IP.</p>
+</dd>
+<dt>Redes de área metropolitana (MAN, <em>Metrtopolitan Area Network)</em></dt>
+<dd>
+<p>Con una cobertura de decenas de kilómetros, en esta categoría suelen
+concentrarse dos grupos de tecnologías: aquellas utilizadas
+principalmente para interconectar redes locales dentro de una ciudad
+y aquellas utilizadas como redes de acceso, principalmente a
+Internet. Para la interconexión de redes locales, la tecnología
+dominante es MetroEthernet (IEEE 802.3ah) la cual evolucionó de las
+redes LAN, con las que los usuarios tienen una larga familiaridad.
+MetroEthernet puede ser implementada sobre líneas de cobre aunque
+con mayor frecuencia su infraestructura se basa en fibras ópticas.
+Si el proveedor utiliza DWDM, puede alcanzar velocidades de hasta
+100Gb/s.</p>
+</dd>
+<dt>Redes de área amplia (WAN, <em>Wide Area Network)</em></dt>
+<dd>
+<p>En esta categoría, en la que también se incluyen las redes de área
+regional (RAN, <em>Regional Area Network)</em>, se cubren grandes
+extensiones, incluso varios países. La mayoría de estas redes está
+integrada a la infraestructura de transporte (alambrada) de los
+grandes operadores. Típicamente están formadas por nodos de
+conmutación de gran velocidad interconectados entre sí con enlaces
+de fibra óptica utilizando tecnologías como ATM, SONET/SDH y WDM.</p>
+<p>La recientemente aprobada norma IEEE 802.22, tiene como objeto
+proveer acceso inalámbrico fijo a regiones de hasta 100 km de radio
+en áreas con baja densidad poblacional. Utiliza frecuencias sin
+licencia en la banda originalmente establec ida para la
+radiodifusión de televisión. El estándar hace uso de radios
+cognitivos. Posee la gran ventaja de no interferir con dispositivos
+usando frecuencias con licencia. Esta tecnología resulta de
+particular interés en países en desarrollo y en áreas rurales.</p>
+</dd>
+<dt>Redes de área global (GAN, <em>Global Area Network)</em></dt>
+<dd>
+<p>Las redes de área global cubren un área geográfica ilimitada
+interconectando una gran cantidad de redes. Este es el caso de las
+redes telefónicas fijas a escala mundial, e integradas casi
+totalmente con sus contrapartes celulares. Otro ejemplo evidente es
+Internet, la gran “red de redes”, que ha rebasado las fronteras de
+la tierra con la propuesta de iniciativas para lanzar sondas
+espaciales que utilizan enrutadores con el protocolo IP para enviar
+información a la tierra.</p>
+</dd>
+</dl>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="6">
+<li id="fn6"><p>IEEE 802.15 WPAN Task Group 1.
+<a href="http://www.ieee802.org/15/pub/TG1.html" class="uri">http://www.ieee802.org/15/pub/TG1.html</a><a href="taxonomía.html#fnref6" class="footnote-back">↩︎</a></p></li>
+<li id="fn7"><p>Certified Wireless USB. <a href="http://www.usb.org/developers/wusb/" class="uri">http://www.usb.org/developers/wusb/</a><a href="taxonomía.html#fnref7" class="footnote-back">↩︎</a></p></li>
+<li id="fn8"><p><a href="http://" class="uri">http://</a> www.ieee802.org /3/<a href="taxonomía.html#fnref8" class="footnote-back">↩︎</a></p></li>
+<li id="fn9"><p><a href="http://www.ieee802.org/11/" class="uri">http://www.ieee802.org/11/</a><a href="taxonomía.html#fnref9" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="arquitecturas-de-red.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="problemas.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/00-RCIntro.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdown_RedesComputadoras.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

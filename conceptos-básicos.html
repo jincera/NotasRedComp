@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 1 Conceptos básicos | Redes de Computadoras</title>
+  <meta name="description" content="Notas del curso Redes de Computadoras en HTML." />
+  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 1 Conceptos básicos | Redes de Computadoras" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Notas del curso Redes de Computadoras en HTML." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 1 Conceptos básicos | Redes de Computadoras" />
+  
+  <meta name="twitter:description" content="Notas del curso Redes de Computadoras en HTML." />
+  
+
+<meta name="author" content="José Incera" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="resumen.html"/>
+<link rel="next" href="conmutación.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Redes de Computadoras. Notas de Curso</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Presentación</a></li>
+<li class="chapter" data-level="" data-path="resumen.html"><a href="resumen.html"><i class="fa fa-check"></i>Resumen</a></li>
+<li class="chapter" data-level="1" data-path="conceptos-básicos.html"><a href="conceptos-básicos.html"><i class="fa fa-check"></i><b>1</b> Conceptos básicos</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="conceptos-básicos.html"><a href="conceptos-básicos.html#sistemas-de-comunicaciones"><i class="fa fa-check"></i><b>1.1</b> Sistemas de comunicaciones</a></li>
+<li class="chapter" data-level="1.2" data-path="conceptos-básicos.html"><a href="conceptos-básicos.html#redes-de-telecomunicaciones"><i class="fa fa-check"></i><b>1.2</b> Redes de telecomunicaciones</a></li>
+<li class="chapter" data-level="1.3" data-path="conceptos-básicos.html"><a href="conceptos-básicos.html#señal"><i class="fa fa-check"></i><b>1.3</b> Señal</a></li>
+<li class="chapter" data-level="1.4" data-path="conceptos-básicos.html"><a href="conceptos-básicos.html#conversión-analógica-a-digital-ad"><i class="fa fa-check"></i><b>1.4</b> Conversión analógica a digital (A/D)</a>
+<ul>
+<li class="chapter" data-level="" data-path="conceptos-básicos.html"><a href="conceptos-básicos.html#teorema-de-nyquist"><i class="fa fa-check"></i>Teorema de Nyquist</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="conmutación.html"><a href="conmutación.html"><i class="fa fa-check"></i><b>2</b> Conmutación</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="conmutación.html"><a href="conmutación.html#conmutación-de-mensajes"><i class="fa fa-check"></i><b>2.1</b> Conmutación de mensajes</a></li>
+<li class="chapter" data-level="2.2" data-path="conmutación.html"><a href="conmutación.html#conmutación-de-circuitos"><i class="fa fa-check"></i><b>2.2</b> Conmutación de circuitos</a></li>
+<li class="chapter" data-level="2.3" data-path="conmutación.html"><a href="conmutación.html#conmutación-de-paquetes"><i class="fa fa-check"></i><b>2.3</b> Conmutación de paquetes</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="multiplexaje.html"><a href="multiplexaje.html"><i class="fa fa-check"></i><b>3</b> Multiplexaje</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="multiplexaje.html"><a href="multiplexaje.html#multiplexaje-en-el-tiempo"><i class="fa fa-check"></i><b>3.1</b> Multiplexaje en el tiempo</a></li>
+<li class="chapter" data-level="3.2" data-path="multiplexaje.html"><a href="multiplexaje.html#multiplexaje-en-frecuencia"><i class="fa fa-check"></i><b>3.2</b> Multiplexaje en frecuencia</a></li>
+<li class="chapter" data-level="3.3" data-path="multiplexaje.html"><a href="multiplexaje.html#s:cdm"><i class="fa fa-check"></i><b>3.3</b> Multiplexaje por división de código</a></li>
+<li class="chapter" data-level="3.4" data-path="multiplexaje.html"><a href="multiplexaje.html#multiplexaje-espacial"><i class="fa fa-check"></i><b>3.4</b> Multiplexaje espacial</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="arquitecturas-de-red.html"><a href="arquitecturas-de-red.html"><i class="fa fa-check"></i><b>4</b> Arquitecturas de red</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="arquitecturas-de-red.html"><a href="arquitecturas-de-red.html#modelo-isoosi"><i class="fa fa-check"></i><b>4.1</b> Modelo ISO/OSI</a></li>
+<li class="chapter" data-level="4.2" data-path="arquitecturas-de-red.html"><a href="arquitecturas-de-red.html#modelo-tcpip"><i class="fa fa-check"></i><b>4.2</b> Modelo TCP/IP</a></li>
+<li class="chapter" data-level="4.3" data-path="arquitecturas-de-red.html"><a href="arquitecturas-de-red.html#encapsulamiento"><i class="fa fa-check"></i><b>4.3</b> Encapsulamiento</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="taxonomía.html"><a href="taxonomía.html"><i class="fa fa-check"></i><b>5</b> Taxonomía</a></li>
+<li class="chapter" data-level="6" data-path="problemas.html"><a href="problemas.html"><i class="fa fa-check"></i><b>6</b> Problemas</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Redes de Computadoras</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="conceptos-básicos" class="section level1 hasAnchor" number="1">
+<h1><span class="header-section-number">Capítulo 1</span> Conceptos básicos<a href="conceptos-básicos.html#conceptos-básicos" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Durante las últimas décadas los campos de la informática y las
+telecomunicaciones se han fusionado, generando profundos cambios en la
+tecnología, los productos y las compañías de esta nueva industria
+combinada <span class="citation">[1]</span>, llamada Tecnologías de Información y de
+Comunicaciones TIC. La revolución generada por esta simbiosis ha
+afectado significativamente el tejido económico y social del mundo. Las
+redes digitales se están convirtiendo en el sistema nervioso de la
+Sociedad de la Información. Para Castells <span class="citation">[2]</span>, <em>La Red</em>
+significa nuevas formas de organización que reemplazan jerarquías
+verticales integradas como la manera dominante de organización social.</p>
+<p>De acuerdo a la Unión Internacional de Telecomunicaciones (UIT,
+<em>Internationa Telecommunications Union</em>) el desarrollo dentro del sector
+de las TIC, puede ilustrarse en tres fases u olas de cambios
+tecnológicos <span class="citation">[3]</span>:</p>
+<dl>
+<dt>La primera ola</dt>
+<dd>
+<p>está caracterizada por profundos cambios tecnológicos que dieron
+lugar a la digitalización, la computarización y la aparición de las
+redes de conmutación de paquetes, conceptos que serán tratados más
+adelante.</p>
+<p>Con esta primera ola se consiguió una mejora en la utilización de
+los recursos y un incremento en la capacidad de las redes de
+comunicación. Esto posibilitó la creación de nuevos servicios y
+cimentó un entorno de sinergia que aceleró el desarrollo
+tecnológico.</p>
+<p>Al convertir todo tipo de fuente de información en un patrón binario
+(o digital), la digitalización posibilita la integración de
+diferentes servicios en la misma red, mejorando sus prestaciones a
+través de procesos como la compresión, la modularización y la
+detección y corrección anticipada de errores (FEC, <em>Forward Error
+Correction</em>).</p>
+<p>Con las fuentes de información digitalizadas, éstas pueden
+manipuladas automáticamente con programas informáticos. Esta
+computarización puede ocurrir dentro de la red misma, dotando de
+inteligencia a los nodos encargados de encaminar la información de
+un usuario a otro de la red.</p>
+<p>Como se mostrará más adelante, esta capacidad de procesamiento en
+los nodos es la base de las redes de conmutación de paquetes,
+caracterizadas por un uso sumamente eficiente de los recursos
+disponibles. Esta técnica de conmutación ha sido utilizada en
+prácticamente todas las arquitecturas de red para transferencia de
+datos (como X.25, Frame Relay, SNA y ATM) incluyendo, desde luego,
+aquellas basadas en los protocolos TCP/IP, notablemente la Internet.</p>
+</dd>
+<dt>La segunda ola</dt>
+<dd>
+<p>de desarrollo es representada por el crecimiento explosivo de las
+redes de comunicaciones, notablemente la telefonía móvil y la
+creciente penetración de Internet en la sociedad. Resulta natural
+que todas estas redes converjan y se complementen entre sí, como de
+hecho está ocurriendo: En la actualidad, las redes móviles son la
+principal tecnología de acceso a Internet, mientras que las redes
+llamadas de cuarta generación (basadas, por ejemplo, en LTE, <em>Long
+Term Evolution</em>) son redes de conmutación de paquetes en las que las
+comunicaciones de voz son sólo un servicio más dentro de todos los
+que se espera sean ofrecidos por estas redes.</p>
+<p>Todo lo anterior ha llevado a la llamada convergencia digital la
+cual está ocurriendo en diferentes niveles <span class="citation">[4]</span>:</p>
+<ul>
+<li><p>En el nivel de contenidos, por ejemplo, con la aparición de los
+servicios de Video en Demanda (<em>Video on Demand</em>) y la
+televisión sobre el protocolo de Internet (IPTV);</p></li>
+<li><p>A nivel de negocios, con esquemas de propiedad cruzada y los
+servicios triple-play (datos, voz y video) ofrecidos por
+operadores de telecomunicaciones;</p></li>
+<li><p>A nivel de red con la aparición de redes unificadas para la
+transmisión de señales;</p></li>
+<li><p>A nivel de dispositivos, con dispositivos de propósito múltiple</p></li>
+</ul>
+</dd>
+<dt>La tercera ola</dt>
+<dd>
+<p>va mucho más allá de los desarrollos tecnológicos (y del alcance de
+este curso), y consiste en el desarrollo de servicios, aplicaciones,
+contenidos y procesos de apropiación que permitan transitar de una
+sociedad que usa las TIC, pasando por una sociedad capaz de generar
+información apoyada en ellas, hacia una sociedad basada en el
+conocimiento.</p>
+</dd>
+</dl>
+<p>Así, las redes de comunicaciones son vitales para las sociedades
+contemporáneas, y es por ello que resulta conveniente entender con
+claridad los fundamentos técnicos en que se sustentan.</p>
+<div id="sistemas-de-comunicaciones" class="section level2 hasAnchor" number="1.1">
+<h2><span class="header-section-number">1.1</span> Sistemas de comunicaciones<a href="conceptos-básicos.html#sistemas-de-comunicaciones" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Etimológicamente, la palabra telecomunicación está formada por el
+prefijo griego <em>tele</em> que significa “a distancia” y la raíz latina
+<em>comunicare</em>, “hacer común”. Así, las telecomunicaciones representan el
+acto de hacer común, de compartir <em>algo</em> entre dos o más entidades que
+se encuentran físicamente separadas.</p>
+<p>Para llevar esta definición a ejemplos concretos, ese <em>algo</em> es
+información (o conocimiento) que puede ser expresado a través de la voz
+(tele-fonía), de imágenes (tele-visión) o de símbolos (tele-grafía) y
+que requiere de un sistema que posibilite esta comunicación a la
+distancia.</p>
+<p>En su forma más general, un sistema de comunicaciones está compuesto por
+los bloques que se ilustran en la
+figura <a href="conceptos-básicos.html#fig:sistcom">1.1</a>:</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:sistcom"></span>
+<img src="figuras/c1/sistcom.png" alt="*Sistema de comunicaciones.*" width="60%" />
+<p class="caption">
+Figura 1.1: <em>Sistema de comunicaciones.</em>
+</p>
+</div>
+<p>La fuente es la que genera la información y emite mensajes para uno o
+más destinatarios. La fuente de información puede generar señales
+analógicas o digitales (ver más adelante). La transferencia de
+información entre el emisor y el(los) receptor(es), se lleva a través de
+un canal de comunicación, como puede ser un cable de cobre, una fibra
+óptica o el espectro radioeléctrico. Cuando las señales viajan a través
+del canal, necesariamente sufren perturbaciones impredecibles producidas
+por la naturaleza del canal o por elementos externos al sistema (por
+ejemplo, atenuaciones debido a la resistividad del medio, interferencia
+de otras fuentes, distorsión por las propiedades del medio) y que en
+conjunto se conocen como fuentes de ruido.</p>
+<p>En el sistema de comunicaciones, el transmisor consiste de un conjunto
+de elementos (como moduladores, codificadores, amplificadores) que
+permiten adecuar las señales generadas por las fuentes de información a
+las condiciones del canal de comunicación y de protegerlas, en la medida
+de lo posible, de las fuentes de ruido a las que serán sometidas. Al
+otro extremo del canal, el receptor realiza un proceso inverso para
+recuperar la señal original y entregarla al destinatario.</p>
+</div>
+<div id="redes-de-telecomunicaciones" class="section level2 hasAnchor" number="1.2">
+<h2><span class="header-section-number">1.2</span> Redes de telecomunicaciones<a href="conceptos-básicos.html#redes-de-telecomunicaciones" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Los sistemas de comunicaciones han ido evolucionando y se han convertido
+hoy en sistemas complejos interconectados por distintos medios para
+proporcionar un conjunto de servicios. Estos sistemas son las redes de
+telecomunicaciones y, en términos generales, deben ser capaces de:</p>
+<ul>
+<li><p>Proveer un camino entre usuarios y usuarios, y entre usuarios y
+servicios;</p></li>
+<li><p>posibilitar a cada usuario para que pueda seleccionar a sus
+destinatarios;</p></li>
+<li><p>proveer servicios con calidad, aún en periodos de gran actividad;</p></li>
+<li><p>proporcionar mecanismos de control y gestión.</p></li>
+</ul>
+<p>La posibilidad de una red de procesar y transmitir información del tipo
+deseado por los usuarios, es el “servicio” proporcionado por dicha red.
+Los usuarios pueden ser finales (suscriptores) o intermedios (otras
+redes). Algunos ejemplos de servicios, son los siguientes:</p>
+<ul>
+<li><p>Telefónico local</p></li>
+<li><p>Video transmisión</p></li>
+<li><p>Tránsito</p></li>
+<li><p>Acceso a internet</p></li>
+<li><p>Acceso a red de abonado</p></li>
+</ul>
+</div>
+<div id="señal" class="section level2 hasAnchor" number="1.3">
+<h2><span class="header-section-number">1.3</span> Señal<a href="conceptos-básicos.html#señal" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Un sistema analógico (o análogo) utiliza una cantidad física, como el
+voltaje, para representar el comportamiento de otro sistema físico. Las
+propiedades de esta representación son explotadas para almacenar,
+transformar, duplicar o amplificar el fenómeno original. Las señales
+utilizadas en un sistema analógico son continuas, por lo que pueden
+tomar un número potencialmente infinito de valores.</p>
+<p>Hay muchos ejemplos de señales analógicas en la naturaleza, como el
+sonido, la temperatura ambiente o la intensidad de una fuente de luz
+(por supuesto, sin considerar los procesos que ocurren a nivel de la
+física cuántica). De forma similar, la altura de una rampa varía de
+forma continua y su valor en un punto determinado solo puede ser
+establecida limitando la resolución del dispositivo utilizado para
+efectuar la medición.</p>
+<p>Una desventaja de un sistema analógico es la acumulación de pequeñas
+variaciones aleatorias cada vez que se realiza una operación sobre la
+señal adquirida. Por ejemplo, en el caso específico de un sistema
+eléctrico, siempre existen perturbaciones debidas al movimiento
+molecular (ruido térmico).</p>
+<p>Por su parte, una señal digital solo puede tomar valores discretos y
+cuantificables del fenómeno físico. Por ejemplo, el número de árboles en
+un predio o el nivel de los peldaños en una escalera.</p>
+<p>Una señal analógica puede ser convertida en una señal digital. A este
+proceso se le llama digitalización, lo cual, como se mostrará más
+adelante, ofrece una gran flexibilidad para manipular la señal. Conviene
+recordar que la digitalización es uno de los detonadores de la primera
+ola en el desarrollo de las TIC.</p>
+<p>Por comodidad vamos a trabajar con señales senoidales simples como la
+que aparece en la figura. Como lo demuestra el Teorema de Fourier,
+cualquier señal periodica puede aproximarse como una suma de funciones
+senoidales<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>.</p>
+<p>Una señal senoidal pura se muestra en la
+figura <a href="conceptos-básicos.html#fig:senoidal">1.2</a> representada como <span class="math inline">\(s(t)\)</span>. Las propiedades de la señal que pueden ser
+manipuladas para transportar información, son su amplitud (<span class="math inline">\(A\)</span>), su
+frecuencia (<span class="math inline">\(\omega\)</span>) y su fase (<span class="math inline">\(\phi\)</span>). La amplitud es la magnitud
+máxima que puede tomar la señal. El tiempo que le toma a una señal
+desplegar una oscilación completa, se conoce como periodo y su inverso
+es la frecuencia <span class="math inline">\(\omega\)</span>, que indica el número de oscilaciones por
+segundo que realiza <span class="math inline">\(s(t)\)</span>. La frecuencia se mide en Hertz. La
+separación (medida en grados o radianes) de un punto de referencia
+arbitrario al inicio de un ciclo, es lo que se conoce como fase y se
+representa por <span class="math inline">\(\phi\)</span>.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:senoidal"></span>
+<img src="figuras/c1/senoidal.png" alt="*Señal senoidal*" width="60%" />
+<p class="caption">
+Figura 1.2: <em>Señal senoidal</em>
+</p>
+</div>
+</div>
+<div id="conversión-analógica-a-digital-ad" class="section level2 hasAnchor" number="1.4">
+<h2><span class="header-section-number">1.4</span> Conversión analógica a digital (A/D)<a href="conceptos-básicos.html#conversión-analógica-a-digital-ad" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>La representación digital de una señal analógica se construye en las
+tres fases mostradas en la figura <a href="conceptos-básicos.html#fig:conversionad">1.3</a>. El proceso inicia obteniendo muestras de
+la magnitud a intervalos regulares (muestreo). A cada muestra obtenida
+se le asigna el más cercano de un conjunto finito de valores
+(cuantización). El valor seleccionado se codifica, utilizando
+típicamente una representación binaria (codificación).</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:conversionad"></span>
+<img src="figuras/c1/conversionad.png" alt="*Proceso de conversión de una señal analógica a digital*" width="60%" />
+<p class="caption">
+Figura 1.3: <em>Proceso de conversión de una señal analógica a digital</em>
+</p>
+</div>
+<p>La cuantización implica una distorsión de la señal original (llamada
+error de cuantización) pues, en general, el valor discreto que
+representa la muestra no coincidirá exactamente con su magnitud en ese
+punto (ver figura <a href="conceptos-básicos.html#fig:muestycuant">1.4</a>. En cambio, la señal digital es mucho más
+inmune a factores externos (las fuentes de ruido de la
+figura <a href="conceptos-básicos.html#fig:sistcom">1.1</a>) que alteran la magnitud de la señal.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:muestycuant"></span>
+<img src="figuras/c1/muestycuant.jpg" alt="*Muestreo y cuantización de una señal analógica*" width="60%" />
+<p class="caption">
+Figura 1.4: <em>Muestreo y cuantización de una señal analógica</em>
+</p>
+</div>
+<p>Finalmente, cada muestra cuantizada es representada por un valor binario
+(figura <a href="conceptos-básicos.html#fig:codifica">1.5</a>).
+El conjunto de valores utilizados para la representación digital debe
+elegirse con cuidado. Entre mayor sea el conjunto menor será la
+separación entre ellos, y por consiguiente, el error de cuantización
+será menor. Sin embargo, el patrón binario (es decir, el número de bits)
+para representar estos valores aumenta.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:codifica"></span>
+<img src="figuras/c1/codifica.png" alt="*Codificación de la señal cuantizada*" width="60%" />
+<p class="caption">
+Figura 1.5: <em>Codificación de la señal cuantizada</em>
+</p>
+</div>
+<p>Por simplicidad, en el ejemplo anterior se ha elegido un código de tres
+bits. Con tres bits, se tienen <span class="math inline">\(2^3=8~\)</span>niveles discretos. Cada magnitud
+muestreada se aproxima al nivel más cercano de ellos.</p>
+<div class="Cmnt">
+<p>El proceso de digitalización anterior, en el que cada muestra es
+convertida al valor discreto más cercano y codificada en una serie de
+pulsos binarios, también se le conoce como Modulación por Codificación
+de Pulsos (PCM, <em>Pulse Code Modulation</em>).</p>
+</div>
+<div id="teorema-de-nyquist" class="section level3 unnumbered hasAnchor">
+<h3>Teorema de Nyquist<a href="conceptos-básicos.html#teorema-de-nyquist" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Para reconstruir la señal analógica se recurre a un proceso matemático
+de interpolación. En 1924, Henry Nyquist mostró, a través del teorema
+que lleva su nombre, que para obtener una reconstrucción completa,
+bastaba con tomar muestras al doble de la frecuencia máxima de la señal
+original<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>. En consecuencia, es necesario conocer el rango de
+frecuencias de la señal (es decir, su <em>ancho de banda</em>, determinar la
+frecuencia más alta y muestrear al doble de este valor para que la señal
+digital retenga las propiedades de la original.</p>
+<div class="CasoEs">
+<p>Es ilustrativo ejemplificar los conceptos de conversión A/D en el marco
+de las redes telefónicas digitales.</p>
+<p>La voz está formada por señales que tienen componentes de frecuencia más
+allá de los 12,000 Hz. Sin embargo, los componentes principales de la
+voz, es decir, aquellos que permiten distinguir con claridad el mensaje
+emitido, se encuentran en el rango de 300 Hz a 3,400 Hz.</p>
+<p>En las redes telefónicas digitales se transforma la voz en una señal
+eléctrica que es sensada cada 125 ms, obteniendo 8,000 muestras por
+segundo, es decir, un poco más del doble requerido por el teorema a de
+Nyquist.</p>
+<p>Cada valor se representa con un número binario de 8 bits (se tienen
+<span class="math inline">\(2^8=256\,\)</span> niveles discretos), por lo que la señal digital tiene una
+tasa de <span class="math inline">\(64\,kb/s\)</span>.</p>
+<p>Por supuesto, si se comprimen las señales digitalizadas, se requerirá de
+una tasa de transferencia menor.</p>
+</div>
+<p>Si se capturan menos de dos muestras por ciclo (es decir, si se muestra
+a menos del doble de la frecuencia máxima), entonces la señal que se
+generaría a partir de las muestras tomadas, no es la original, sino una
+en la que se han perdido algunas de sus propiedades. Por ejemplo, en la
+figura [6<a href="#fig::nyqalias"><strong>??</strong></a>{reference-type=“ref”
+reference=“fig:nyqalias”}, los puntos azules se capturan a una tasa
+notablemente menor a <span class="math inline">\(2f_{max}\)</span>, lo que genera la señal representada por
+la línea azul punteada.</p>
+<div class="float" id="fig:nyqalias">
+<embed src="figuras/c1/nyquistAlias.pdf" />
+<div class="figcaption"><em>Efecto de muestreo a una tasa menor a la frecuencia de
+Nyquist.</em></div>
+</div>
+<p>Si bien el proceso de digitalización introduce una cierta complejidad en
+el tratamiento de la señal original, la representación digital de la
+información tiene enormes ventajas para poder procesarla (por ejemplo,
+para comprimirla, transformarla, analizarla mediante programas de
+cómputo), almacenarla (por ejemplo, en un archivo) y transportarla en
+sistemas de comunicaciones digitales. Es por ello que en la actualidad,
+prácticamente todos los sistemas de comunicaciones están convergiendo
+hacia su digitalización.</p>
+<p>El teorema de Nyquist, además de indicar el número de muestras necesario
+para reconstruir una señal analógica a partir de la representación
+digital, fija el límite máximo de la cantidad de información que puede
+ser transmitida a través de un canal sin ruido.</p>
+<p>Si la digitalización se realiza al doble de la frecuencia máxima de la
+señal original (<span class="math inline">\(H\)</span>) y si se utilizan <span class="math inline">\(V\)</span> niveles discretos, entonces:
+<span class="math display">\[\text{Tasa máxima de datos} = 2H \log_2 (V)\,b/s\]</span></p>
+<p>Claude Shannon extiende en 1948 el trabajo original de Nyquist para
+canales con presencia de ruido <span class="citation">[5]</span>. Si la cantidad de ruido
+en el canal se obtiene a partir la relación entre la potencia de la
+señal a trasmitir (<span class="math inline">\(S\)</span>) y la potencia del ruido presente (<span class="math inline">\(N\)</span>), entonces
+la tasa ideal de un canal con ancho de banda <span class="math inline">\(H\)</span> y radio señal a ruido
+(SNR, <em>signal to noise ratio</em>) <span class="math inline">\(S/N\)</span> es:
+<span class="math display">\[\text{Tasa máxima de datos} = H  \log_2 (1 + \frac{S}{N})\,b/s\]</span></p>
+<p>Este resultado es muy importante porque, además de ofrecer el límite
+teórico de la capacidad de un canal, indica que cualquier mensaje puede
+ser transmitido con confiabilidad, a pesar de tener un canal con ruido,
+diseñando una codificación que mejore la relación señal a
+ruido <span class="citation">[6]</span>.</p>
+</div>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="1">
+<li id="fn1"><p>Si bien la suma puede ser infinita, en general basta con un número
+relativamente pequeño de componentes senoidales para representar con
+una precisión aceptable la señal<a href="conceptos-básicos.html#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>Recordemos que una señal compleja puede representarse por una suma
+de señales senoidales<a href="conceptos-básicos.html#fnref2" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="resumen.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="conmutación.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/00-RCIntro.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdown_RedesComputadoras.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

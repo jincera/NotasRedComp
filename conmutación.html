@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 3 Conmutación | Redes de Computadoras</title>
+  <meta name="description" content="Notas del curso Redes de Computadoras en HTML." />
+  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 3 Conmutación | Redes de Computadoras" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Notas del curso Redes de Computadoras en HTML." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 3 Conmutación | Redes de Computadoras" />
+  
+  <meta name="twitter:description" content="Notas del curso Redes de Computadoras en HTML." />
+  
+
+<meta name="author" content="José Incera" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="capintro.html"/>
+<link rel="next" href="multiplexaje.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Redes de Computadoras. Notas de Curso</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> link-citations: yes</a></li>
+<li class="chapter" data-level="2" data-path="capintro.html"><a href="capintro.html"><i class="fa fa-check"></i><b>2</b> Introducción</a>
+<ul>
+<li class="chapter" data-level="" data-path="capintro.html"><a href="capintro.html#resumen"><i class="fa fa-check"></i>Resumen</a></li>
+<li class="chapter" data-level="2.1" data-path="capintro.html"><a href="capintro.html#requisitos"><i class="fa fa-check"></i><b>2.1</b> Conceptos básicos</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="capintro.html"><a href="capintro.html#sistemas-de-comunicaciones"><i class="fa fa-check"></i><b>2.1.1</b> Sistemas de comunicaciones</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="capintro.html"><a href="capintro.html#redes-de-telecomunicaciones"><i class="fa fa-check"></i><b>2.2</b> Redes de telecomunicaciones</a></li>
+<li class="chapter" data-level="2.3" data-path="capintro.html"><a href="capintro.html#señal"><i class="fa fa-check"></i><b>2.3</b> Señal</a></li>
+<li class="chapter" data-level="2.4" data-path="capintro.html"><a href="capintro.html#conversión-analógica-a-digital-ad"><i class="fa fa-check"></i><b>2.4</b> Conversión analógica a digital (A/D)</a>
+<ul>
+<li class="chapter" data-level="" data-path="capintro.html"><a href="capintro.html#teorema-de-nyquist"><i class="fa fa-check"></i>Teorema de Nyquist</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="conmutación.html"><a href="conmutación.html"><i class="fa fa-check"></i><b>3</b> Conmutación</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="conmutación.html"><a href="conmutación.html#conmutación-de-mensajes"><i class="fa fa-check"></i><b>3.1</b> Conmutación de mensajes</a></li>
+<li class="chapter" data-level="3.2" data-path="conmutación.html"><a href="conmutación.html#conmutación-de-circuitos"><i class="fa fa-check"></i><b>3.2</b> Conmutación de circuitos</a></li>
+<li class="chapter" data-level="3.3" data-path="conmutación.html"><a href="conmutación.html#conmutación-de-paquetes"><i class="fa fa-check"></i><b>3.3</b> Conmutación de paquetes</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="multiplexaje.html"><a href="multiplexaje.html"><i class="fa fa-check"></i><b>4</b> Multiplexaje</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="multiplexaje.html"><a href="multiplexaje.html#multiplexaje-en-el-tiempo"><i class="fa fa-check"></i><b>4.1</b> Multiplexaje en el tiempo</a></li>
+<li class="chapter" data-level="4.2" data-path="multiplexaje.html"><a href="multiplexaje.html#multiplexaje-en-frecuencia"><i class="fa fa-check"></i><b>4.2</b> Multiplexaje en frecuencia</a></li>
+<li class="chapter" data-level="4.3" data-path="multiplexaje.html"><a href="multiplexaje.html#s:cdm"><i class="fa fa-check"></i><b>4.3</b> Multiplexaje por división de código</a></li>
+<li class="chapter" data-level="4.4" data-path="multiplexaje.html"><a href="multiplexaje.html#multiplexaje-espacial"><i class="fa fa-check"></i><b>4.4</b> Multiplexaje espacial</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="arquitecturas-de-red.html"><a href="arquitecturas-de-red.html"><i class="fa fa-check"></i><b>5</b> Arquitecturas de red</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="arquitecturas-de-red.html"><a href="arquitecturas-de-red.html#modelo-isoosi"><i class="fa fa-check"></i><b>5.1</b> Modelo ISO/OSI</a></li>
+<li class="chapter" data-level="5.2" data-path="arquitecturas-de-red.html"><a href="arquitecturas-de-red.html#modelo-tcpip"><i class="fa fa-check"></i><b>5.2</b> Modelo TCP/IP</a></li>
+<li class="chapter" data-level="5.3" data-path="arquitecturas-de-red.html"><a href="arquitecturas-de-red.html#encapsulamiento"><i class="fa fa-check"></i><b>5.3</b> Encapsulamiento</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="taxonomía.html"><a href="taxonomía.html"><i class="fa fa-check"></i><b>6</b> Taxonomía</a></li>
+<li class="chapter" data-level="7" data-path="problemas.html"><a href="problemas.html"><i class="fa fa-check"></i><b>7</b> Problemas</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Redes de Computadoras</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="conmutación" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Capítulo 3</span> Conmutación<a href="conmutación.html#conmutación" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>En términos generales, una red de comunicaciones busca interconectar los
+equipos terminales (los dispositivos de los usuarios) de la manera más
+eficiente posible. Resulta impensable asumir una conexión directa de
+todos los equipos terminales entre sí. Se requiere de canales de
+comunicación que puedan ser compartidos entre los flujos intercambiados
+por los equipos terminales, y de mecanismos que permitan esa
+compartición. Dos de estos mecanismos son la conmutación y el
+multiplexaje.</p>
+<p>La conmutación permite establecer una trayectoria entre los equipos
+terminales que desean comunicarse, a través de la cual se efectuará la
+transferencia de información. Utiliza dispositivos intermedios llamados
+<strong>conmutadores</strong> o <em>switches</em> que habilitan una conexión entre sus
+puertos.</p>
+<p>Un ejemplo muy sencillo de una red con un solo conmutador se muestra en
+la figura [7<a href="#fig::red1sw"><strong>??</strong></a>{reference-type=“ref” reference=“fig:red1sw”}.
+El dispositivo en azul representa un conmutador que tiene conectadas en
+sus seis puertos, las computadoras A a F. En la imagen de la izquierda,
+el conmutador ha establecido una trayectoria entre A y F y entre B y D.
+En otro momento, la imagen de la derecha muestra trayectorias
+establecidas entre B y C, y entre D y F.</p>
+<div class="float" id="fig:red1sw">
+<embed src="figuras/c1/red1sw.pdf" />
+<div class="figcaption"><em>Red simple formada por un conmutador y seis equipos terminales. Se
+muestran conexiones entre distintos dispositivos en dos momentos
+diferentes.</em></div>
+</div>
+<p>El conmutador mantiene una tabla para decir cómo encaminar la
+información entre sus puertos (por ejemplo, para interconectar las
+computadoras A y F en la imagen izquierda de la
+figura [7<a href="#fig::red1sw"><strong>??</strong></a>{reference-type=“ref” reference=“fig:red1sw”}).
+Esta tabla puede configurarse de muchas maneras distintas, como a través
+de un mecanismo de señalización o con base en identificadores contenidos
+en la información; ser estática o cambiar dinámicamente; definir una
+ruta física o virtual. Una parte sustancial del este curso consiste,
+precisamente, en conocer en detalle cómo operan distintos mecanismos de
+conmutación.</p>
+<p>Históricamente y a un alto nivel, las distintas técnicas de conmutación
+suelen agruparse en tres categorías: conmutación de mensajes, de
+circuitos y de paquetes. En la actualidad, la conmutación de mensajes
+prácticamente ha desaparecido y la conmutación de paquetes va tomando
+cada vez más relevancia sobre la conmutación de circuitos.</p>
+<div id="conmutación-de-mensajes" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Conmutación de mensajes<a href="conmutación.html#conmutación-de-mensajes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>En la conmutación de mensajes, a la información (es decir, el mensaje)
+que se desea enviar se le agrega un encabezado con varios campos; los
+dos más importantes son el identificador (la dirección) del destinatario
+y del remitente. El mensaje en su totalidad es transmitido de un nodo de
+interconexión (un conmutador) a otro hasta llegar a su destino. En la
+figura [8<a href="#fig::conmutamsg"><strong>??</strong></a>{reference-type=“ref”
+reference=“fig:conmutamsg”}, el mensaje está representado por el
+rectángulo en color rojo y el encabezado, por el azul que lo precede. El
+mensaje viaja del emisor al receptor a través de los conmutadores A y B.</p>
+<div class="float" id="fig:conmutamsg">
+<embed src="figuras/c1/conmutamsg.pdf" />
+<div class="figcaption"><em>Conmutación de mensajes. Un mensaje viaja de la fuente al destino a
+través de dos nodos de interconexión. El tiempo se representa en el eje
+horizontal de izquiera a
+derecha</em></div>
+</div>
+<p>La figura [8<a href="#fig::conmutamsg"><strong>??</strong></a>{reference-type=“ref”
+reference=“fig:conmutamsg”} supone que los nodos de conmutación son de
+<em>almacenamiento y reenvío</em>, es decir, el mensaje debe llegar en su
+totalidad al nodo antes de ser reenviado por el puerto de salida que
+corresponda. Esto permite, entre otras cosas, verificar la integridad
+del mensaje. Como se verá en un capítulo posterior, también existen
+nodos de conmutación que empiezan a reenviar la información tan pronto
+se ha recibido el encabezado.</p>
+<p>La conmutación de mensajes es muy ineficiente: El enlace entre dos
+dispositivos (por ejemplo, entre los nodos A y B en la
+figura [8<a href="#fig::conmutamsg"><strong>??</strong></a>{reference-type=“ref”
+reference=“fig:conmutamsg”}), está ocupado exclusivamente por el mensaje
+en curso. Si éste es muy grande y otros dispositivos desean enviar
+información a través del mismo enlace, tendrán que esperar mucho tiempo
+hasta que el medio se libere. Además, si por alguna razón una parte del
+mensaje se daña, se tendría que reenviar el mensaje en su totalidad,
+aunque sólo fueran unos cuantos bits los afectados.</p>
+<p>Finalmente, si los nodos son de almacenamiento y reenvío, la red en su
+conjunto está subutilizada, pues no hay información (del mensaje) que
+pueda fluir entre distintos enlaces al mismo tiempo. Para comprender
+mejor este punto, en la figura [9<a href="#fig::msg-paq"><strong>??</strong></a>{reference-type=“ref”
+reference=“fig:msg-paq”} el mensaje se ha dividido en distintos
+fragmentos (llamados paquetes o datagramas). Puede apreciarse que
+distintos fragmentos viajan simultáneamente por diversos enlaces,
+reduciendo sustancialmente el tiempo de transmisión entre la fuente y el
+destino.</p>
+<div class="float" id="fig:msg-paq">
+<embed src="figuras/c1/msg-paq.pdf" />
+<div class="figcaption"><em>Si el mensaje es dividido en paquetes, el tiempo total de transmisión
+puede disminuir. Sin embargo, cada paquete debe tener su propio
+encabezado, por lo que la eficiencia de la red
+disminuye</em></div>
+</div>
+<p>En la imagen derecha de la figura [9<a href="#fig::msg-paq"><strong>??</strong></a>{reference-type=“ref”
+reference=“fig:msg-paq”}, el mensaje se ha dividido en cinco paquetes.
+El tamaño del encabezado es artificialmente grande para enfatizar el
+hecho de que paquetes demasiado pequeños también tienen un impacto
+negativo en la eficiencia de la red: Los encabezados se deben replicar
+tantas veces como paquetes haya, gastando recursos y tiempo de
+transmisión.</p>
+</div>
+<div id="conmutación-de-circuitos" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> Conmutación de circuitos<a href="conmutación.html#conmutación-de-circuitos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>En la conmutación de circuitos se fija una trayectoria (o circuito)
+entre los equipos terminales y se reservan los recursos necesarios (como
+capacidad en los enlaces, espacio de memoria y mapa de encaminamiento en
+los nodos de interconexión) para que la información fluya de la fuente
+al destino. Ningún otro flujo podrá interrumpir esta comunicación. Si
+otro equipo terminal requiere del mismo enlace para establecer una nueva
+trayectoria, la ruta sólo se establece si quedan recursos suficientes;
+de lo contrario, la solicitud de conexión se bloquea o se rechaza.</p>
+<p>La conmutación de circuitos tiene las tres fases que se muestran en la
+figura [10<a href="#fig::fases-cc"><strong>??</strong></a>{reference-type=“ref”
+reference=“fig:fases-cc”}: Establecimiento de conexión, intercambio de
+datos y desconexión.</p>
+<div class="float" id="fig:fases-cc">
+<embed src="figuras/c1/fases-cc.pdf" />
+<div class="figcaption"><em>Las tres fases de las redes de circuitos
+conmutados</em></div>
+</div>
+<dl>
+<dt>Establecimiento de conexión.</dt>
+<dd>
+<p>Antes de transferir datos, la trayectoria entre fuente y destino
+debe fijarse. Esta puede establecerse de antemano (para conexiones
+de larga duración llamadas circuitos permanentes o dedicados) o
+mediante un proceso de señalización. Por ejemplo, en las redes
+telefónicas, el mecanismo de descolgar y marcar el número telefónico
+detona la señalización necesaria para encontrar una ruta hacia el
+abonado, reservar los recursos necesarios y <em>establecer el circuito</em>
+que permita que la conversación telefónica se lleve a cabo<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>.</p>
+</dd>
+<dt>Intercambio de información.</dt>
+<dd>
+<p>Una vez establecida la conexión, el intercambio de información entre
+los equipos terminales puede llevarse a cabo. En las redes
+telefónicas, el circuito establecido es bidireccional; en algunas
+redes de datos debe establecerse un circuito en cada dirección.</p>
+</dd>
+<dt>Desconexión.</dt>
+<dd>
+<p>Cuando se ha terminado de transferir la información que se deseaba
+intercambiar (o cuando desaparece la necesidad de mantener un
+circuito dedicado), se activa otro proceso de señalización para
+desconectar el circuito. Este proceso tiene dos objetivos
+principales: Notificar a la contraparte que el circuito ya no estará
+disponible y liberar los recursos de la red para que otros usuarios
+puedan aprovecharlos. En el ejemplo de las redes telefónicas, al
+colgar el auricular (o su equivalente en los teléfonos inteligentes)
+se libera el circuito y los recursos que este ocupaba.</p>
+</dd>
+</dl>
+<p>En la figura [10<a href="#fig::fases-cc"><strong>??</strong></a>{reference-type=“ref”
+reference=“fig:fases-cc”}, el tiempo transcurre de arriba hacia abajo.
+En el establecimiento de conexión, la señalización pasa de nodo a nodo
+buscando establecer la trayectoria y reservando los recursos necesarios
+para el intercambio de información. Cuando se alcanza el destino y éste
+está dispuesto a aceptar la conexión (por ejemplo, en la red telefónica,
+al recibir el timbrado de llamada y descolgar el auricular) la
+señalización necesaria va en sentido inverso. Cuando llega a la fuente,
+el circuito se ha establecido.</p>
+<p>Una gran desventaja de las redes de conmutación de circuitos es
+precisamente el hecho de que los recursos están reservados y dedicados
+exclusivamente a la conexión establecida, durante el tiempo de vida de
+la sesión, se utilicen o no. Refiriéndonos una vez más a la red
+telefónica, una vez que se ha establecido la conexión, el circuito
+reservado ocupa recursos de la red haya o no intercambio de palabras.</p>
+<p>La figura [11<a href="#fig::red-cc"><strong>??</strong></a>{reference-type=“ref” reference=“fig:red-cc”}
+ejemplifica una red de conmutación de circuitos en la que los equipos
+terminales son aparatos telefónicos. Se han establecido cuatro circuitos
+representados por un color distinto: verde, rojo, azul y oro. En la
+figura, estas conexiones han agotado los recursos disponibles al
+interior de la red, por lo que únicamente se pueden establecer algunas
+llamadas adicionales en las que la trayectoria no pase por el núcleo de
+la red. Por supuesto, este es un escenario irreal. Los enlaces entre
+nodos de conmutación (llamados troncales), tienen capacidad para
+establecer muchos circuitos telefónicos, no solamente uno.</p>
+<div class="float" id="fig:red-cc">
+<embed src="figuras/c1/red-cc.pdf" />
+<div class="figcaption"><em>Red de conmutación de circuitos. Los equipos terminales son aparatos
+telefónicos; los nodos de interconexión son centrales telefónicas. La
+red es artificialmente simple, pues las troncales entre centrales
+telefónicas en la figura sólo cursan el tráfico de una conversación
+telefónica.</em></div>
+</div>
+</div>
+<div id="conmutación-de-paquetes" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> Conmutación de paquetes<a href="conmutación.html#conmutación-de-paquetes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>La información que se desea transmitir se divide en bloques llamados
+genéricamente paquetes<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a>. Como ya se ha mencionado, a cada paquete se
+le agrega un encabezado con ayuda del cual los nodos de conmutación
+podrán encaminar el paquete hacia su destino.</p>
+<p>Las arquitecturas de redes basadas en conmutación de paquetes se dividen
+en dos categorías: circuitos virtuales y datagramas. En la primera, al
+igual que en las redes de conmutación de circuitos, la ruta de la fuente
+al destino se establece antes de que pueda haber un intercambio de
+datos.</p>
+<p>Todos los paquetes de una misma conexión recorren la misma trayectoria,
+como se muestra en la figura [12<a href="#fig::red-cv"><strong>??</strong></a>{reference-type=“ref”
+reference=“fig:red-cv”}, en la que las trayectorias entre los equipos
+terminales (esta vez conformados por computadoras), están representadas
+por las líneas punteadas de color. De igual forma, los círculos de color
+ejemplifican los paquetes correspondientes a la información
+intercambiada en cada conexión. A cada paquete se le agrega un
+encabezado que permite a los nodos de conmutación identificar a qué
+trayectoria<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a> pertenece y, por lo tanto, encaminarlo por el puerto
+adecuado.</p>
+<div class="float" id="fig:red-cv">
+<embed src="figuras/c1/red-cv.pdf" />
+<div class="figcaption"><em>Red de conmutación de paquetes - Circuitos
+virtuales</em></div>
+</div>
+<p>Se les llama circuitos virtuales porque los recursos no son dedicados a
+una sola conexión, como se observa en la figura en el enlace compartido
+por los flujos verde y rojo. Esta es la principal ventaja de las redes
+de conmutación de paquetes: los enlaces, como otros recursos de red, son
+compartidos por los paquetes de distintas conexiones, lo que aumenta
+sustancialmente la eficiencia de la red.</p>
+<p>Sin embargo, ahora los paquetes <em>compiten</em> por los recursos disponibles.
+Si en un momento dado la información agregada de los paquetes que
+ingresan a un nodo excede la capacidad del enlace de salida, los
+paquetes deberán ser encolados en una memoria temporal (un <em>buffer</em>)
+esperando su turno para ser re-encaminados. A este efecto se le llama
+congestión. Si la congestión es sostenida, la memoria temporal se satura
+y los paquetes en exceso deben ser descartados.</p>
+<p>Algunas arquitecturas de red proveen mecanismos para que, en caso de
+congestión, paquetes identificados como prioritarios sean reenviados
+primero, sin tener que esperar (demasiado) en el buffer o correr el
+riesgo de ser descartados. A estos mecanismos se les llama Calidad de
+Servicio (QoS, <em>Quality of Service</em>).</p>
+<p>En la categoría de conmutación de paquetes - datagramas, no se establece
+una conexión virtual. El encabezado en cada paquete (datagrama) contiene
+el identificador del emisor y del destinatario (en vez de solamente el
+identificador de trayectoria). Con esta información, los nodos de
+conmutación deciden por qué puerto encaminar el paquete para acercarlo a
+su destino. Para ello, los nodos (más adelante los llamaremos
+enrutadores) intercambian información entre sí para darse una idea de la
+topología de la red.</p>
+<p>La figura [13<a href="#fig::red-cp"><strong>??</strong></a>{reference-type=“ref” reference=“fig:red-cp”}
+muestra una red de conmutación de datagramas. En términos generales,
+cada nodo decide, con la información que tiene en ese momento, cuál es
+la opción más apropiada para reenviar los datagramas. Por ejemplo, si un
+enlace se encuentra congestionado, podría decidir encaminar datagramas
+por rutas alternas como se observa en la figura.</p>
+<div class="float" id="fig:red-cp">
+<embed src="figuras/c1/red-cp.pdf" />
+<div class="figcaption"><em>Red de conmutación de paquetes -
+Datagramas</em></div>
+</div>
+<p>Estas arquitecturas son más tolerantes a fallos y a eventos temporales
+de congestión en la red. En cambio, los paquetes pueden llegar al
+destino fuera de orden, con alta variabilidad en el retardo entre uno y
+otro, pueden perderse y, como se verá en capítulos posteriores, hasta
+pueden duplicarse. Será responsabilidad del receptor reordenarlos y
+detectar una eventual pérdida o duplicación. Por ello, al encabezado
+también suele agregársele un número de secuencia junto con otra
+información de control. siguiente En la
+tabla <a href="conmutación.html#t:ctvspaq" reference-type="ref" reference="t:ctvspaq">1</a> se
+sintetizan algunas características generales de las redes de conmutación
+de circuitos y de conmutación de paquetes.</p>
+<div id="t:ctvspaq">
+<table style="width:97%;">
+<caption><em>Comparación conmutación de circuitos y de paquetes</em></caption>
+<colgroup>
+<col width="23%" />
+<col width="37%" />
+<col width="37%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th align="left">Conmutación de circuitos</th>
+<th align="left">Conmutación de paquetes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td align="left">Trayectoria con recursos
+dedicados para el flujo</td>
+<td align="left">Puede establecerse o no una
+trayectoria, pero los
+recursos son compartidos</td>
+</tr>
+<tr class="even">
+<td>Características</td>
+<td align="left">Ancho de banda y retardo
+invariantes</td>
+<td align="left">Retraso variable en caso de
+congestión</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td align="left">Menor sobrecarga</td>
+<td align="left">Nodos de almacenamiento y
+reenvío</td>
+</tr>
+<tr class="even">
+<td></td>
+<td align="left">Apropiadas para flujos a
+tasa constante</td>
+<td align="left">Apropiadas para flujos a
+tasa variable (ráfagas)</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td align="left"></td>
+<td align="left">Paquetes admitidos aún bajo
+congestión (ligera)</td>
+</tr>
+<tr class="even">
+<td></td>
+<td align="left"></td>
+<td align="left">Puertos de entrada y salida
+pueden operar a distinta
+velocidad</td>
+</tr>
+<tr class="odd">
+<td>Limitaciones</td>
+<td align="left">Ineficiencia por recursos no
+aprovechados</td>
+<td align="left">Sobrecarga de encabezados,
+complejidad en los nodos</td>
+</tr>
+<tr class="even">
+<td>Uso típico</td>
+<td align="left">Redes telefónicas</td>
+<td align="left">Redes de computadoras</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><span id="t:ctvspaq" label="t:ctvspaq"></span></p>
+<p>Para cerrar esta sección se recomienda ver los siguientes videos:</p>
+<ul>
+<li><p><a href="www.youtube.com/watch?v=rHHpwcZiEW4">Leonard Kleinrock on packet
+switching</a></p></li>
+<li><p><a href="www.youtube.com/watch?v=cWN79k7UNuc&amp;feature=related">Story of packet
+switching</a></p></li>
+</ul>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="3">
+<li id="fn3"><p>La reservación de recursos ocurre en las redes de telefonía fija.
+Las redes móviles son mucho más complejas y no se puede garantizar
+que los recursos necesarios estén disponibles al pasar de una célula
+a otra<a href="conmutación.html#fnref3" class="footnote-back">↩︎</a></p></li>
+<li id="fn4"><p>En distintas arquitecturas de red, estos bloques reciben
+diferentes nombres, como tramas, celdas, segmentos y datagramas.<a href="conmutación.html#fnref4" class="footnote-back">↩︎</a></p></li>
+<li id="fn5"><p>En muchas arquitecturas de red, a este identificador se le llama
+identificador de circuito virtual (VCI, <em>Virtual Circuit
+Identificator</em>.<a href="conmutación.html#fnref5" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="capintro.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="multiplexaje.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/00-RCIntro.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdown_RedesComputadoras.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

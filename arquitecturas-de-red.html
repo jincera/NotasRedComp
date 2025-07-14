@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 5 Arquitecturas de red | Redes de Computadoras</title>
+  <meta name="description" content="Notas del curso Redes de Computadoras en HTML." />
+  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 5 Arquitecturas de red | Redes de Computadoras" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Notas del curso Redes de Computadoras en HTML." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 5 Arquitecturas de red | Redes de Computadoras" />
+  
+  <meta name="twitter:description" content="Notas del curso Redes de Computadoras en HTML." />
+  
+
+<meta name="author" content="José Incera" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="multiplexaje.html"/>
+<link rel="next" href="taxonomía.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Redes de Computadoras. Notas de Curso</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> link-citations: yes</a></li>
+<li class="chapter" data-level="2" data-path="capintro.html"><a href="capintro.html"><i class="fa fa-check"></i><b>2</b> Introducción</a>
+<ul>
+<li class="chapter" data-level="" data-path="capintro.html"><a href="capintro.html#resumen"><i class="fa fa-check"></i>Resumen</a></li>
+<li class="chapter" data-level="2.1" data-path="capintro.html"><a href="capintro.html#requisitos"><i class="fa fa-check"></i><b>2.1</b> Conceptos básicos</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="capintro.html"><a href="capintro.html#sistemas-de-comunicaciones"><i class="fa fa-check"></i><b>2.1.1</b> Sistemas de comunicaciones</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="capintro.html"><a href="capintro.html#redes-de-telecomunicaciones"><i class="fa fa-check"></i><b>2.2</b> Redes de telecomunicaciones</a></li>
+<li class="chapter" data-level="2.3" data-path="capintro.html"><a href="capintro.html#señal"><i class="fa fa-check"></i><b>2.3</b> Señal</a></li>
+<li class="chapter" data-level="2.4" data-path="capintro.html"><a href="capintro.html#conversión-analógica-a-digital-ad"><i class="fa fa-check"></i><b>2.4</b> Conversión analógica a digital (A/D)</a>
+<ul>
+<li class="chapter" data-level="" data-path="capintro.html"><a href="capintro.html#teorema-de-nyquist"><i class="fa fa-check"></i>Teorema de Nyquist</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="conmutación.html"><a href="conmutación.html"><i class="fa fa-check"></i><b>3</b> Conmutación</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="conmutación.html"><a href="conmutación.html#conmutación-de-mensajes"><i class="fa fa-check"></i><b>3.1</b> Conmutación de mensajes</a></li>
+<li class="chapter" data-level="3.2" data-path="conmutación.html"><a href="conmutación.html#conmutación-de-circuitos"><i class="fa fa-check"></i><b>3.2</b> Conmutación de circuitos</a></li>
+<li class="chapter" data-level="3.3" data-path="conmutación.html"><a href="conmutación.html#conmutación-de-paquetes"><i class="fa fa-check"></i><b>3.3</b> Conmutación de paquetes</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="multiplexaje.html"><a href="multiplexaje.html"><i class="fa fa-check"></i><b>4</b> Multiplexaje</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="multiplexaje.html"><a href="multiplexaje.html#multiplexaje-en-el-tiempo"><i class="fa fa-check"></i><b>4.1</b> Multiplexaje en el tiempo</a></li>
+<li class="chapter" data-level="4.2" data-path="multiplexaje.html"><a href="multiplexaje.html#multiplexaje-en-frecuencia"><i class="fa fa-check"></i><b>4.2</b> Multiplexaje en frecuencia</a></li>
+<li class="chapter" data-level="4.3" data-path="multiplexaje.html"><a href="multiplexaje.html#s:cdm"><i class="fa fa-check"></i><b>4.3</b> Multiplexaje por división de código</a></li>
+<li class="chapter" data-level="4.4" data-path="multiplexaje.html"><a href="multiplexaje.html#multiplexaje-espacial"><i class="fa fa-check"></i><b>4.4</b> Multiplexaje espacial</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="arquitecturas-de-red.html"><a href="arquitecturas-de-red.html"><i class="fa fa-check"></i><b>5</b> Arquitecturas de red</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="arquitecturas-de-red.html"><a href="arquitecturas-de-red.html#modelo-isoosi"><i class="fa fa-check"></i><b>5.1</b> Modelo ISO/OSI</a></li>
+<li class="chapter" data-level="5.2" data-path="arquitecturas-de-red.html"><a href="arquitecturas-de-red.html#modelo-tcpip"><i class="fa fa-check"></i><b>5.2</b> Modelo TCP/IP</a></li>
+<li class="chapter" data-level="5.3" data-path="arquitecturas-de-red.html"><a href="arquitecturas-de-red.html#encapsulamiento"><i class="fa fa-check"></i><b>5.3</b> Encapsulamiento</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="taxonomía.html"><a href="taxonomía.html"><i class="fa fa-check"></i><b>6</b> Taxonomía</a></li>
+<li class="chapter" data-level="7" data-path="problemas.html"><a href="problemas.html"><i class="fa fa-check"></i><b>7</b> Problemas</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Redes de Computadoras</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="arquitecturas-de-red" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">Capítulo 5</span> Arquitecturas de red<a href="arquitecturas-de-red.html#arquitecturas-de-red" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Las primeras redes digitales fueron diseñadas para interconectar
+computadoras de un mismo fabricante. La proliferación de diferentes
+arquitecturas de cómputo dificultaba enormemente el que computadoras de
+distintos fabricantes pudiesen comunicarse e interactuar entre sí.</p>
+<p>Para resolver estas dificultades, se definen estándares que buscan
+asegurar la interconexión e interoperabilidad entre los dispositivos de
+distintos fabricantes. Las normas definidas por los estándares atienden
+distintos niveles de complejidad en la interconexión y conforman lo que
+se ha dado en llamar una arquitectura de red.</p>
+<p>En redes de computadoras, la arquitectura màs conocida es el modelo de
+referencia conocido como OSI definido por la Organización Internacional
+para la Estandarización, el cual se presenta más adelante. Otros órganos
+de estandarización importantes son:</p>
+<ul>
+<li><p>La Unión Internacional de Telecomunicaciones (ITU, <em>International
+Telecommunications Union</em>). Define recomendaciones para sistemas de
+telecomunicaciones.</p></li>
+<li><p>ANSI <em>American National Standards</em>. Define estándares que aplican
+para los Estados Unidos, muchos de los cuales se ha vuelto
+estándares internacionales</p></li>
+<li><p>El ETSI <em>European Telecommunications Standards Institute</em>. Està
+conformada papor fabricantes de equipo y operadores de redes y
+aunque es una organización fundada en Europa, tiene ingerencia a
+nivel global</p></li>
+<li><p>IEEE <em>Institute of Electrical and Electronics Engineers</em> El grupo de
+trabajo 802 del IEEE define la dominante mayorìa de los estándares
+utilizados en redes locales.</p></li>
+</ul>
+<div id="modelo-isoosi" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> Modelo ISO/OSI<a href="arquitecturas-de-red.html#modelo-isoosi" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>La Organización Internacional para la Estandarización (ISO,
+<em>International Standards Organization</em>) definió un modelo de referencia
+que ayudara a garantizar la interoperación de los distintos sistemas de
+cómputo interconectados a través de una red de computadoras. Este modelo
+se conoce como OSI (<em>Open Systems Interconnection</em>.</p>
+<p>El modelo ISO/OSI sigue una estrategia de “divide y vencerás”
+organizando el problema de comunicación en una estructura jerárquica de
+capas. Algunos de los principios básicos de diseño son los
+siguientes <span class="citation">[7]</span>:</p>
+<ul>
+<li><p>Cada capa debe efectuar una función bien definida</p></li>
+<li><p>La funci’n de cada capa debe seleccionarse con la intención de
+adefinir protocolos normalizados internacionalmente</p></li>
+<li><p>Los límites entre las capas deben permitir una descripción pequeña
+de los servicios ofrecidos por la capa inferior y minimizar las
+interacciones entre las capas.</p></li>
+<li><p>Una nueva capa debe crarse en situaciones donde se necesita un nivel
+de abstracción diferente</p></li>
+<li><p>El nùmero de capas debe ser lo suficientmente grande para que
+funciones diferentes se encuentren en capas diferentes y, por otra
+parte, debe ser lo suficientemente pequeño para que su integración
+no sea difícil.</p></li>
+</ul>
+<p>La figura [<span class="math display">\[fig:datososi\]</span><a href="#fig::datososi"><strong>??</strong></a>{reference-type=“ref”
+reference=“fig:datososi”} muestra los principales conceptos del modelo.
+Cada capa es responsable de resolver una tarea específica de
+comunicación, ofreciendo sus servicios a la capa inmediata superior a
+través de puntos de acceso al servicio (SAP, <em>Service Access Point</em>)
+bien definidos. A través de estos SAP, las capas intercambian unidades
+de información conocidas como unidades de datos de servicio (SDU,
+<em>Service Data Unit</em>).</p>
+<p><embed src="figuras/c1/datososi.pdf" />
+<span id="fig:datososi" label="fig:datososi"></span></p>
+<p>Para resolver su tarea, las capas en un determinado nivel se comunican
+con capas del mismo nivel en otros dispositivos, a través de los
+protocolos de comunicaciones intercambiando información contenida en las
+llamadas unidades de datos protocolarias (PDU, <em>Protocol Data Unit</em>).</p>
+<p>El modelo ISO/OSI está conformado por las siete capas que se describen a
+continuación (ver
+figura [<span class="math display">\[fig:modosi\]</span><a href="#fig::modosi"><strong>??</strong></a>{reference-type=“ref”
+reference=“fig:modosi”}):</p>
+<dl>
+<dt>1, Capa física.-</dt>
+<dd>
+<p>Define las características de los elementos necesarios para la
+conexión así como las de los bits enviados (características
+eléctricas, ópticas, mecánicas y procedurales). Por ejemplo, define
+el formato de los conectores, el número de cables utilizados, la
+velocidad de transmisión y el formato de las señales que representan
+los bits de comunicación.</p>
+</dd>
+<dt>2, Capa de enlace de datos.-</dt>
+<dd>
+<p>Se encarga de dar formato y de proveer una transmisión libre de
+errores (o al menos, capaz de detectar la ocurrencia de un error)
+entre dos elementos conectados directamente. Cuando el canal de
+comunicación es compartido, como en las redes locales, esta capa
+también es responsable de definir los mecanismos de control de
+acceso al medio.</p>
+</dd>
+<dt>3, Capa de red.-</dt>
+<dd>
+<p>Establece los mecanismos necesarios para encaminar eficientemente la
+información entre los equipos terminales. Como se observa en la
+figura [<span class="math display">\[fig:modosi\]</span><a href="#fig::modosi"><strong>??</strong></a>{reference-type=“ref”
+reference=“fig:modosi”}, la responsabilidad de encaminar paquetes de
+nodo a nodo a través de la red, involucra únicamente a las primeras
+tres capas del modelo, siendo esta última la responsable de decidir
+por qué puerto de un nodo de interconexión deberá salir un paquete
+determinado para acercarlo a su destino.</p>
+</dd>
+<dt>4, Capa de transporte.-</dt>
+<dd>
+<p>Es la primera capa que permite tratar las unidades de datos (TPDU,
+emphTransport PDU de extremo a extremo (es decir, entre los equipos
+terminales involucrados en la comunicación). Por ello, esta capa se
+encarga, sobre todo, de asegurar que la información llegó
+correctamente a su destino o en su caso, solicitar la retransmisión;
+de ser necesario, reordenar los datagramas para entregar datos
+validados a las capas superiores.</p>
+</dd>
+<dt>5, Capa de sesión.-</dt>
+<dd>
+<p>Se encarga de controlar el establecimiento y el fin de un diálogo
+entre dispositivos, permitiendo, por ejemplo, que se restablezca una
+comunicación desde un punto estable en caso de que falle la
+infraestructura de comunicaciones. No se han implementado protocolos
+que provean las funcionalidades de la capa de sesión (ni de la de
+presentación).</p>
+</dd>
+<dt>6, Capa de presentación.-</dt>
+<dd>
+<p>Dado que los equipos terminales tienen arquitecturas heterogéneas
+(distintos formatos de datos, tamaño de palabra, etcétera), esta
+capa es responsable (conceptualmente) de transformar los datos
+intercambiados para para proveer una representación estándar e
+interoperable entre los equipos terminales.</p>
+</dd>
+<dt>7, Capa de aplicación.-</dt>
+<dd>
+<p>Esta capa es la que ofrece los servicios de red (por ejemplo,
+conexión remota, transferencia de archivos, correo electrónico) a
+los usuarios de la misma.</p>
+</dd>
+</dl>
+<p><embed src="figuras/c1/modosi.pdf" /> <span id="fig:modosi" label="fig:modosi"></span></p>
+</div>
+<div id="modelo-tcpip" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> Modelo TCP/IP<a href="arquitecturas-de-red.html#modelo-tcpip" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>El modelo OSI es un excelente marco de referencia para describir las
+funciones necesarias para desplegar redes de computadoras. Sin embargo,
+la implementación de sus protocolos prácticamente no tuvo acogida dada
+la lentitud de los procesos de estandarización y la complejidad de
+algunos de los protocolos propuestos.</p>
+<p>A finales de los años 70, la Agencia de Proyectos de Investigación
+Avanzada de la Defensa de Estados Unidos (DARPA) se dio a la tarea de
+desarrollar una red de conmutación de paquetes que conectara las redes
+de equipos disímiles que empezaban a ser desplegadas en sus centros de
+investigación. Así nació la Internet de nuestros días.</p>
+<p>DARPA no podía esperar a que OSI terminara de definir su modelo de
+referencia. Inspirada en los mismos principios de base, el modelo TCP/IP
+también define una arquitectura de capas conocida como la pila de
+protocolos TCP/IP. Para fines prácticos, esta arquitectura puede verse
+como un modelo de cuatro capas: Aplicación, Transporte, Red y las
+llamadas capas inferiores (ver
+figura [<span class="math display">\[fig:modtcpip\]</span><a href="#fig::modtcpip"><strong>??</strong></a>{reference-type=“ref”
+reference=“fig:modtcpip”}).</p>
+<p><embed src="figuras/c1/modtcpip.pdf" />
+<span id="fig:modtcpip" label="fig:modtcpip"></span></p>
+<dl>
+<dt>Capa de aplicación.-</dt>
+<dd>
+<p>Corresponde a las capas de Aplicación, Representación y Sesión del
+modelo ISO/OSI y ofrece los servicios de red a los usuarios finales.
+Aquí se encuentran protocolos como HTTP para navegación y acceso a
+páginas Web, SMTP para correo electrónico, TELNET, SSH para acceso
+remoto, FTP para transferencia de archivos, etcétera.</p>
+</dd>
+<dt>Capa de transporte.-</dt>
+<dd>
+<p>Corresponde en términos generales a la capa de transporte de
+ISO/OSI. Los dos protocolos principales definidos en esta capa son
+TCP (de donde el modelo toma parte de su nombre) y UDP. TCP
+(<em>Transmission Control Protocol</em>) es responsable de garantizar la
+entrega en orden y sin errores de extremo a extremo. Es un protocolo
+orientado a conexión. UDP (<em>User Datagram Protocol</em>) es un protocolo
+sumamente sencillo que se encarga de ofrecer servicios de red sin
+garantías de entrega, a la capa de aplicación. Más adelante se
+mostrará con detalle en qué casos se prefiere utilizar UDP sobre TCP
+a pesar de no garantizar la entrega de información.</p>
+</dd>
+<dt>Capa de red.-</dt>
+<dd>
+<p>Corresponde a la capa de red de ISO/OSI, responsable de encaminar
+los paquetes a través de la red. El protocolo encargado de ello es
+IP (el segundo término en el nombre del modelo), en el que se define
+el formato de los N-PDU, los identificadores de los equipos
+terminales y las redes donde se encuentran (las direcciones IP),
+entre otros elementos. En esta capa también se define una serie de
+protocolos para intercambiar información sobre la topología de la
+red (protocolos de enrutamiento) así como protocolos auxiliares para
+verificar la integridad de la red.</p>
+</dd>
+<dt>Capas inferiores.-</dt>
+<dd>
+<p>El modelo TCP/IP no define arquitecturas ni protocolos para las
+capas de enlace de datos ni física. Siendo una arquitectura diseñada
+para la “Interconexión de Redes” (de ahí el nombre <em>Internet</em>), el
+modelo es agnóstico a las capas inferiores. Suele decirse que IP
+corre sobre todo (sobre cualquier tipo de red) y todo corre sobre IP
+(es decir, cualquier aplicación de red)</p>
+<p>Homogeneizando las comunicaciones con IP en la capa de red, se
+ocultan las características físicas y tecnológicas de las redes
+individuales y se logra la conectividad global entre ellas. Esta
+característica permite, además, incorporar cualquier nueva
+tecnología de conexión.</p>
+</dd>
+</dl>
+</div>
+<div id="encapsulamiento" class="section level2 hasAnchor" number="5.3">
+<h2><span class="header-section-number">5.3</span> Encapsulamiento<a href="arquitecturas-de-red.html#encapsulamiento" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>En las arquitecturas de red presentadas anteriormente, una capa de nivel
+N utiliza los servicios ofrecidos por la capa inferior (N-1) para
+realizar sus funciones y a su vez ofrecer sus servicios a la capa
+superior. La interacción entre capas para ofrecer estos servicios se da
+a través de los protocolos de comunicaciones. Cada protocolo agrega
+información adicional (los encabezados del protocolo) para prestar estos
+servicios. A este proceso se le conoce como encapsulamiento.</p>
+<p>Para reforzar estos conceptos en la
+figura [<span class="math display">\[fig:encapsula\]</span><a href="#fig::encapsula"><strong>??</strong></a>{reference-type=“ref”
+reference=“fig:encapsula”} se muestra cómo interactúan los protocolos de
+las capas de TCP/IP cuando se consulta una página Web.</p>
+<p><embed src="figuras/c1/encapsula.pdf" />
+<span id="fig:encapsula" label="fig:encapsula"></span></p>
+<p>Cuando se introduce el identificador de una página web en un navegador
+(por ejemplo, www.itam.mx), se utiliza un mecanismo de resolución de
+nombres simbólicos (no mostrado en la figura) para obtener el
+identificador de red del servidor que alberga la página. Una vez
+obtenida esta información, se invoca el protocolo de capa de aplicación
+HTTP para acceder a este servidor. El PDU a este nivel se conoce
+informalmente como mensaje. De todos los “servicios” que ofrece HTTP, el
+que se utiliza para cargar una página web es el comando GET.</p>
+<p>HTTP utiliza el servicio de transporte TCP a través del puerto (TSAP)
+80. El PDU de TCP (conocido como segmento) agrega información adicional
+como el número de puerto, números de secuencia y acuses de recibo para
+verificar la integridad y la entrega ordenada de los datos.</p>
+<p>TCP utiliza los servicios de IP para encaminar los segmentos hacia el
+destino, en este caso, el servidor Web. IP agrega información al SDU que
+recibió de TCP para formar su propio PDU, llamado paquete IP o
+datagrama. La información más importante que se agrega en los
+encabezados de IP son las direcciones fuente (el equipo terminal que
+solicita la página) y destino (la dirección del servidor Web
+consultado).</p>
+<p>Hasta aquí terminan las funciones del modelo TCP/IP. La
+figura [<span class="math display">\[fig:encapsula\]</span><a href="#fig::encapsula"><strong>??</strong></a>{reference-type=“ref”
+reference=“fig:encapsula”} asume que el equipo terminal está conectado a
+una red local Ethernet (esa es la “capa inferior”), por lo que el
+paquete IP accede a los servicios de la red local y deposita su
+información en una trama Ethernet. En el siguiente capítulo se mostrará
+cómo opera Ethernet y por qué es necesario que a este nivel se definan
+nuevos identificadores fuente y destino.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="multiplexaje.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="taxonomía.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/00-RCIntro.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdown_RedesComputadoras.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -226,6 +226,29 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="5.7" data-path="capl3.html"><a href="capl3.html#problemas-4"><i class="fa fa-check"></i><b>5.7</b> Problemas</a></li>
 </ul></li>
+<li class="chapter" data-level="6" data-path="capl4.html"><a href="capl4.html"><i class="fa fa-check"></i><b>6</b> Capa de Transporte</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="capl4.html"><a href="capl4.html#introducción-4"><i class="fa fa-check"></i><b>6.1</b> Introducción</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="capl4.html"><a href="capl4.html#comunicación-mediante-sockets"><i class="fa fa-check"></i><b>6.1.1</b> Comunicación mediante Sockets</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="capl4.html"><a href="capl4.html#udp-user-datagram-protocol"><i class="fa fa-check"></i><b>6.2</b> UDP (<em>User Datagram Protocol</em>)</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="capl4.html"><a href="capl4.html#formato-del-datagrama-udp"><i class="fa fa-check"></i><b>6.2.1</b> Formato del datagrama UDP</a></li>
+<li class="chapter" data-level="6.2.2" data-path="capl4.html"><a href="capl4.html#análisis-de-un-datagrama-udp"><i class="fa fa-check"></i><b>6.2.2</b> Análisis de un datagrama UDP</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="capl4.html"><a href="capl4.html#tcp-transmission-control-protocol"><i class="fa fa-check"></i><b>6.3</b> TCP (<em>Transmission Control Protocol</em>)</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="capl4.html"><a href="capl4.html#formato-del-segmento-tcp"><i class="fa fa-check"></i><b>6.3.1</b> Formato del segmento TCP</a></li>
+<li class="chapter" data-level="6.3.2" data-path="capl4.html"><a href="capl4.html#análisis-de-un-segmento-tcp"><i class="fa fa-check"></i><b>6.3.2</b> Análisis de un segmento TCP</a></li>
+<li class="chapter" data-level="6.3.3" data-path="capl4.html"><a href="capl4.html#establecimiento-y-liberación-de-una-conexión"><i class="fa fa-check"></i><b>6.3.3</b> Establecimiento y liberación de una conexión</a></li>
+<li class="chapter" data-level="6.3.4" data-path="capl4.html"><a href="capl4.html#control-de-errores-1"><i class="fa fa-check"></i><b>6.3.4</b> Control de errores</a></li>
+<li class="chapter" data-level="6.3.5" data-path="capl4.html"><a href="capl4.html#control-de-flujo"><i class="fa fa-check"></i><b>6.3.5</b> Control de flujo</a></li>
+<li class="chapter" data-level="6.3.6" data-path="capl4.html"><a href="capl4.html#control-de-congestión"><i class="fa fa-check"></i><b>6.3.6</b> Control de congestión</a></li>
+<li class="chapter" data-level="6.3.7" data-path="capl4.html"><a href="capl4.html#otros-mecanismos-de-control-de-congestión-en-tcp"><i class="fa fa-check"></i><b>6.3.7</b> Otros mecanismos de control de congestión en TCP</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="capl4.html"><a href="capl4.html#problemas-5"><i class="fa fa-check"></i><b>6.4</b> Problemas</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="referencias.html"><a href="referencias.html"><i class="fa fa-check"></i>Referencias</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
@@ -251,20 +274,67 @@ div.csl-indent {
 <h1><span class="header-section-number">Capítulo 1</span> Introducción<a href="capintro.html#capintro" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <div id="resumen" class="section level2 unnumbered hasAnchor">
 <h2>Resumen<a href="capintro.html#resumen" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>La convergencia entre las tecnologías de la información y las comunicaciones es cada vez mayor y las barreras entre ellas se han diluido casi por completo. Con herramientas como el correo electrónico, la mensajería instantánea, los foros de discusión y las plataformas de trabajo colaborativo, hoy en día la computadora es una innegable herramienta de comunicación.</p>
-<p>Las redes de computadoras son un tipo de sistemas de comunicaciones. Por ello, iniciamos su estudio describiendo los elementos que conforman un sistema de comunicaciones y que están ahí para ofrecer un servicio específico, en nuestro caso, el de interconexión de equipos computacionales.</p>
-<p>Más adelante se introducen los conceptos de señal como el elemento físico que se propaga a través de las redes de comunicaciones y se presentan las propiedades que pueden ser alteradas en una señal para transportar información. Como en las redes de computadoras esta información es digital, también se introducen los mecanismos para transformar una señal análoga (por ejemplo, la voz) en su formato binario.</p>
-<p>Un requerimiento fundamental para que las redes sean técnica y económicamente viables, es la capacidad de compartir los canales de comunicación (cables eléctricos, espectro electromagnético, enlaces de fibra óptica). Por ello, es muy importante asimilar los conceptos de conmutación y de multiplexaje.</p>
-<p>Una vez presentados los conceptos de sistemas de comunicaciones, entramos en el mundo de las redes de computadoras. Interconectar un conjunto de computadoras es un problema sumamente complejo que involucra desde las propiedades físicas de las señales y los canales de comunicación, hasta la representación interna de los datos que utiliza cada fabricante de computadoras, pasando por cómo establecer las trayectorias más apropiadas para enlazar las computadoras.
-Ello da lugar a arquitecturas o modelos de redes donde el problema de interconexión se divide en tareas concretas, más sencillas.</p>
-<p>La arquitectura de redes más popular en el ámbito académico, es el modelo de capas OSI (<em>Open Systems Interconnection</em>). Se trata de un modelo de siete capas en el que la capa inferior ofrece un servicio a la capa superior, hasta resolver completamente la complejidad de la interconexión. El modelo OSI también define la terminología común a las redes de computadoras, como protocolo, punto de acceso a servicio, nodo de interconexión, etcétera.</p>
-<p>Internet también sigue un modelo de capas, pero solo define formalmente tres, y se considera agnóstico a las llamadas “capas inferiores”, que son las responsables del transporte de datos.</p>
-<p>Cerramos este capítulo con una breve taxonomía de las redes de computadoras en función de su área de cobertura.</p>
+<p>La convergencia entre las tecnologías de la información y las
+comunicaciones es cada vez mayor y las barreras entre ellas se han
+diluido casi por completo. Con herramientas como el correo electrónico,
+la mensajería instantánea, los foros de discusión y las plataformas de
+trabajo colaborativo, hoy en día la computadora es una innegable
+herramienta de comunicación.</p>
+<p>Las redes de computadoras son un tipo de sistemas de comunicaciones. Por
+ello, iniciamos su estudio describiendo los elementos que conforman un
+sistema de comunicaciones y que están ahí para ofrecer un servicio
+específico, en nuestro caso, el de interconexión de equipos
+computacionales.</p>
+<p>Más adelante se introducen los conceptos de señal como el elemento
+físico que se propaga a través de las redes de comunicaciones y se
+presentan las propiedades que pueden ser alteradas en una señal para
+transportar información. Como en las redes de computadoras esta
+información es digital, también se introducen los mecanismos para
+transformar una señal análoga (por ejemplo, la voz) en su formato
+binario.</p>
+<p>Un requerimiento fundamental para que las redes sean técnica y
+económicamente viables, es la capacidad de compartir los canales de
+comunicación (cables eléctricos, espectro electromagnético, enlaces de
+fibra óptica). Por ello, es muy importante asimilar los conceptos de
+conmutación y de multiplexaje.</p>
+<p>Una vez presentados los conceptos de sistemas de comunicaciones,
+entramos en el mundo de las redes de computadoras. Interconectar un
+conjunto de computadoras es un problema sumamente complejo que involucra
+desde las propiedades físicas de las señales y los canales de
+comunicación, hasta la representación interna de los datos que utiliza
+cada fabricante de computadoras, pasando por cómo establecer las
+trayectorias más apropiadas para enlazar las computadoras. Ello da lugar
+a arquitecturas o modelos de redes donde el problema de interconexión se
+divide en tareas concretas, más sencillas.</p>
+<p>La arquitectura de redes más popular en el ámbito académico, es el
+modelo de capas OSI (<em>Open Systems Interconnection</em>). Se trata de un
+modelo de siete capas en el que la capa inferior ofrece un servicio a la
+capa superior, hasta resolver completamente la complejidad de la
+interconexión. El modelo OSI también define la terminología común a las
+redes de computadoras, como protocolo, punto de acceso a servicio, nodo
+de interconexión, etcétera.</p>
+<p>Internet también sigue un modelo de capas, pero solo define formalmente
+tres, y se considera agnóstico a las llamadas “capas inferiores”, que
+son las responsables del transporte de datos.</p>
+<p>Cerramos este capítulo con una breve taxonomía de las redes de
+computadoras en función de su área de cobertura.</p>
 </div>
 <div id="requisitos" class="section level2 hasAnchor" number="1.1">
 <h2><span class="header-section-number">1.1</span> Conceptos básicos<a href="capintro.html#requisitos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Durante las últimas décadas los campos de la informática y las telecomunicaciones se han fusionado, generando profundos cambios en la tecnología, los productos y las compañías de esta nueva industria combinada <span class="citation">[1]</span>, llamada Tecnologías de Información y de Comunicaciones TIC. La revolución generada por esta simbiosis ha afectado significativamente el tejido económico y social del mundo. Las redes digitales se están convirtiendo en el sistema nervioso de la Sociedad de la Información. Para Castells <span class="citation">[2]</span>, <em>La Red</em> significa nuevas formas de organización que reemplazan jerarquías verticales integradas como la manera dominante de organización social.</p>
-<p>De acuerdo a la Unión Internacional de Telecomunicaciones (UIT, <em>International Telecommunications Union</em>) el desarrollo dentro del sector de las TIC, puede ilustrarse en tres fases u olas de cambios tecnológicos <span class="citation">[3]</span>:</p>
+<p>Durante las últimas décadas los campos de la informática y las
+telecomunicaciones se han fusionado, generando profundos cambios en la
+tecnología, los productos y las compañías de esta nueva industria
+combinada <span class="citation">(Stallings 2007)</span>, llamada Tecnologías de Información y de
+Comunicaciones TIC. La revolución generada por esta simbiosis ha
+afectado significativamente el tejido económico y social del mundo. Las
+redes digitales se están convirtiendo en el sistema nervioso de la
+Sociedad de la Información. Para Castells <span class="citation">(Castells 2000)</span>, <em>La Red</em>
+significa nuevas formas de organización que reemplazan jerarquías
+verticales integradas como la manera dominante de organización social.</p>
+<p>De acuerdo a la Unión Internacional de Telecomunicaciones (UIT,
+<em>Internationa Telecommunications Union</em>) el desarrollo dentro del sector
+de las TIC, puede ilustrarse en tres fases u olas de cambios
+tecnológicos <span class="citation">(ITU and Bank, n.d.)</span>:</p>
 <dl>
 <dt>
 <strong>La primera ola</strong>
@@ -282,7 +352,7 @@ Como se mostrará más adelante, esta capacidad de procesamiento en los nodos es
 </strong>
 <dd>
 <p>Es representada por el crecimiento explosivo de las redes de comunicaciones, en especial la telefonía móvil, y la creciente penetración de Internet en la sociedad. Resulta natural que todas estas redes converjan y se complementen entre sí, como de hecho está ocurriendo: En la actualidad, las redes móviles son la principal tecnología de acceso a Internet, mientras que las redes llamadas de cuarta generación (basadas en LTE, <em>Long Term Evolution</em>) son redes de conmutación de paquetes en las que las comunicaciones de voz son sólo un servicio más dentro de todos los que se espera sean ofrecidos por estas redes.</p>
-<p>Todo lo anterior ha llevado a la llamada convergencia digital la cual está ocurriendo en diferentes niveles <span class="citation">[4]</span>:</p>
+<p>Todo lo anterior ha llevado a la llamada convergencia digital la cual está ocurriendo en diferentes niveles <span class="citation">(Directorate for Science, Industry, and Policy 2006)</span>:</p>
 <ul>
 <li>En el nivel de contenidos, por ejemplo, con la aparición de los servicios de Video en Demanda (<em>Video on Demand</em>) y la televisión sobre el protocolo de Internet (IPTV);</li>
 <li>A nivel de negocios, con esquemas de propiedad cruzada y los servicios triple-play (datos, voz y video) ofrecidos por operadores de telecomunicaciones;</li>
@@ -298,86 +368,177 @@ Como se mostrará más adelante, esta capacidad de procesamiento en los nodos es
 Va mucho más allá de los desarrollos tecnológicos (y del alcance de este curso), y consiste en el desarrollo de servicios, aplicaciones, contenidos y procesos de apropiación que permitan transitar de una sociedad que usa las TIC, pasando por una sociedad capaz de generar información apoyada en ellas, hacia una sociedad basada en el conocimiento.
 </dd>
 </dl>
-<p>Así, las redes de comunicaciones son vitales para las sociedades contemporáneas, y es por ello que resulta conveniente entender con claridad los fundamentos técnicos en que se sustentan.</p>
+<p>Así, las redes de comunicaciones son vitales para las sociedades
+contemporáneas, y es por ello que resulta conveniente entender con
+claridad los fundamentos técnicos en que se sustentan.</p>
 <div id="sistemas-de-comunicaciones" class="section level3 hasAnchor" number="1.1.1">
 <h3><span class="header-section-number">1.1.1</span> Sistemas de comunicaciones<a href="capintro.html#sistemas-de-comunicaciones" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Etimológicamente, la palabra telecomunicación está formada por el prefijo griego <em>tele</em> que significa “a distancia” y la raíz latina <em>comunicare</em>, “hacer común”. Así, las telecomunicaciones representan el acto de hacer común, de compartir <em>algo</em> entre dos o más entidades que se encuentran físicamente separadas.</p>
-<p>Para llevar esta definición a ejemplos concretos, ese <em>algo</em> es información (o conocimiento) que puede ser expresado a través de la voz (tele-fonía), de imágenes (tele-visión) o de símbolos (tele-grafía) y que requiere de un sistema que posibilite esta comunicación a la distancia.</p>
-<p>En su forma más general, un sistema de comunicaciones está compuesto por los bloques que se ilustran en la
-figura <a href="capintro.html#fig:sistcom">1.1</a>:</p>
+<p>Etimológicamente, la palabra telecomunicación está formada por el
+prefijo griego <em>tele</em> que significa “a distancia” y la raíz latina
+<em>comunicare</em>, “hacer común”. Así, las telecomunicaciones representan el
+acto de hacer común, de compartir <em>algo</em> entre dos o más entidades que
+se encuentran físicamente separadas.</p>
+<p>Para llevar esta definición a ejemplos concretos, ese <em>algo</em> es
+información (o conocimiento) que puede ser expresado a través de la voz
+(tele-fonía), de imágenes (tele-visión) o de símbolos (tele-grafía) y
+que requiere de un sistema que posibilite esta comunicación a la
+distancia.</p>
+<p>En su forma más general, un sistema de comunicaciones está compuesto por
+los bloques que se ilustran en la
+figura <a href="capintro.html#fig:sistcom">1.1</a>:</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:sistcom"></span>
-<img src="figuras/c1/sistcom-1.png" alt="Sistema de comunicaciones básico" width="485" />
+<img src="figuras/c1/sistcom.png" alt="*Sistema de comunicaciones.*" width="60%" />
 <p class="caption">
-Figura 1.1: Sistema de comunicaciones básico
+Figura 1.1: <em>Sistema de comunicaciones.</em>
 </p>
 </div>
-<p>La fuente es la que genera la información y emite mensajes para uno o más destinatarios. La fuente de información puede generar señales analógicas o digitales (ver más adelante). La transferencia de información entre el emisor y el(los) receptor(es), se lleva a través de un canal de comunicación, como puede ser un cable de cobre, una fibra óptica o el espectro radioeléctrico. Cuando las señales viajan a través del canal, necesariamente sufren perturbaciones impredecibles producidas por la naturaleza del canal o por elementos externos al sistema (por ejemplo, atenuaciones debido a la resistividad del medio, interferencia de otras fuentes, distorsión por las propiedades del medio) y que en conjunto se conocen como fuentes de ruido.</p>
-<p>En el sistema de comunicaciones, el transmisor consiste de un conjunto de elementos (como moduladores, codificadores, amplificadores) que permiten adecuar las señales generadas por las fuentes de información a las condiciones del canal de comunicación y de protegerlas, en la medida de lo posible, de las fuentes de ruido a las que serán sometidas. Al otro extremo del canal, el receptor realiza un proceso inverso para recuperar la señal original y entregarla al destinatario.</p>
+<p>La fuente es la que genera la información y emite mensajes para uno o
+más destinatarios. La fuente de información puede generar señales
+analógicas o digitales (ver más adelante). La transferencia de
+información entre el emisor y el(los) receptor(es), se lleva a través de
+un canal de comunicación, como puede ser un cable de cobre, una fibra
+óptica o el espectro radioeléctrico. Cuando las señales viajan a través
+del canal, necesariamente sufren perturbaciones impredecibles producidas
+por la naturaleza del canal o por elementos externos al sistema (por
+ejemplo, atenuaciones debido a la resistividad del medio, interferencia
+de otras fuentes, distorsión por las propiedades del medio) y que en
+conjunto se conocen como fuentes de ruido.</p>
+<p>En el sistema de comunicaciones, el transmisor consiste de un conjunto
+de elementos (como moduladores, codificadores, amplificadores) que
+permiten adecuar las señales generadas por las fuentes de información a
+las condiciones del canal de comunicación y de protegerlas, en la medida
+de lo posible, de las fuentes de ruido a las que serán sometidas. Al
+otro extremo del canal, el receptor realiza un proceso inverso para
+recuperar la señal original y entregarla al destinatario.</p>
 </div>
 <div id="redes-de-telecomunicaciones" class="section level3 hasAnchor" number="1.1.2">
 <h3><span class="header-section-number">1.1.2</span> Redes de telecomunicaciones<a href="capintro.html#redes-de-telecomunicaciones" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Los sistemas de comunicaciones han ido evolucionando y se han convertido hoy en sistemas complejos interconectados por distintos medios para proporcionar un conjunto de servicios. Estos sistemas son las redes de telecomunicaciones y, en términos generales, deben ser capaces de:</p>
+<p>Los sistemas de comunicaciones han ido evolucionando y se han convertido
+hoy en sistemas complejos interconectados por distintos medios para
+proporcionar un conjunto de servicios. Estos sistemas son las redes de
+telecomunicaciones y, en términos generales, deben ser capaces de:</p>
 <ul>
-<li>Proveer un camino entre usuarios y usuarios, y entre usuarios y servicios;</li>
-<li>posibilitar a cada usuario para que pueda seleccionar a sus destinatarios;</li>
-<li>proveer servicios con calidad, aún en periodos de gran actividad;</li>
-<li>proporcionar mecanismos de control y gestión.</li>
+<li><p>Proveer un camino entre usuarios y usuarios, y entre usuarios y
+servicios;</p></li>
+<li><p>posibilitar a cada usuario para que pueda seleccionar a sus
+destinatarios;</p></li>
+<li><p>proveer servicios con calidad, aún en periodos de gran actividad;</p></li>
+<li><p>proporcionar mecanismos de control y gestión.</p></li>
 </ul>
-<p>La posibilidad de una red de procesar y transmitir información del tipo deseado por los usuarios, es el “servicio” proporcionado por dicha red. Los usuarios pueden ser finales (suscriptores) o intermedios (otras redes). Algunos ejemplos de servicios, son los siguientes:</p>
+<p>La posibilidad de una red de procesar y transmitir información del tipo
+deseado por los usuarios, es el “servicio” proporcionado por dicha red.
+Los usuarios pueden ser finales (suscriptores) o intermedios (otras
+redes). Algunos ejemplos de servicios, son los siguientes:</p>
 <ul>
-<li>Telefónico local</li>
-<li>Video transmisión</li>
-<li>Tránsito</li>
-<li>Acceso a internet</li>
-<li>Acceso a red de abonado</li>
+<li><p>Telefónico local</p></li>
+<li><p>Video transmisión</p></li>
+<li><p>Tránsito</p></li>
+<li><p>Acceso a internet</p></li>
+<li><p>Acceso a red de abonado</p></li>
 </ul>
 </div>
 <div id="señal" class="section level3 hasAnchor" number="1.1.3">
 <h3><span class="header-section-number">1.1.3</span> Señal<a href="capintro.html#señal" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Un sistema analógico (o análogo) utiliza una propiedad física, como el voltaje, para representar el comportamiento de otro sistema físico. Las propiedades de esta representación son explotadas para almacenar, transformar, duplicar o amplificar el fenómeno original. Las señales utilizadas en un sistema analógico son continuas, por lo que pueden tomar un número potencialmente infinito de valores.</p>
-<p>Hay muchos ejemplos de señales analógicas en la naturaleza, como el sonido, la temperatura ambiente o la intensidad de una fuente de luz (por supuesto, sin considerar los procesos que ocurren a nivel de la física cuántica). De forma similar, la altura de una rampa varía de forma continua y su valor en un punto determinado solo puede ser establecida limitando la resolución del dispositivo utilizado para efectuar la medición.</p>
-<p>Una desventaja de un sistema analógico es la acumulación de pequeñas variaciones aleatorias cada vez que se realiza una operación sobre la señal adquirida. Por ejemplo, en el caso específico de un sistema eléctrico, siempre existen perturbaciones debidas al movimiento molecular (ruido térmico).</p>
-<p>Por su parte, una señal digital solo puede tomar valores discretos y cuantificables del fenómeno físico. Por ejemplo, el número de árboles en un predio o el de los peldaños en una escalera.</p>
-<p>Una señal analógica puede ser convertida en una señal digital lo cual, como se mostrará más adelante, ofrece una gran flexibilidad para manipular la señal. A este proceso se le llama digitalización y conviene recordar que la digitalización es uno de los detonadores de la primera ola en el desarrollo de las TIC.</p>
-<p>Por comodidad vamos a trabajar con señales senoidales simples como la que aparece en la figura <a href="capintro.html#fig:senoidal">1.2</a>. Como lo demuestra el Teorema de Fourier, cualquier señal periodica puede aproximarse como una suma de funciones senoidales<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>.</p>
-<p>Una señal senoidal pura se muestra en la figura <a href="capintro.html#fig:senoidal">1.2</a> representada como <span class="math inline">\(s(t)\)</span>. Las propiedades de la señal que pueden ser manipuladas para transportar información, son su amplitud (<span class="math inline">\(A\)</span>), su frecuencia (<span class="math inline">\(\omega\)</span>) y su fase (<span class="math inline">\(\phi\)</span>). La amplitud es la magnitud máxima que puede tomar la señal. El tiempo que le toma a una señal desplegar una oscilación completa, se conoce como periodo y su inverso es la frecuencia <span class="math inline">\(\omega\)</span>, que indica el número de oscilaciones por segundo que realiza <span class="math inline">\(s(t)\)</span>. La frecuencia se mide en Hertz. La separación (medida en grados o radianes) de un punto de referencia arbitrario al inicio de un ciclo, es lo que se conoce como fase y se representa por <span class="math inline">\(\phi\)</span>.</p>
+<p>Un sistema analógico (o análogo) utiliza una cantidad física, como el
+voltaje, para representar el comportamiento de otro sistema físico. Las
+propiedades de esta representación son explotadas para almacenar,
+transformar, duplicar o amplificar el fenómeno original. Las señales
+utilizadas en un sistema analógico son continuas, por lo que pueden
+tomar un número potencialmente infinito de valores.</p>
+<p>Hay muchos ejemplos de señales analógicas en la naturaleza, como el
+sonido, la temperatura ambiente o la intensidad de una fuente de luz
+(por supuesto, sin considerar los procesos que ocurren a nivel de la
+física cuántica). De forma similar, la altura de una rampa varía de
+forma continua y su valor en un punto determinado solo puede ser
+establecida limitando la resolución del dispositivo utilizado para
+efectuar la medición.</p>
+<p>Una desventaja de un sistema analógico es la acumulación de pequeñas
+variaciones aleatorias cada vez que se realiza una operación sobre la
+señal adquirida. Por ejemplo, en el caso específico de un sistema
+eléctrico, siempre existen perturbaciones debidas al movimiento
+molecular (ruido térmico).</p>
+<p>Por su parte, una señal digital solo puede tomar valores discretos y
+cuantificables del fenómeno físico. Por ejemplo, el número de árboles en
+un predio o el nivel de los peldaños en una escalera.</p>
+<p>Una señal analógica puede ser convertida en una señal digital. A este
+proceso se le llama digitalización, lo cual, como se mostrará más
+adelante, ofrece una gran flexibilidad para manipular la señal. Conviene
+recordar que la digitalización es uno de los detonadores de la primera
+ola en el desarrollo de las TIC.</p>
+<p>Por comodidad vamos a trabajar con señales senoidales simples como la
+que aparece en la figura. Como lo demuestra el Teorema de Fourier,
+cualquier señal periodica puede aproximarse como una suma de funciones
+senoidales<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>.</p>
+<p>Una señal senoidal pura se muestra en la
+figura <a href="capintro.html#fig:senoidal">1.2</a> representada como <span class="math inline">\(s(t)\)</span>. Las propiedades de la señal que pueden ser
+manipuladas para transportar información, son su amplitud (<span class="math inline">\(A\)</span>), su
+frecuencia (<span class="math inline">\(\omega\)</span>) y su fase (<span class="math inline">\(\phi\)</span>). La amplitud es la magnitud
+máxima que puede tomar la señal. El tiempo que le toma a una señal
+desplegar una oscilación completa, se conoce como periodo y su inverso
+es la frecuencia <span class="math inline">\(\omega\)</span>, que indica el número de oscilaciones por
+segundo que realiza <span class="math inline">\(s(t)\)</span>. La frecuencia se mide en Hertz. La
+separación (medida en grados o radianes) de un punto de referencia
+arbitrario al inicio de un ciclo, es lo que se conoce como fase y se
+representa por <span class="math inline">\(\phi\)</span>.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:senoidal"></span>
-<img src="figuras/c1/senoidal-1.png" alt="*Señal senoidal.*" width="70%" />
+<img src="figuras/c1/senoidal.png" alt="*Señal senoidal*" width="60%" />
 <p class="caption">
-Figura 1.2: <em>Señal senoidal.</em>
+Figura 1.2: <em>Señal senoidal</em>
 </p>
 </div>
 </div>
 <div id="conversión-analógica-a-digital-ad" class="section level3 hasAnchor" number="1.1.4">
 <h3><span class="header-section-number">1.1.4</span> Conversión analógica a digital (A/D)<a href="capintro.html#conversión-analógica-a-digital-ad" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>La representación digital de una señal analógica se construye mediante las tres etapas mostradas en la figura <a href="capintro.html#fig:conversionad">1.3</a>. El proceso inicia obteniendo muestras de la magnitud de la señal a intervalos regulares (muestreo). A cada muestra obtenida se le asigna el más cercano de un conjunto finito de valores (cuantización). El valor seleccionado se codifica, utilizando típicamente una representación binaria (codificación).</p>
+<p>La representación digital de una señal analógica se construye en las
+tres fases mostradas en la figura <a href="capintro.html#fig:conversionad">1.3</a>. El proceso inicia obteniendo muestras de
+la magnitud a intervalos regulares (muestreo). A cada muestra obtenida
+se le asigna el más cercano de un conjunto finito de valores
+(cuantización). El valor seleccionado se codifica, utilizando
+típicamente una representación binaria (codificación).</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:conversionad"></span>
-<img src="figuras/c1/conversionad-1.png" alt="*Proceso de conversión de una señal analógica a digital.*" width="85%" />
+<img src="figuras/c1/conversionad.png" alt="*Proceso de conversión de una señal analógica a digital*" width="60%" />
 <p class="caption">
-Figura 1.3: <em>Proceso de conversión de una señal analógica a digital.</em>
+Figura 1.3: <em>Proceso de conversión de una señal analógica a digital</em>
 </p>
 </div>
-<p>La cuantización implica una distorsión de la señal original (llamada error de cuantización) pues, en general, el valor discreto que representa la muestra no coincidirá exactamente con su magnitud en ese punto (ver figura <a href="capintro.html#fig:mu-y-cuant">1.4</a>). En cambio, la señal digital es mucho más inmune a factores externos (las fuentes de ruido de la figura <a href="capintro.html#fig:sistcom">1.1</a>) que alteran la magnitud de la señal.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:mu-y-cuant"></span>
-<img src="figuras/c1/muestycuant-1.png" alt="*Muestreo y cuantización de una señal analógica.*" width="85%" />
+<p>La cuantización implica una distorsión de la señal original (llamada
+error de cuantización) pues, en general, el valor discreto que
+representa la muestra no coincidirá exactamente con su magnitud en ese
+punto (ver figura <a href="capintro.html#fig:muestycuant">1.4</a>. En cambio, la señal digital es mucho más
+inmune a factores externos (las fuentes de ruido de la
+figura <a href="capintro.html#fig:sistcom">1.1</a>) que alteran la magnitud de la señal.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:muestycuant"></span>
+<img src="figuras/c1/muestycuant.jpg" alt="*Muestreo y cuantización de una señal analógica*" width="60%" />
 <p class="caption">
-Figura 1.4: <em>Muestreo y cuantización de una señal analógica.</em>
+Figura 1.4: <em>Muestreo y cuantización de una señal analógica</em>
 </p>
 </div>
-<p>Finalmente, cada muestra cuantizada es representada por un valor binario (figura <a href="capintro.html#fig:coddig">1.5</a>). El conjunto de valores utilizados para la representación digital debe elegirse con cuidado. Entre mayor sea el conjunto menor será la separación entre ellos, y por consiguiente, el error de cuantización será menor. Sin embargo, el patrón binario (es decir, el número de bits) para representar estos valores aumenta. Además, disminuye la posibilidad de eliminar el ruido aditivo generado por fuentes externas.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:coddig"></span>
-<img src="figuras/c1/codifica-1.png" alt="*Codificación de la señal cuantizada.*" width="666" />
+<p>Finalmente, cada muestra cuantizada es representada por un valor binario
+(figura <a href="capintro.html#fig:codifica">1.5</a>).
+El conjunto de valores utilizados para la representación digital debe
+elegirse con cuidado. Entre mayor sea el conjunto menor será la
+separación entre ellos, y por consiguiente, el error de cuantización
+será menor. Sin embargo, el patrón binario (es decir, el número de bits)
+para representar estos valores aumenta.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:codifica"></span>
+<img src="figuras/c1/codifica.png" alt="*Codificación de la señal cuantizada*" width="60%" />
 <p class="caption">
-Figura 1.5: <em>Codificación de la señal cuantizada.</em>
+Figura 1.5: <em>Codificación de la señal cuantizada</em>
 </p>
 </div>
-<p>Por simplicidad, en el ejemplo anterior se ha elegido un código de tres bits. Con tres bits, se tienen <span class="math inline">\(2^3=8~\)</span>niveles discretos. Cada magnitud muestreada se aproxima al nivel más cercano de ellos.</p>
+<p>Por simplicidad, en el ejemplo anterior se ha elegido un código de tres
+bits. Con tres bits, se tienen <span class="math inline">\(2^3=8~\)</span>niveles discretos. Cada magnitud
+muestreada se aproxima al nivel más cercano de ellos.</p>
 <div style="color: blue;">
 <p>Al proceso de digitalización anterior, en el que cada muestra es convertida al valor discreto más cercano y codificada en una serie de pulsos binarios, también se le conoce como <strong>Modulación por Codificación de Pulsos</strong> (PCM, <em>Pulse Code Modulation</em>).</p>
 </div>
 <div id="teorema-de-nyquist" class="section level4 unnumbered hasAnchor">
 <h4>Teorema de Nyquist<a href="capintro.html#teorema-de-nyquist" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Para reconstruir la señal analógica a partir de sus muestras cuantizadas, se recurre a un proceso matemático de interpolación. En 1924, Henry Nyquist mostró, a través del teorema que lleva su nombre, que para obtener una reconstrucción completa, bastaba con tomar muestras al doble de la frecuencia máxima de la señal original<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>. En consecuencia, es necesario conocer el rango de frecuencias de la señal (es decir, su <em>ancho de banda</em>, determinar la frecuencia más alta y muestrear al doble de este valor para que la señal digital retenga las propiedades de la original.</p>
+<p>Para reconstruir la señal analógica se recurre a un proceso matemático
+de interpolación. En 1924, Henry Nyquist mostró, a través del teorema
+que lleva su nombre, que para obtener una reconstrucción completa,
+bastaba con tomar muestras al doble de la frecuencia máxima de la señal
+original<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>. En consecuencia, es necesario conocer el rango de frecuencias de la señal (es decir, su <em>ancho de banda</em>, determinar la frecuencia más alta y muestrear al doble de este valor para que la señal digital retenga las propiedades de la original.</p>
 <div class="greybox">
 <p><strong>Caso de estudio: Digitalización de voz con calidad comercial</strong></p>
 <p>Es ilustrativo ejemplificar los conceptos de conversión A/D en el marco de las redes telefónicas digitales.</p>
@@ -399,11 +560,11 @@ Figura 1.6: <em>Efecto de muestreo a una tasa menor a la frecuencia de Nyquist.<
 <span class="math display">\[
 \text{Tasa máxima de datos} = 2H \log_2 (V)\,b/s
 \]</span></p>
-<p>Claude Shannon extiende en 1948 el trabajo original de Nyquist para canales con presencia de ruido <span class="citation">[5]</span>. Si la cantidad de ruido en el canal se obtiene a partir de la relación entre la potencia de la señal a trasmitir (<span class="math inline">\(S\)</span>) y la potencia del ruido presente (<span class="math inline">\(N\)</span>), entonces la tasa ideal de un canal con ancho de banda <span class="math inline">\(H\)</span> y relación señal a ruido (SNR, <em>signal to noise ratio</em>) <span class="math inline">\(S/N\)</span> es:
+<p>Claude Shannon extiende en 1948 el trabajo original de Nyquist para canales con presencia de ruido <span class="citation">(Tanenbaum 2003)</span>. Si la cantidad de ruido en el canal se obtiene a partir de la relación entre la potencia de la señal a trasmitir (<span class="math inline">\(S\)</span>) y la potencia del ruido presente (<span class="math inline">\(N\)</span>), entonces la tasa ideal de un canal con ancho de banda <span class="math inline">\(H\)</span> y relación señal a ruido (SNR, <em>signal to noise ratio</em>) <span class="math inline">\(S/N\)</span> es:
 <span class="math display">\[
 \text{Tasa máxima de datos} = H  \log_2 (1 + \frac{S}{N})\,b/s
 \]</span></p>
-<p>Este resultado es muy importante porque, además de ofrecer el límite teórico de la capacidad de un canal, indica que cualquier mensaje puede ser transmitido con confiabilidad, a pesar de tener un canal con ruido, diseñando una codificación que mejore la relación señal a ruido <span class="citation">[6]</span>.</p>
+<p>Este resultado es muy importante porque, además de ofrecer el límite teórico de la capacidad de un canal, indica que cualquier mensaje puede ser transmitido con confiabilidad, a pesar de tener un canal con ruido, diseñando una codificación que mejore la relación señal a ruido <span class="citation">(Rheingold 2000)</span>.</p>
 </div>
 </div>
 </div>
@@ -561,7 +722,7 @@ la sesión, se utilicen o no.</p>
 <p>Refiriéndonos una vez más a la red telefónica, una vez que se ha establecido la conexión, el circuito reservado ocupa recursos de la red haya o no intercambio de palabras.</p>
 <p>La figura <a href="capintro.html#fig:red-cc">1.11</a> ejemplifica una red de conmutación de circuitos en la que los equipos terminales son aparatos telefónicos. Se han establecido cuatro circuitos representados por un color distinto: verde, rojo, azul y oro. En la figura, estas conexiones han agotado los recursos disponibles al interior de la red, por lo que únicamente se pueden establecer algunas llamadas adicionales en las que la trayectoria no pase por el núcleo de la red. Por supuesto, este es un escenario irreal. Los enlaces entre nodos de conmutación (llamados troncales), tienen capacidad para establecer muchos circuitos telefónicos, no solamente uno.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:red-cc"></span>
-<img src="figuras/c1/red-cc-1.png" alt="Red de conmutación de circuitos." width="80%" />
+<img src="figuras/c1/red-cc.png" alt="Red de conmutación de circuitos." width="80%" />
 <p class="caption">
 Figura 1.11: Red de conmutación de circuitos.
 </p>
@@ -895,7 +1056,7 @@ se conoce como OSI (<em>Open Systems Interconnection</em>).</p>
 <p>El modelo ISO/OSI sigue una estrategia de "divide y vencerás"
 organizando el problema de comunicación en una estructura jerárquica de
 capas. Algunos de los principios básicos de diseño son los
-siguientes <span class="citation">[7]</span>:</p>
+siguientes <span class="citation">(Mejía and Incera 2007)</span>:</p>
 <ul>
 <li><p>Cada capa debe efectuar una función bien definida</p></li>
 <li><p>La función de cada capa debe seleccionarse con la intención de
@@ -1175,7 +1336,7 @@ comunicación por sí mismos.</p>
 en los hogares. En el capítulo <a href="caplan.html#caplan">4</a> se presentan estas redes. Permiten conectar dispositivos con una cobertura de cientos de metros hasta un par de kilómetros.
 Históricamente, la tecnología dominante en estas redes ha sido
 Ethernet, creada por Robert Metcalfe en los laboratorios Xerox PARC
-a mediados de los años 70 <span class="citation">[8]</span> y estandarizada por la
+a mediados de los años 70 <span class="citation">(Metcalfe and Boggs 1976)</span> y estandarizada por la
 IEEE bajo el grupo de trabajo 802.3 <a href="#fn8" class="footnote-ref" id="fnref8"><sup>8</sup></a>.</p>
 <p>En sus primeras versiones, los dispositivos se conectan a un medio
 compartido (un cable coaxial, o un concentrador) en el que se

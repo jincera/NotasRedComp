@@ -226,6 +226,29 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="5.7" data-path="capl3.html"><a href="capl3.html#problemas-4"><i class="fa fa-check"></i><b>5.7</b> Problemas</a></li>
 </ul></li>
+<li class="chapter" data-level="6" data-path="capl4.html"><a href="capl4.html"><i class="fa fa-check"></i><b>6</b> Capa de Transporte</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="capl4.html"><a href="capl4.html#introducción-4"><i class="fa fa-check"></i><b>6.1</b> Introducción</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="capl4.html"><a href="capl4.html#comunicación-mediante-sockets"><i class="fa fa-check"></i><b>6.1.1</b> Comunicación mediante Sockets</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="capl4.html"><a href="capl4.html#udp-user-datagram-protocol"><i class="fa fa-check"></i><b>6.2</b> UDP (<em>User Datagram Protocol</em>)</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="capl4.html"><a href="capl4.html#formato-del-datagrama-udp"><i class="fa fa-check"></i><b>6.2.1</b> Formato del datagrama UDP</a></li>
+<li class="chapter" data-level="6.2.2" data-path="capl4.html"><a href="capl4.html#análisis-de-un-datagrama-udp"><i class="fa fa-check"></i><b>6.2.2</b> Análisis de un datagrama UDP</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="capl4.html"><a href="capl4.html#tcp-transmission-control-protocol"><i class="fa fa-check"></i><b>6.3</b> TCP (<em>Transmission Control Protocol</em>)</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="capl4.html"><a href="capl4.html#formato-del-segmento-tcp"><i class="fa fa-check"></i><b>6.3.1</b> Formato del segmento TCP</a></li>
+<li class="chapter" data-level="6.3.2" data-path="capl4.html"><a href="capl4.html#análisis-de-un-segmento-tcp"><i class="fa fa-check"></i><b>6.3.2</b> Análisis de un segmento TCP</a></li>
+<li class="chapter" data-level="6.3.3" data-path="capl4.html"><a href="capl4.html#establecimiento-y-liberación-de-una-conexión"><i class="fa fa-check"></i><b>6.3.3</b> Establecimiento y liberación de una conexión</a></li>
+<li class="chapter" data-level="6.3.4" data-path="capl4.html"><a href="capl4.html#control-de-errores-1"><i class="fa fa-check"></i><b>6.3.4</b> Control de errores</a></li>
+<li class="chapter" data-level="6.3.5" data-path="capl4.html"><a href="capl4.html#control-de-flujo"><i class="fa fa-check"></i><b>6.3.5</b> Control de flujo</a></li>
+<li class="chapter" data-level="6.3.6" data-path="capl4.html"><a href="capl4.html#control-de-congestión"><i class="fa fa-check"></i><b>6.3.6</b> Control de congestión</a></li>
+<li class="chapter" data-level="6.3.7" data-path="capl4.html"><a href="capl4.html#otros-mecanismos-de-control-de-congestión-en-tcp"><i class="fa fa-check"></i><b>6.3.7</b> Otros mecanismos de control de congestión en TCP</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="capl4.html"><a href="capl4.html#problemas-5"><i class="fa fa-check"></i><b>6.4</b> Problemas</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="referencias.html"><a href="referencias.html"><i class="fa fa-check"></i>Referencias</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
@@ -380,7 +403,7 @@ llamada LRC, <em>Longitudinal Redundancy Check</em>. En la tabla de la figura <
 LRC calculado, pero se permiten otras variantes siempre y cuando
 transmisor y receptor sigan las mismas reglas.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:paridad"></span>
-<img src="tablas/paridad.JPG" alt="*Ejemplo para la generación de bits verificadores LRC y VRC.*" width="40%" />
+<img src="tablas/paridad.JPG" alt="*Ejemplo para la generación de bits verificadores LRC y VRC.*" width="30%" />
 <p class="caption">
 Figura 3.3: <em>Ejemplo para la generación de bits verificadores LRC y VRC.</em>
 </p>
@@ -494,10 +517,9 @@ corresponde al remanente y es el que se envía junto con la secuencia.</p>
 introduce al registro bit a bit, incluyendo los bits de redundancia. Al
 final, si no hubo error en la trama, los flip-flops del registro deben
 contener cero.</p>
-<p>La tabla <a href="capl2.html#t:polpop">3</a>{reference-type=“ref” @ref(t:polpop”}
-muestra algunos de los polinomios generadores más populares en redes de
+<p>La tabla siguiente muestra algunos de los polinomios generadores más populares en redes de
 computadoras.</p>
-<div id="t:polpop">
+<div id="tab:polpop">
 <table>
 <caption><em>Algunos polinomios generadores bien conocidos</em></caption>
 <thead>
@@ -538,7 +560,6 @@ computadoras.</p>
 </tbody>
 </table>
 </div>
-<p><span id="t:polpop" label="t:polpop"></span></p>
 </div>
 </div>
 <div id="auto-corrección-de-errores" class="section level3 hasAnchor" number="3.2.2">
@@ -754,7 +775,7 @@ que hemos visto en el curso. De una manera simple e ingeniosa, busca
 ofrecer un servicio de entrega confiable de datagramas. Sin embargo, su
 simplicidad viene a expensas de una pésima eficiencia.</p>
 <div class="example">
-<p><span id="exm:unnamed-chunk-6" class="example"><strong>Ejemplo 3.1  </strong></span>Considere un enlace de fibra óptica entre dos ciudades a 100 kilómetros
+<p><span id="exm:unnamed-chunk-7" class="example"><strong>Ejemplo 3.1  </strong></span>Considere un enlace de fibra óptica entre dos ciudades a 100 kilómetros
 de distancia. Sin tomar en cuenta ninguna otra fuente de retraso, el
 retardo de ida y vuelta en este enlace sería de
 <span class="math inline">\(t_{RTT}=(2\times 100\,\text{km})/200,000\,\text{km/s}=1\,\text{ms}\)</span>.</p>
@@ -855,7 +876,7 @@ to N en las redes contemporáneas.</p>
 <div id="problemas-2" class="section level2 hasAnchor" number="3.4">
 <h2><span class="header-section-number">3.4</span> Problemas<a href="capl2.html#problemas-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div class="exercise">
-<p><span id="exr:c31" class="exercise"><strong>Problema 3.1  </strong></span>Un protocolo de capa 2 puede transportar hasta 15 paquetes en una trama y soporta acuses de recibo en {}
+<p><span id="exr:c31" class="exercise"><strong>Problema 3.1  </strong></span>Un protocolo de capa 2 puede transportar hasta 15 paquetes en una trama y soporta acuses de recibo en <em>piggy-backing</em>.
 Cada paquete puede ser de hasta 64 bytes. La trama se protege con un algoritmo CRC-16.</p>
 <p>Muestre un posible formato de trama indicando el tamaño aproximado de cada campo.</p>
 </div>

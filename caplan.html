@@ -226,6 +226,29 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="5.7" data-path="capl3.html"><a href="capl3.html#problemas-4"><i class="fa fa-check"></i><b>5.7</b> Problemas</a></li>
 </ul></li>
+<li class="chapter" data-level="6" data-path="capl4.html"><a href="capl4.html"><i class="fa fa-check"></i><b>6</b> Capa de Transporte</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="capl4.html"><a href="capl4.html#introducción-4"><i class="fa fa-check"></i><b>6.1</b> Introducción</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="capl4.html"><a href="capl4.html#comunicación-mediante-sockets"><i class="fa fa-check"></i><b>6.1.1</b> Comunicación mediante Sockets</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="capl4.html"><a href="capl4.html#udp-user-datagram-protocol"><i class="fa fa-check"></i><b>6.2</b> UDP (<em>User Datagram Protocol</em>)</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="capl4.html"><a href="capl4.html#formato-del-datagrama-udp"><i class="fa fa-check"></i><b>6.2.1</b> Formato del datagrama UDP</a></li>
+<li class="chapter" data-level="6.2.2" data-path="capl4.html"><a href="capl4.html#análisis-de-un-datagrama-udp"><i class="fa fa-check"></i><b>6.2.2</b> Análisis de un datagrama UDP</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="capl4.html"><a href="capl4.html#tcp-transmission-control-protocol"><i class="fa fa-check"></i><b>6.3</b> TCP (<em>Transmission Control Protocol</em>)</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="capl4.html"><a href="capl4.html#formato-del-segmento-tcp"><i class="fa fa-check"></i><b>6.3.1</b> Formato del segmento TCP</a></li>
+<li class="chapter" data-level="6.3.2" data-path="capl4.html"><a href="capl4.html#análisis-de-un-segmento-tcp"><i class="fa fa-check"></i><b>6.3.2</b> Análisis de un segmento TCP</a></li>
+<li class="chapter" data-level="6.3.3" data-path="capl4.html"><a href="capl4.html#establecimiento-y-liberación-de-una-conexión"><i class="fa fa-check"></i><b>6.3.3</b> Establecimiento y liberación de una conexión</a></li>
+<li class="chapter" data-level="6.3.4" data-path="capl4.html"><a href="capl4.html#control-de-errores-1"><i class="fa fa-check"></i><b>6.3.4</b> Control de errores</a></li>
+<li class="chapter" data-level="6.3.5" data-path="capl4.html"><a href="capl4.html#control-de-flujo"><i class="fa fa-check"></i><b>6.3.5</b> Control de flujo</a></li>
+<li class="chapter" data-level="6.3.6" data-path="capl4.html"><a href="capl4.html#control-de-congestión"><i class="fa fa-check"></i><b>6.3.6</b> Control de congestión</a></li>
+<li class="chapter" data-level="6.3.7" data-path="capl4.html"><a href="capl4.html#otros-mecanismos-de-control-de-congestión-en-tcp"><i class="fa fa-check"></i><b>6.3.7</b> Otros mecanismos de control de congestión en TCP</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="capl4.html"><a href="capl4.html#problemas-5"><i class="fa fa-check"></i><b>6.4</b> Problemas</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="referencias.html"><a href="referencias.html"><i class="fa fa-check"></i>Referencias</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
@@ -845,10 +868,10 @@ espectro disperso utilizan el mismo código de dispersión junto con
 alguno de los mecanismos de control de acceso que se mencionan en la
 sección siguiente. El hecho de utilizar un código de dispersión único,
 permite que esa red coexista con otras redes o con otros sistemas en la
-misma banda de frecuencias <span class="citation">[10], [11]</span>.</p>
+misma banda de frecuencias <span class="citation">(Schneidermar 1994; Bantz and Bauchot 1994)</span>.</p>
 <p>La mayor parte de las WLAN puede configurarse en la actualidad de una de
 dos maneras: Redes AdHoc y redes basadas en
-infraestructura <span class="citation">[12], [13]</span>. En las primeras, también
+infraestructura <span class="citation">(Links, Diepstraten, and Hayes 1994; Chen 1994)</span>. En las primeras, también
 llamadas redes entre pares, varios dispositivos conforman una red para
 intercambiar información sin contar con el apoyo de elementos auxiliares
 (ver figura <a href="caplan.html#fig:AdHoc">4.10</a>). Este tipo de red es muy conveniente para
@@ -872,7 +895,7 @@ Set</em>); varios APs conectados entre sí de forma cableada o inalámbrica,
 conforman un ESS (<em>Extended SS</em>), como el que se muestra en la
 figura <a href="caplan.html#fig:BSS">4.11</a>.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:BSS"></span>
-<img src="figuras/c3/BSS.png" alt="*Red inalámbrica basada en infraestructura*" width="65%" />
+<img src="figuras/c3/BSS.jpg" alt="*Red inalámbrica basada en infraestructura*" width="65%" />
 <p class="caption">
 Figura 4.11: <em>Red inalámbrica basada en infraestructura</em>
 </p>
@@ -1404,9 +1427,9 @@ conceptos: Identificador del Puente (BID, <em>Bridge Id</em>) y Costo de la Tray
 de 6 bytes obtenido de la dirección MAC del conmutador (generalmente
 tomado del backplane o de la tarjeta de administración). Ver figura <a href="caplan.html#fig:bid">4.23</a>.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:bid"></span>
-<img src="figuras/c3/bid.jpg" alt="*Formato del *Bridge Id, BID*" width="50%" />
+<img src="figuras/c3/bid.jpg" alt="*Formato del Bridge Id, BID*" width="50%" />
 <p class="caption">
-Figura 4.23: <em>Formato del </em>Bridge Id, BID*
+Figura 4.23: <em>Formato del Bridge Id, BID</em>
 </p>
 </div>
 <p>En la norma IEEE 802.1t se establece que los 12 bits menos
@@ -1531,9 +1554,9 @@ BPDU que pueden ser de dos tipos: Configuración y TCN (<em>Topology Change
 Notification</em>). Las BPDU tienen muchos campos; por ahora únicamente nos
 concentraremos en los cuatro que se muestran en la figura <a href="caplan.html#fig:bid">4.23</a>: El BID del puente raíz, el costo para llegar a la raíz, el BID del conmutador que la emite y el identificador del puerto donde se emitió:</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:bpdu"></span>
-<img src="figuras/c3/bpdu.jpg" alt="*Formato del *Los campos más importantes de una BPDU*" width="60%" />
+<img src="figuras/c3/bpdu.jpg" alt="*Formato de los campos más importantes de una BPDU*" width="60%" />
 <p class="caption">
-Figura 4.24: <em>Formato del </em>Los campos más importantes de una BPDU*
+Figura 4.24: <em>Formato de los campos más importantes de una BPDU</em>
 </p>
 </div>
 <p>La topología se establece en tres pasos: Selección del puente raíz;

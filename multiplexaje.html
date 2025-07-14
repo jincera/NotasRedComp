@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 4 Multiplexaje | Redes de Computadoras</title>
+  <meta name="description" content="Notas del curso Redes de Computadoras en HTML." />
+  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 4 Multiplexaje | Redes de Computadoras" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Notas del curso Redes de Computadoras en HTML." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 4 Multiplexaje | Redes de Computadoras" />
+  
+  <meta name="twitter:description" content="Notas del curso Redes de Computadoras en HTML." />
+  
+
+<meta name="author" content="José Incera" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="conmutación.html"/>
+<link rel="next" href="arquitecturas-de-red.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Redes de Computadoras. Notas de Curso</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> link-citations: yes</a></li>
+<li class="chapter" data-level="2" data-path="capintro.html"><a href="capintro.html"><i class="fa fa-check"></i><b>2</b> Introducción</a>
+<ul>
+<li class="chapter" data-level="" data-path="capintro.html"><a href="capintro.html#resumen"><i class="fa fa-check"></i>Resumen</a></li>
+<li class="chapter" data-level="2.1" data-path="capintro.html"><a href="capintro.html#requisitos"><i class="fa fa-check"></i><b>2.1</b> Conceptos básicos</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="capintro.html"><a href="capintro.html#sistemas-de-comunicaciones"><i class="fa fa-check"></i><b>2.1.1</b> Sistemas de comunicaciones</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="capintro.html"><a href="capintro.html#redes-de-telecomunicaciones"><i class="fa fa-check"></i><b>2.2</b> Redes de telecomunicaciones</a></li>
+<li class="chapter" data-level="2.3" data-path="capintro.html"><a href="capintro.html#señal"><i class="fa fa-check"></i><b>2.3</b> Señal</a></li>
+<li class="chapter" data-level="2.4" data-path="capintro.html"><a href="capintro.html#conversión-analógica-a-digital-ad"><i class="fa fa-check"></i><b>2.4</b> Conversión analógica a digital (A/D)</a>
+<ul>
+<li class="chapter" data-level="" data-path="capintro.html"><a href="capintro.html#teorema-de-nyquist"><i class="fa fa-check"></i>Teorema de Nyquist</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="conmutación.html"><a href="conmutación.html"><i class="fa fa-check"></i><b>3</b> Conmutación</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="conmutación.html"><a href="conmutación.html#conmutación-de-mensajes"><i class="fa fa-check"></i><b>3.1</b> Conmutación de mensajes</a></li>
+<li class="chapter" data-level="3.2" data-path="conmutación.html"><a href="conmutación.html#conmutación-de-circuitos"><i class="fa fa-check"></i><b>3.2</b> Conmutación de circuitos</a></li>
+<li class="chapter" data-level="3.3" data-path="conmutación.html"><a href="conmutación.html#conmutación-de-paquetes"><i class="fa fa-check"></i><b>3.3</b> Conmutación de paquetes</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="multiplexaje.html"><a href="multiplexaje.html"><i class="fa fa-check"></i><b>4</b> Multiplexaje</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="multiplexaje.html"><a href="multiplexaje.html#multiplexaje-en-el-tiempo"><i class="fa fa-check"></i><b>4.1</b> Multiplexaje en el tiempo</a></li>
+<li class="chapter" data-level="4.2" data-path="multiplexaje.html"><a href="multiplexaje.html#multiplexaje-en-frecuencia"><i class="fa fa-check"></i><b>4.2</b> Multiplexaje en frecuencia</a></li>
+<li class="chapter" data-level="4.3" data-path="multiplexaje.html"><a href="multiplexaje.html#s:cdm"><i class="fa fa-check"></i><b>4.3</b> Multiplexaje por división de código</a></li>
+<li class="chapter" data-level="4.4" data-path="multiplexaje.html"><a href="multiplexaje.html#multiplexaje-espacial"><i class="fa fa-check"></i><b>4.4</b> Multiplexaje espacial</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="arquitecturas-de-red.html"><a href="arquitecturas-de-red.html"><i class="fa fa-check"></i><b>5</b> Arquitecturas de red</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="arquitecturas-de-red.html"><a href="arquitecturas-de-red.html#modelo-isoosi"><i class="fa fa-check"></i><b>5.1</b> Modelo ISO/OSI</a></li>
+<li class="chapter" data-level="5.2" data-path="arquitecturas-de-red.html"><a href="arquitecturas-de-red.html#modelo-tcpip"><i class="fa fa-check"></i><b>5.2</b> Modelo TCP/IP</a></li>
+<li class="chapter" data-level="5.3" data-path="arquitecturas-de-red.html"><a href="arquitecturas-de-red.html#encapsulamiento"><i class="fa fa-check"></i><b>5.3</b> Encapsulamiento</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="taxonomía.html"><a href="taxonomía.html"><i class="fa fa-check"></i><b>6</b> Taxonomía</a></li>
+<li class="chapter" data-level="7" data-path="problemas.html"><a href="problemas.html"><i class="fa fa-check"></i><b>7</b> Problemas</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Redes de Computadoras</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="multiplexaje" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">Capítulo 4</span> Multiplexaje<a href="multiplexaje.html#multiplexaje" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>En la sección anterior se comentó brevemente sobre la importancia de
+poder compartir los canales de comunicación para poder implementar redes
+eficientes. El multiplexaje (o multiplexación) se refiere precisamente a
+la forma en la que flujos de distintas fuentes pueden intercalarse para
+compartir estos canales de comunicación. Sus orígenes se remontan al
+finales del siglo XIX en las redes telegráficas; hoy es una técnica
+sumamente utilizada en todas las redes de telecomunicaciones.</p>
+<p>El principio de base consiste en que un conjunto de flujos de distintas
+fuentes utiliza un mismo enlace (canal) de comunicación. La suma
+promedio de los flujos entrantes (<span class="math inline">\(\lambda_i\)</span>) es menor que la capacidad
+del enlace de salida (<span class="math inline">\(\mu\)</span>); de lo contrario, la red, al menos en el
+punto de multiplexaje, perdería datos de forma permanente, haciendo
+inestable al sistema.
+<span class="math display">\[\text{Utilización}=\rho =\frac{\Sigma \lambda_i}{\mu} &lt; 1\]</span></p>
+<p>Existen muchas formas de multiplexaje; en redes de computadoras, las más
+importantes son:</p>
+<ul>
+<li><p>Multiplexaje en el tiempo (TDM, <em>Time Division Multiplexing</em>)</p></li>
+<li><p>Multiplexaje en frecuencia (FDM, <em>Frequency Division Multiplexing</em>)</p></li>
+<li><p>Multiplexaje por división de código (CDM, <em>Code Division
+Multiplexing</em>)</p></li>
+<li><p>Multiplexaje en el espacio (SDM, <em>Time Division Multiplexing</em>)</p></li>
+</ul>
+<div id="multiplexaje-en-el-tiempo" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Multiplexaje en el tiempo<a href="multiplexaje.html#multiplexaje-en-el-tiempo" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>En TDM, la capacidad del canal se asigna en su totalidad a los flujos de
+entrada en distintos intervalos de tiempo. La división en intervalos
+puede ser fija, como se muestra en la
+figura [<span class="math display">\[fig:tdm\]</span><a href="#fig::tdm"><strong>??</strong></a>{reference-type=“ref”
+reference=“fig:tdm”}, donde las fuentes verde, azul y roja se alternan
+regularmente la transmisión en el canal de comunicación.</p>
+<p>El acceso al canal también puede ser dinámico, conforme se generen los
+flujos de información. En caso de que dos o más fuentes deseen
+transmitir simultáneamente, se debe contar con algún mecanismo de
+arbitraje para controlar el acceso (en competencia) al canal. A esta
+forma de multiplexaje se le conoce como multiplexaje estadístico.</p>
+<p>El intervalo de tiempo asignado a cada flujo está acotado para que las
+distintas fuentes no perciban un retraso considerable en su
+comunicación, derivado del acceso concurrente al canal. Este intervalo
+puedo tener una duración constante o variable.</p>
+<p>El multiplexaje TDM se utiliza principalmente para comunicaciones
+digitales. Cuando a las fuentes de información se les asigna un
+intervalo fijo con duración constante, requiere de una fuerte
+sincronización entre ellas.</p>
+<p><embed src="figuras/c1/tdm.pdf" /> <span id="fig:tdm" label="fig:tdm"></span></p>
+<p>Prácticamente todas las redes de telefonía fija son digitales y utilizan
+TDM para transportar las señales de voz en los enlaces entre centrales
+telefónicas. La arquitectura de red más popular en la actualidad para
+ello, es SONET/SDH.</p>
+</div>
+<div id="multiplexaje-en-frecuencia" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Multiplexaje en frecuencia<a href="multiplexaje.html#multiplexaje-en-frecuencia" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>FDM divide la capacidad del medio en canales más pequeños asignados a
+las distintas fuentes de información. Una vez asignado un canal, la
+fuente puede transmitir información durante todo el tiempo (asignado),
+aunque con capacidad (es decir, tasa de transmisión) limitada, como se
+muestra en la figura [<span class="math display">\[fig:fdm\]</span><a href="#fig::fdm"><strong>??</strong></a>{reference-type=“ref”
+reference=“fig:fdm”}.</p>
+<p>La transmisión de los flujos en el canal asignado requiere de un proceso
+de <em>modulación</em> de una señal llamada portadora para hacer un corrimiento
+de la señal original hacia la frecuencia del canal correspondiente. Las
+técnicas de modulación no serán cubiertas en este curso.</p>
+<p>La asignación de fuentes a canales puede ser fija o dinámica; asimismo,
+la capacidad de cada canal puede ser constante o variar en función de
+los requerimientos de los flujos de información.</p>
+<p><embed src="figuras/c1/fdm.pdf" /> <span id="fig:fdm" label="fig:fdm"></span></p>
+<p>Un ejemplo común –aunque no vinculado con redes de computadoras– de
+FDM, es la asignación de distintas frecuencias para las estaciones de
+radio y televisión al compartir el espectro radioeléctrico. Como se
+presentará detalladamente en un capítulo posterior, una aplicación más
+cercana a las redes de interés en este curso, es la configuración de
+redes WiFi en distintos canales (frecuentemente, 1, 6 y 11) para evitar
+que las señales se traslapen. Dentro de un canal, se utiliza el
+multiplexaje por división de código CDM (ver más adelante).</p>
+<p>Una variante muy importante de FDM para redes ópticas, es el
+multiplexaje por longitud de onda, WDM (<em>Wave Division Multiplexing</em>),
+utilizado para que distintas señales puedan viajar simultáneamente por
+la misma fibra óptica. Cada señal se modula en una longitud de onda
+distinta. Se considera una variante de FDM pues la longitud de onda
+(<span class="math inline">\(\lambda\)</span>) y la frecuencia (<span class="math inline">\(f\)</span>) están directamente relacionadas por la
+velocidad de la luz (<span class="math inline">\(c\)</span>): <span class="math display">\[\lambda = \frac{c}{f}\]</span></p>
+</div>
+<div id="s:cdm" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> Multiplexaje por división de código<a href="multiplexaje.html#s:cdm" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>En general, cuando varias señales con niveles de potencia similares son
+transmitidas al mismo tiempo en el mismo medio, generan tal
+interferencia entre sí que las señales originales quedan irreconocibles.
+En cambio, si para una señal determinada, la potencia que percibe de las
+demás es muy baja, esta interferencia puede ser considerada como ruido y
+mientras no rebase un umbral, la señal original puede recuperarse.</p>
+<p>CDM utiliza un medio con ancho de banda mucho mayor al que se requeriría
+dedicando un canal para transmitir la señal. Ésta se disemina en ese
+ancho de banda (es una técnica de dispersión de espectro, <em>spread
+spectrum</em>) con un código tal que sea percibido como ruido de baja
+potencia para otras señales que están ocupando el medio. Si todas las
+señales utilizan la misma técnica pero sus códigos de dispersión son
+ortogonales, es decir, con muy baja probabilidad de que tengan elementos
+comunes, entonces todas las señales pueden ser recuperadas con muy alta
+probabilidad.</p>
+<p>Existen dos formas de espectro disperso: Secuencia directa (DSSS,
+<em>Direct sequence spread spectrum</em>), que es la más utilizada, y salto de
+frecuencia (FHSS, <em>frequency hopping spread spectrum</em>). En la primera,
+la información original se transmite en una serie de pulsos cortos en
+secuencias llamada <em>chips</em>. El factor de dispersión ortogonal es el
+número de chips por bit o de bits por símbolo. Es de esperar que otra
+señal que se transmita simultáneamente por el mismo medio, tendrá un
+código de chip (un patrón de pulsos, chips por bit, etcétera) distinto
+para no interferir con las demás.</p>
+<p>En FHSS, las señales brincan de una frecuencia a otra en intervalos de
+tiempo cortos llamados <em>chip time</em>. Aunque en la actualidad se utiliza
+menos que DSSS, se ha elegido esta forma para ejemplificar el
+funcionamiento de CDM en la
+figura [<span class="math display">\[fig:cdm-fh\]</span><a href="#fig::cdm-fh"><strong>??</strong></a>{reference-type=“ref”
+reference=“fig:cdm-fh”} pues es muy sencilla de comprender visualmente.
+Se puede observar claramente cómo la señal de la fuente verde, por
+ejemplo, se transmite en un canal durante un chip time y brinca a uno
+distinto para el siguiente intervalo.</p>
+<p><embed src="figuras/c1/cdmfh.pdf" /> <span id="fig:cdm-fh" label="fig:cdm-fh"></span></p>
+<p>El código en este caso, consiste en la duración del intervalo y en las
+frecuencias (los canales) que la señal utiliza en cada uno de ellos.
+Cada fuente tendrá su propio código y sólo el receptor que tenga el
+mismo código podrá recuperar la señal original. Esta característica
+ofrece una gran seguridad para las comunicaciones que requieran de alta
+privacidad. De hecho, el espectro disperso fue una técnica desarrollada
+para proteger comunicaciones militares en los años cincuenta.</p>
+<p>CDM se utiliza intensamente en la actualidad en muchas redes, como en
+los sistemas GPS, GSM para telefonía móvil, WiMAX para redes de acceso
+inalámbricas y en WiFi para el despliegue de redes locales inalámbricas.
+Conviene enfatizar que en estas últimas, todos los equipos comparten el
+mismo código de dispersión. CDM se utiliza para compartir el espectro de
+frecuencia con otros servicios, no para asegurar la privacidad de las
+distintas comunicaciones.</p>
+</div>
+<div id="multiplexaje-espacial" class="section level2 hasAnchor" number="4.4">
+<h2><span class="header-section-number">4.4</span> Multiplexaje espacial<a href="multiplexaje.html#multiplexaje-espacial" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>En comunicaciones inalámbricas, dado que la potencia de una señal se
+degrada (en la atmósfera terrestre) exponencialmente con la distancia,
+una banda de frecuencias (es decir, un canal de comunicaciones
+inalámbricas) puede ser reutilizada por distintas fuentes de información
+siempre que éstas se encuentren lo suficientemente alejadas entre sí
+como para no generar interferencia.</p>
+<p>Por ello es que, por ejemplo, un mismo canal de radio o televisión puede
+tener señales distintas en diferentes zonas geográficas del país. Del
+mismo modo, el multiplexaje espacial permite la reutilización de
+frecuencias en las células de las redes móviles así como en las zonas de
+cobertura de redes WiFi.</p>
+<p>En redes cableadas, también se utiliza (quizás inapropiadamente) el
+término multiplexaje espacial para describir redes cuya topología está
+conformada por enlaces punto a punto (es decir, sólo conectan dos
+dispositivos de comunicaciones), como ocurre con enlaces de fibra óptica
+y redes locales basadas en conmutadores, las cuales serán estudiadas
+extensamente en un capítulo posterior.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="conmutación.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="arquitecturas-de-red.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/00-RCIntro.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdown_RedesComputadoras.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 8 TCP (Transmission Control Protocol) | Redes de Computadoras</title>
+  <meta name="description" content="Notas del curso Redes de Computadoras en HTML." />
+  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 8 TCP (Transmission Control Protocol) | Redes de Computadoras" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Notas del curso Redes de Computadoras en HTML." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 8 TCP (Transmission Control Protocol) | Redes de Computadoras" />
+  
+  <meta name="twitter:description" content="Notas del curso Redes de Computadoras en HTML." />
+  
+
+<meta name="author" content="José Incera" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="udp-user-datagram-protocol.html"/>
+<link rel="next" href="problemas-5.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Redes de Computadoras. Notas de Curso</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Presentación</a></li>
+<li class="chapter" data-level="1" data-path="capintro.html"><a href="capintro.html"><i class="fa fa-check"></i><b>1</b> Introducción</a>
+<ul>
+<li class="chapter" data-level="" data-path="capintro.html"><a href="capintro.html#resumen"><i class="fa fa-check"></i>Resumen</a></li>
+<li class="chapter" data-level="1.1" data-path="capintro.html"><a href="capintro.html#requisitos"><i class="fa fa-check"></i><b>1.1</b> Conceptos básicos</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="capintro.html"><a href="capintro.html#sistemas-de-comunicaciones"><i class="fa fa-check"></i><b>1.1.1</b> Sistemas de comunicaciones</a></li>
+<li class="chapter" data-level="1.1.2" data-path="capintro.html"><a href="capintro.html#redes-de-telecomunicaciones"><i class="fa fa-check"></i><b>1.1.2</b> Redes de telecomunicaciones</a></li>
+<li class="chapter" data-level="1.1.3" data-path="capintro.html"><a href="capintro.html#señal"><i class="fa fa-check"></i><b>1.1.3</b> Señal</a></li>
+<li class="chapter" data-level="1.1.4" data-path="capintro.html"><a href="capintro.html#conversión-analógica-a-digital-ad"><i class="fa fa-check"></i><b>1.1.4</b> Conversión analógica a digital (A/D)</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="capintro.html"><a href="capintro.html#conmutación"><i class="fa fa-check"></i><b>1.2</b> Conmutación</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="capintro.html"><a href="capintro.html#conmutación-de-mensajes"><i class="fa fa-check"></i><b>1.2.1</b> Conmutación de mensajes</a></li>
+<li class="chapter" data-level="1.2.2" data-path="capintro.html"><a href="capintro.html#conmutación-de-circuitos"><i class="fa fa-check"></i><b>1.2.2</b> Conmutación de circuitos</a></li>
+<li class="chapter" data-level="1.2.3" data-path="capintro.html"><a href="capintro.html#conmutación-de-paquetes"><i class="fa fa-check"></i><b>1.2.3</b> Conmutación de paquetes</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="capintro.html"><a href="capintro.html#multiplexaje"><i class="fa fa-check"></i><b>1.3</b> Multiplexaje</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="capintro.html"><a href="capintro.html#multiplexaje-en-el-tiempo"><i class="fa fa-check"></i><b>1.3.1</b> Multiplexaje en el tiempo</a></li>
+<li class="chapter" data-level="1.3.2" data-path="capintro.html"><a href="capintro.html#multiplexaje-en-frecuencia"><i class="fa fa-check"></i><b>1.3.2</b> Multiplexaje en frecuencia</a></li>
+<li class="chapter" data-level="1.3.3" data-path="capintro.html"><a href="capintro.html#cdm"><i class="fa fa-check"></i><b>1.3.3</b> Multiplexaje por división de código</a></li>
+<li class="chapter" data-level="1.3.4" data-path="capintro.html"><a href="capintro.html#multiplexaje-espacial"><i class="fa fa-check"></i><b>1.3.4</b> Multiplexaje espacial</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="capintro.html"><a href="capintro.html#arquitecturas-de-red"><i class="fa fa-check"></i><b>1.4</b> Arquitecturas de red</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="capintro.html"><a href="capintro.html#modelo-isoosi"><i class="fa fa-check"></i><b>1.4.1</b> Modelo ISO/OSI</a></li>
+<li class="chapter" data-level="1.4.2" data-path="capintro.html"><a href="capintro.html#modelo-tcpip"><i class="fa fa-check"></i><b>1.4.2</b> Modelo TCP/IP</a></li>
+<li class="chapter" data-level="1.4.3" data-path="capintro.html"><a href="capintro.html#encapsulamiento"><i class="fa fa-check"></i><b>1.4.3</b> Encapsulamiento</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="capintro.html"><a href="capintro.html#taxonomía"><i class="fa fa-check"></i><b>1.5</b> Taxonomía</a></li>
+<li class="chapter" data-level="1.6" data-path="capintro.html"><a href="capintro.html#problemas"><i class="fa fa-check"></i><b>1.6</b> Problemas</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="capl1.html"><a href="capl1.html"><i class="fa fa-check"></i><b>2</b> Capa física</a>
+<ul>
+<li class="chapter" data-level="" data-path="capl1.html"><a href="capl1.html#resumen-1"><i class="fa fa-check"></i>Resumen</a></li>
+<li class="chapter" data-level="2.1" data-path="capl1.html"><a href="capl1.html#medios-de-transmisión"><i class="fa fa-check"></i><b>2.1</b> Medios de transmisión</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="capl1.html"><a href="capl1.html#introducción"><i class="fa fa-check"></i><b>2.1.1</b> Introducción</a></li>
+<li class="chapter" data-level="" data-path="capl1.html"><a href="capl1.html#baudaje-y-velocidad-de-transmisión"><i class="fa fa-check"></i>Baudaje y velocidad de transmisión</a></li>
+<li class="chapter" data-level="2.1.2" data-path="capl1.html"><a href="capl1.html#medios-guiados"><i class="fa fa-check"></i><b>2.1.2</b> Medios guiados</a></li>
+<li class="chapter" data-level="" data-path="capl1.html"><a href="capl1.html#par-trenzado"><i class="fa fa-check"></i>Par trenzado</a></li>
+<li class="chapter" data-level="" data-path="capl1.html"><a href="capl1.html#cable-coaxial"><i class="fa fa-check"></i>Cable coaxial</a></li>
+<li class="chapter" data-level="" data-path="capl1.html"><a href="capl1.html#fibra-óptica"><i class="fa fa-check"></i>Fibra óptica</a></li>
+<li class="chapter" data-level="2.1.3" data-path="capl1.html"><a href="capl1.html#medios-no-guiados"><i class="fa fa-check"></i><b>2.1.3</b> Medios no guiados</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="capl1.html"><a href="capl1.html#sistemas-de-comunicaciones-1"><i class="fa fa-check"></i><b>2.2</b> Sistemas de comunicaciones</a></li>
+<li class="chapter" data-level="2.3" data-path="capl1.html"><a href="capl1.html#codificaciones"><i class="fa fa-check"></i><b>2.3</b> Codificaciones</a></li>
+<li class="chapter" data-level="2.4" data-path="capl1.html"><a href="capl1.html#problemas-1"><i class="fa fa-check"></i><b>2.4</b> Problemas</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="capl2.html"><a href="capl2.html"><i class="fa fa-check"></i><b>3</b> Capa de enlace de datos</a>
+<ul>
+<li class="chapter" data-level="" data-path="capl2.html"><a href="capl2.html#resumen-2"><i class="fa fa-check"></i>Resumen</a></li>
+<li class="chapter" data-level="3.1" data-path="capl2.html"><a href="capl2.html#introducción-1"><i class="fa fa-check"></i><b>3.1</b> Introducción</a></li>
+<li class="chapter" data-level="3.2" data-path="capl2.html"><a href="capl2.html#control-de-errores"><i class="fa fa-check"></i><b>3.2</b> Control de errores</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="capl2.html"><a href="capl2.html#detección-de-errores"><i class="fa fa-check"></i><b>3.2.1</b> Detección de errores</a></li>
+<li class="chapter" data-level="3.2.2" data-path="capl2.html"><a href="capl2.html#auto-corrección-de-errores"><i class="fa fa-check"></i><b>3.2.2</b> Auto-corrección de errores</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="capl2.html"><a href="capl2.html#protocolos-para-corrección-de-errores"><i class="fa fa-check"></i><b>3.3</b> Protocolos para corrección de errores</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="capl2.html"><a href="capl2.html#protocolo-stop-and-wait"><i class="fa fa-check"></i><b>3.3.1</b> Protocolo Stop and Wait</a></li>
+<li class="chapter" data-level="3.3.2" data-path="capl2.html"><a href="capl2.html#protocolo-de-bit-alternado"><i class="fa fa-check"></i><b>3.3.2</b> Protocolo de bit alternado</a></li>
+<li class="chapter" data-level="3.3.3" data-path="capl2.html"><a href="capl2.html#protocolos-de-ventanas-deslizantes"><i class="fa fa-check"></i><b>3.3.3</b> Protocolos de ventanas deslizantes</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="capl2.html"><a href="capl2.html#problemas-2"><i class="fa fa-check"></i><b>3.4</b> Problemas</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="caplan.html"><a href="caplan.html"><i class="fa fa-check"></i><b>4</b> Redes locales</a>
+<ul>
+<li class="chapter" data-level="" data-path="caplan.html"><a href="caplan.html#resumen-3"><i class="fa fa-check"></i>Resumen</a></li>
+<li class="chapter" data-level="4.1" data-path="caplan.html"><a href="caplan.html#introducción-2"><i class="fa fa-check"></i><b>4.1</b> Introducción</a></li>
+<li class="chapter" data-level="4.2" data-path="caplan.html"><a href="caplan.html#ethernetieee-802.3"><i class="fa fa-check"></i><b>4.2</b> Ethernet/IEEE 802.3</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="caplan.html"><a href="caplan.html#csmacd"><i class="fa fa-check"></i><b>4.2.1</b> CSMA/CD</a></li>
+<li class="chapter" data-level="4.2.2" data-path="caplan.html"><a href="caplan.html#formato-de-la-trama"><i class="fa fa-check"></i><b>4.2.2</b> Formato de la trama</a></li>
+<li class="chapter" data-level="4.2.3" data-path="caplan.html"><a href="caplan.html#implementaciones"><i class="fa fa-check"></i><b>4.2.3</b> Implementaciones</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="caplan.html"><a href="caplan.html#redes-locales-inalámbricas"><i class="fa fa-check"></i><b>4.3</b> Redes locales inalámbricas</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="caplan.html"><a href="caplan.html#protocolo-de-acceso"><i class="fa fa-check"></i><b>4.3.1</b> Protocolo de Acceso</a></li>
+<li class="chapter" data-level="4.3.2" data-path="caplan.html"><a href="caplan.html#implementaciones-1"><i class="fa fa-check"></i><b>4.3.2</b> Implementaciones</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="caplan.html"><a href="caplan.html#conmutacion"><i class="fa fa-check"></i><b>4.4</b> Conmutacion</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="caplan.html"><a href="caplan.html#principio-de-operación"><i class="fa fa-check"></i><b>4.4.1</b> Principio de operación</a></li>
+<li class="chapter" data-level="4.4.2" data-path="caplan.html"><a href="caplan.html#conmutadores-transparentes---operación"><i class="fa fa-check"></i><b>4.4.2</b> Conmutadores transparentes - operación</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="caplan.html"><a href="caplan.html#protocolo-spanning-tree"><i class="fa fa-check"></i><b>4.5</b> Protocolo Spanning Tree</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="caplan.html"><a href="caplan.html#protocolo-spanning-tree-1"><i class="fa fa-check"></i><b>4.5.1</b> Protocolo Spanning Tree</a></li>
+<li class="chapter" data-level="" data-path="caplan.html"><a href="caplan.html#asignación-del-puente-raíz"><i class="fa fa-check"></i>Asignación del Puente Raíz</a></li>
+<li class="chapter" data-level="" data-path="caplan.html"><a href="caplan.html#temporizadores-y-reconfiguración-de-la-topología"><i class="fa fa-check"></i>Temporizadores y reconfiguración de la topología</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="caplan.html"><a href="caplan.html#rapid-stp"><i class="fa fa-check"></i><b>4.6</b> Rapid STP</a></li>
+<li class="chapter" data-level="4.7" data-path="caplan.html"><a href="caplan.html#agregación-de-enlaces"><i class="fa fa-check"></i><b>4.7</b> Agregación de enlaces</a></li>
+<li class="chapter" data-level="4.8" data-path="caplan.html"><a href="caplan.html#redes-locales-virtuales"><i class="fa fa-check"></i><b>4.8</b> Redes locales virtuales</a>
+<ul>
+<li class="chapter" data-level="4.8.1" data-path="caplan.html"><a href="caplan.html#criterios-de-membresía"><i class="fa fa-check"></i><b>4.8.1</b> Criterios de membresía</a></li>
+<li class="chapter" data-level="4.8.2" data-path="caplan.html"><a href="caplan.html#etiquetado-de-vlan"><i class="fa fa-check"></i><b>4.8.2</b> Etiquetado de VLAN</a></li>
+<li class="chapter" data-level="4.8.3" data-path="caplan.html"><a href="caplan.html#puertos-de-acceso-y-de-trunking"><i class="fa fa-check"></i><b>4.8.3</b> Puertos de acceso y de trunking</a></li>
+</ul></li>
+<li class="chapter" data-level="4.9" data-path="caplan.html"><a href="caplan.html#problemas-3"><i class="fa fa-check"></i><b>4.9</b> Problemas</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="capl3.html"><a href="capl3.html"><i class="fa fa-check"></i><b>5</b> Capa de Red</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="capl3.html"><a href="capl3.html#introducción-3"><i class="fa fa-check"></i><b>5.1</b> Introducción</a></li>
+<li class="chapter" data-level="5.2" data-path="capl3.html"><a href="capl3.html#sec:ip"><i class="fa fa-check"></i><b>5.2</b> Protocolo IP</a></li>
+<li class="chapter" data-level="5.3" data-path="capl3.html"><a href="capl3.html#esquema-de-direccionamiento"><i class="fa fa-check"></i><b>5.3</b> Esquema de direccionamiento</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="capl3.html"><a href="capl3.html#clases-de-direcciones-ip"><i class="fa fa-check"></i><b>5.3.1</b> Clases de direcciones IP</a></li>
+<li class="chapter" data-level="5.3.2" data-path="capl3.html"><a href="capl3.html#subredes-ip-y-enmascaramiento"><i class="fa fa-check"></i><b>5.3.2</b> Subredes IP y Enmascaramiento</a></li>
+<li class="chapter" data-level="5.3.3" data-path="capl3.html"><a href="capl3.html#direccionamiento"><i class="fa fa-check"></i><b>5.3.3</b> Direccionamiento</a></li>
+<li class="chapter" data-level="5.3.4" data-path="capl3.html"><a href="capl3.html#máscaras-de-longitud-variable"><i class="fa fa-check"></i><b>5.3.4</b> Máscaras de longitud variable</a></li>
+<li class="chapter" data-level="5.3.5" data-path="capl3.html"><a href="capl3.html#cidr"><i class="fa fa-check"></i><b>5.3.5</b> CIDR</a></li>
+<li class="chapter" data-level="5.3.6" data-path="capl3.html"><a href="capl3.html#asignación-de-direcciones-a-dispositivos"><i class="fa fa-check"></i><b>5.3.6</b> Asignación de direcciones a dispositivos</a></li>
+<li class="chapter" data-level="5.3.7" data-path="capl3.html"><a href="capl3.html#direcciones-privadas"><i class="fa fa-check"></i><b>5.3.7</b> Direcciones privadas</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="capl3.html"><a href="capl3.html#protocolos-auxiliares"><i class="fa fa-check"></i><b>5.4</b> Protocolos auxiliares</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="capl3.html"><a href="capl3.html#icmp"><i class="fa fa-check"></i><b>5.4.1</b> ICMP</a></li>
+<li class="chapter" data-level="5.4.2" data-path="capl3.html"><a href="capl3.html#arp"><i class="fa fa-check"></i><b>5.4.2</b> ARP</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="capl3.html"><a href="capl3.html#ipv6"><i class="fa fa-check"></i><b>5.5</b> IPv6</a></li>
+<li class="chapter" data-level="5.6" data-path="capl3.html"><a href="capl3.html#enrutamiento"><i class="fa fa-check"></i><b>5.6</b> Enrutamiento</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="capl3.html"><a href="capl3.html#enrutamiento-estático"><i class="fa fa-check"></i><b>5.6.1</b> Enrutamiento estático</a></li>
+<li class="chapter" data-level="5.6.2" data-path="capl3.html"><a href="capl3.html#enrutamiento-dinámico"><i class="fa fa-check"></i><b>5.6.2</b> Enrutamiento dinámico</a></li>
+<li class="chapter" data-level="5.6.3" data-path="capl3.html"><a href="capl3.html#protocolos-de-enrutamiento-interno"><i class="fa fa-check"></i><b>5.6.3</b> Protocolos de enrutamiento interno</a></li>
+<li class="chapter" data-level="5.6.4" data-path="capl3.html"><a href="capl3.html#protocolos-de-enrutamiento-externo"><i class="fa fa-check"></i><b>5.6.4</b> Protocolos de enrutamiento externo</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="capl3.html"><a href="capl3.html#problemas-4"><i class="fa fa-check"></i><b>5.7</b> Problemas</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="referencias.html"><a href="referencias.html"><i class="fa fa-check"></i>Referencias</a></li>
+<li class="chapter" data-level="6" data-path="introducción-4.html"><a href="introducción-4.html"><i class="fa fa-check"></i><b>6</b> Introducción</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="introducción-4.html"><a href="introducción-4.html#comunicación-mediante-sockets"><i class="fa fa-check"></i><b>6.1</b> Comunicación mediante Sockets</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="udp-user-datagram-protocol.html"><a href="udp-user-datagram-protocol.html"><i class="fa fa-check"></i><b>7</b> UDP (<em>User Datagram Protocol</em>)</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="udp-user-datagram-protocol.html"><a href="udp-user-datagram-protocol.html#formato-del-datagrama-udp"><i class="fa fa-check"></i><b>7.1</b> Formato del datagrama UDP</a></li>
+<li class="chapter" data-level="7.2" data-path="udp-user-datagram-protocol.html"><a href="udp-user-datagram-protocol.html#análisis-de-un-datagrama-udp"><i class="fa fa-check"></i><b>7.2</b> Análisis de un datagrama UDP</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="tcp-transmission-control-protocol.html"><a href="tcp-transmission-control-protocol.html"><i class="fa fa-check"></i><b>8</b> TCP (<em>Transmission Control Protocol</em>)</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="tcp-transmission-control-protocol.html"><a href="tcp-transmission-control-protocol.html#formato-del-segmento-tcp"><i class="fa fa-check"></i><b>8.1</b> Formato del segmento TCP</a></li>
+<li class="chapter" data-level="8.2" data-path="tcp-transmission-control-protocol.html"><a href="tcp-transmission-control-protocol.html#análisis-de-un-segmento-tcp"><i class="fa fa-check"></i><b>8.2</b> Análisis de un segmento TCP</a></li>
+<li class="chapter" data-level="8.3" data-path="tcp-transmission-control-protocol.html"><a href="tcp-transmission-control-protocol.html#establecimiento-y-liberación-de-una-conexión"><i class="fa fa-check"></i><b>8.3</b> Establecimiento y liberación de una conexión</a></li>
+<li class="chapter" data-level="8.4" data-path="tcp-transmission-control-protocol.html"><a href="tcp-transmission-control-protocol.html#control-de-errores-1"><i class="fa fa-check"></i><b>8.4</b> Control de errores</a></li>
+<li class="chapter" data-level="8.5" data-path="tcp-transmission-control-protocol.html"><a href="tcp-transmission-control-protocol.html#control-de-flujo"><i class="fa fa-check"></i><b>8.5</b> Control de flujo</a></li>
+<li class="chapter" data-level="8.6" data-path="tcp-transmission-control-protocol.html"><a href="tcp-transmission-control-protocol.html#control-de-congestión"><i class="fa fa-check"></i><b>8.6</b> Control de congestión</a>
+<ul>
+<li class="chapter" data-level="8.6.1" data-path="tcp-transmission-control-protocol.html"><a href="tcp-transmission-control-protocol.html#arranque-lento-slow-start-y-prevención-de-congestión-congestion-avoidance"><i class="fa fa-check"></i><b>8.6.1</b> Arranque lento (<em>Slow start</em>) y prevención de congestión (<em>Congestion avoidance</em>)</a></li>
+<li class="chapter" data-level="8.6.2" data-path="tcp-transmission-control-protocol.html"><a href="tcp-transmission-control-protocol.html#retransmisión-rápida-fast-retransmission-y-recuperación-rápida-fast-recovery"><i class="fa fa-check"></i><b>8.6.2</b> Retransmisión rápida (<em>fast retransmission</em>) y recuperación rápida (<em>fast recovery</em>)</a></li>
+<li class="chapter" data-level="8.6.3" data-path="tcp-transmission-control-protocol.html"><a href="tcp-transmission-control-protocol.html#otros-mecanismos-de-control-de-congestión-en-tcp"><i class="fa fa-check"></i><b>8.6.3</b> Otros mecanismos de control de congestión en TCP</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="problemas-5.html"><a href="problemas-5.html"><i class="fa fa-check"></i><b>9</b> Problemas</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Redes de Computadoras</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="tcp-transmission-control-protocol" class="section level1 hasAnchor" number="8">
+<h1><span class="header-section-number">Capítulo 8</span> TCP (<em>Transmission Control Protocol</em>)<a href="tcp-transmission-control-protocol.html#tcp-transmission-control-protocol" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>TCP es un protocolo orientado a conexión que proporciona un servicio
+confiable y ordenado de entrega de datos entre aplicaciones que se
+ejecutan en distintas computadoras. A diferencia de UDP, TCP garantiza
+que los datos lleguen sin errores, en el mismo orden en que fueron
+enviados, y sin duplicaciones a través de una red no confiable, como la
+Internet. Para lograr esto, implementa mecanismos de control de flujo,
+control de errores y control de congestión.</p>
+<p>En TCP, a las unidades de información intercambiadas se les llama
+<strong>segmentos</strong>. A diferencia de UDP que considera sus mensajes (los
+datagramas) como unidades independientes y autónomas, TCP considera la
+información generada por la aplicación como un flujo continuo de bytes.
+<em>Segmenta</em> este flujo en fragmentos para su transmisión. Esta
+segmentación le permite gestionar mejor el control de flujo y de
+errores, así como adaptarse al tamaño óptimo que deben tener los
+mensajes dadas las condiciones de la red. Cada segmento se encapsula en
+un datagrama IP que no excede la MTU (<em>Maximum Transmission Unit</em>) de la
+red, evitando la fragmentación ineficiente en la capa IP.</p>
+<p>Las principales características que distinguen a TCP son:</p>
+<ul>
+<li><p><strong>Orientado a conexión:</strong> Antes de transmitir datos, se debe
+establecer una conexión entre el cliente y el servidor mediante un
+proceso conocido como <em>three-way handshake</em>.</p></li>
+<li><p><strong>Entrega confiable:</strong> TCP asegura que los segmentos se entreguen
+correctamente. Si un segmento se pierde o llega con errores, se
+retransmite.</p></li>
+<li><p><strong>Control de flujo:</strong> TCP utiliza una ventana de recepción para
+evitar que el emisor sature al receptor.</p></li>
+<li><p><strong>Control de congestión:</strong> Ajusta dinámicamente la tasa de
+transmisión para evitar la sobrecarga de la red.</p></li>
+<li><p><strong>Entrega ordenada:</strong> Los segmentos se reensamblan en el receptor en
+el mismo orden en que fueron enviados.</p></li>
+<li><p><strong>Multiplexaje y demultiplexaje:</strong> Igual que en UDP, se identifican
+procesos mediante puertos.</p></li>
+</ul>
+<div id="formato-del-segmento-tcp" class="section level2 hasAnchor" number="8.1">
+<h2><span class="header-section-number">8.1</span> Formato del segmento TCP<a href="tcp-transmission-control-protocol.html#formato-del-segmento-tcp" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>El segmento TCP incluye un encabezado más complejo que el de UDP, como
+se muestra en la figura <a href="tcp-transmission-control-protocol.html#f:hdrtcp" reference-type="ref" reference="f:hdrtcp">5</a>.</p>
+<div class="float" id="f:hdrtcp">
+<img src="figuras/c6/hdrtcp.jpg" alt="Formato del segmento TCP." />
+<div class="figcaption"><em>Formato del segmento TCP.</em></div>
+</div>
+<p>Algunos campos clave son:</p>
+<dl>
+<dt>Puerto fuente y destino.</dt>
+<dd>
+<p>Al igual que en UDP, se trata de campos de 16 bits que identifican a
+los procesos en los extremos de la conexión. También se tienen
+65,536 puertos disponibles en TCP.</p>
+</dd>
+<dt>Número de secuencia.</dt>
+<dd>
+<p>Indica indirectamente la posición del octeto dentro del flujo de
+información, que se está enviando. Es fundamental para el
+reordenamiento de segmentos y la detección de pérdidas. Es un campo
+de 32 bits.</p>
+</dd>
+<dt>Número de reconocimiento.</dt>
+<dd>
+<p>Indica el siguiente número de secuencia que el receptor espera
+recibir, confirmando así la correcta recepción de datos previos.
+Cabe enfatizar que el número de secuencia y el de acuse de recibo se
+refieren a flujos de segmentos en direcciones opuestas.</p>
+</dd>
+<dt>Longitud del encabezado</dt>
+<dd>
+<p>. Este campo, de 4 bits, indica el número de palabras de cuatro
+octetos que tiene el encabezado. Su valor por omisión es 5,
+señalando que el encabezado de TCP ocupa 20 octetos. Este campo es
+necesario porque en TCP se pueden agregar opciones, lo que
+incrementa en número de campos en el encabezado.</p>
+</dd>
+<dt>Banderas de control.</dt>
+<dd>
+<p>Se trata de seis bits que tienen una función específica dentro del
+protocolo:</p>
+<dl>
+<dt>URG (Urgente).</dt>
+<dd>
+<p>Se utiliza cuando algo muy importante en la secuencia de bytes
+debe ser entregado, por ejemplo, cuando el usuario emite un
+comando de interrupción. Si esta bandera está encendida, el
+octato en donde inicia la información “urgente” se indica en el
+campo <strong>Apuntador de datos urgente</strong>.</p>
+</dd>
+<dt>ACK (Acuse de recibo).</dt>
+<dd>
+<p>Indica que el campo del acuse de recibo es válido. Esta bandera
+está encendida en todos los segmentos excepto en el primero,
+cuando se inicia el establecimiento de la conexión (ver más
+adelante).</p>
+</dd>
+<dt>PSH (Push).</dt>
+<dd>
+<p>Esta bandera indica que los datos en ese segmento deben ser
+emitidos inmediatamente, sin esperar a que se llene el buffer de
+recepción o lleguen más datos.</p>
+</dd>
+<dt>RST (Reset).</dt>
+<dd>
+<p>Esta bandera se utiliza para abortar inmediatamente la conexión,
+generalmente debido a un error, una condición inesperada o
+cuando se recibe un paquete que no corresponde a una conexión
+válida.</p>
+</dd>
+<dt>SYN (Sincronización).</dt>
+<dd>
+<p>Esta bandera se utiliza sólo al inicio de la conexión para
+indicar que el campo <em>Número de secuencia</em> tiene un valor con el
+que se empezarán a enumerar los octetos en el flujo de datos.</p>
+</dd>
+<dt>FIN (Final).</dt>
+<dd>
+<p>Se enciende para notificar que se está terminando la conexión y
+los recursos utilizados deben ser liberados.</p>
+</dd>
+</dl>
+</dd>
+<dt>Tamaño de ventana.</dt>
+<dd>
+<p>Este campo, de 16 bits, indica el espacio disponible en el buffer de
+recepción, es decir, cuántos octetos puede recibir el receptor sin
+desbordarse. Es un campo fundamental para el control de flujo. Con
+16 bits, el tamaño máximo del buffer de recepción es de 64 kBytes.</p>
+</dd>
+<dt>Checksum.</dt>
+<dd>
+<p>Verifica la integridad del segmento TCP. Al igual que en UDP, se
+calcula mediante la suma en complemento a 1 de los octetos que
+conforman el segmento, junto con algunos campos del encabezado IP,
+como las direcciones y tipo de protocolo. En TCP, su cálculo es
+obligatorio.</p>
+</dd>
+<dt>Opciones.</dt>
+<dd>
+<p>Como se ha mencionado, TCP puede incluir opciones, algunas de las
+cuales se mostrarán a lo largo del capítulo. Los campos de las
+opciones deben ser palabras de cuatro octetos; en caso de no ser
+así, se agregan bytes de relleno.</p>
+</dd>
+</dl>
+</div>
+<div id="análisis-de-un-segmento-tcp" class="section level2 hasAnchor" number="8.2">
+<h2><span class="header-section-number">8.2</span> Análisis de un segmento TCP<a href="tcp-transmission-control-protocol.html#análisis-de-un-segmento-tcp" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>La figura <a href="tcp-transmission-control-protocol.html#f:tramatcp" reference-type="ref" reference="f:tramatcp">6</a>
+muestra la captura de un segmento TCP transportado en una trama
+Ethernet. Los octetos en fondo azul representan los campos del
+encabezado de Ethernet (no se incluye el CRC) y los que tienen fondo
+verde, son los campos del encabezado del paquete IP. Se resalta el
+octeto 0x06, que indica el tipo de protocolo transportado en el paquete:
+TCP.</p>
+<div class="float" id="f:tramatcp">
+<img src="figuras/c6/tramatcp.jpg" alt="Análisis de un segmento TCP transportado en una trama Ethernet." />
+<div class="figcaption"><em>Análisis de un segmento TCP transportado en una trama
+Ethernet.</em></div>
+</div>
+<ul>
+<li><p>El puerto fuente (0x0017) tiene el valor decimal 23, que corresponde
+al servicio TELNET, como se indica en la
+tabla <a href="introducción-4.html#t:wkp" reference-type="ref" reference="t:wkp">1</a>.</p></li>
+<li><p>El puerto destino, con valor 1030 (0x0406), es un puerto asignado
+dinámicamente por el sistema operativo del receptor.</p></li>
+<li><p>El número de secuencia (0x0125F268) indica la posición relativa en
+el flujo de información a enviar, del primer octeto de los datos
+transportados por el segmento(0x6C).</p></li>
+<li><p>El número de reconocimiento (0x00588D67) indica la posición relativa
+en el flujo de información a recibir, del siguiente octeto que se
+espera. Con ello se indica que todos los octetos anteriores han sido
+recibido correctamente. Los número de secuencia y de reconocimiento
+tienen distintos valores porque se refieren a flujos distintos.</p></li>
+<li><p>La longitud del encabezado indica que se tienen 5 palabras de cuatro
+octetos, es decir, se tiene un encabezado de 20 octetos (el segmento
+no tiene opciones).</p></li>
+<li><p>Están encendidas las banderas de PSH y ACK.</p></li>
+<li><p>El tamaño del buffer de recepción es de 33,580 octetos (0x832C).</p></li>
+<li><p>La longitud del datagrama es de 39 octetos (0x0027), contados desde
+el primer octeto del puerto fuente (05) hasta el último octeto del
+campo de datos (01).</p></li>
+<li><p>En este datagrama sí se hizo la verificación de integridad; el
+checksum resultante es 0xD5F3.</p></li>
+<li><p>El checksum tiene un valor de 0x=EAA.</p></li>
+<li><p>Como la bandera URG no está encendida, el apuntador a datos urgentes
+tiene un valor de cero.</p></li>
+</ul>
+</div>
+<div id="establecimiento-y-liberación-de-una-conexión" class="section level2 hasAnchor" number="8.3">
+<h2><span class="header-section-number">8.3</span> Establecimiento y liberación de una conexión<a href="tcp-transmission-control-protocol.html#establecimiento-y-liberación-de-una-conexión" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Antes de que dos aplicaciones intercambien datos mediante TCP, deben
+establecer una conexión lógica a través de un proceso de tres pasos
+conocido como <strong>three-way handshake</strong>, que se muestra en la
+figura <a href="tcp-transmission-control-protocol.html#f:handshake" reference-type="ref" reference="f:handshake">7</a>.</p>
+<div class="float" id="f:handshake">
+<img src="figuras/c6/handshake.jpg" alt="Establecimiento de una conexión TCP mediante el three-way handshake." />
+<div class="figcaption"><em>Establecimiento de una conexión TCP mediante el three-way
+handshake.</em></div>
+</div>
+<ol style="list-style-type: decimal">
+<li><p>El cliente envía un segmento con la bandera <code>SYN</code> encendida,
+indicando que estará enumerando los octetos en el flujo de datos a
+partir del valor indicado en el campo <em>Número de secuencia</em>. En el
+ejemplo de la figura, el valor 198. Observe que la bandera ACK no
+está encendida.</p></li>
+<li><p>El servidor responde con un segmento que tiene encendidas las
+banderas <code>SYN</code> y <code>ACK</code>. Como está encendida la bandera <code>SYN</code> le está
+notificando al receptor su propio número de secuencia inicial para
+el flujo de datos del servidor al cliente. En el ejemplo de la
+figura, es el valor 299. El campo de acuse de recibo es válido
+(bandera <code>ACK</code> encendida) y, en el ejemplo de la figura, su valor es
+199, el número de secuencia del siguiente octeto que espera recibir.
+Así se confirma la recepción del primer segmento.</p></li>
+<li><p>El cliente envía un segmento final con la bandera <code>ACK</code> encendida y
+el campo de acuse de recibo indicando el número de secuencia del
+próximo octeto esperado. En el ejemplo de la figura, 300.</p></li>
+</ol>
+<p>Este intercambio de mensajes ocurre en las fases C3 y S4 de la
+figura <a href="introducción-4.html#f:socketapi" reference-type="ref" reference="f:socketapi">2</a>.
+Una vez establecida la conexión se puede intercambiar información (fases
+C4 y S5).</p>
+<p>De forma similar, la terminación de una conexión TCP requiere un proceso
+de 4 pasos, conocido como <em>four-way handshake</em> para liberar los recursos
+ocupados por la conexión. Este proceso se muestra en la
+figura <a href="tcp-transmission-control-protocol.html#f:4wayhandshake" reference-type="ref" reference="f:4wayhandshake">8</a>. Este proceso ocurre cuando alguno de los
+extremos en la comunicación invoca la función <code>close( )</code> (fases C5 o S6
+de la figura <a href="introducción-4.html#f:socketapi" reference-type="ref" reference="f:socketapi">2</a>).</p>
+<div class="float" id="f:4wayhandshake">
+<img src="figuras/c6/4wayhandshake.jpg" alt="Liberación de una conexión TCP mediante el four-way handshake." />
+<div class="figcaption"><em>Liberación de una conexión TCP mediante el four-way
+handshake.</em></div>
+</div>
+<ol style="list-style-type: decimal">
+<li><p>Una de las partes, por ejemplo, el nodo A, envía un segmento con la
+bandera FIN encendida para indicar que ha terminado de enviar datos.
+En este momento, Nodo A pasa al estado <code>FIN_WAIT_1</code>.</p></li>
+<li><p>El extremo opuesto (Nodo B) recibe el mensaje y responde con un
+<code>ACK</code> para confirmarlo. Nodo A pasa a FIN_WAIT_2 y Nodo B entra en
+la fase <code>CLOSE_WAIT</code>, indicando que ha recibido la petición de
+cierre pero puede seguir enviando datos.</p></li>
+<li><p>Cuando Nodo B termina de enviar sus datos, envía su propio segmento
+con la bandera <code>FIN</code> encendida. Nodo B pasa al estado <code>LAST_ACK</code>.</p></li>
+<li><p>Nodo A recibe este segmento y responde con un <code>ACK</code> final. Nodo A
+pasa al estado <code>TIME_WAIT</code> para esperar a que el último <code>ACK</code> sea
+recibido correctamente y evitar problemas con paquetes retrasados.
+Después de un tiempo (2 veces el máximo tiempo de vida del paquete),
+Nodo A pasa a <code>CLOSED</code> y la conexión termina. Nodo B, tras recibir
+el <code>ACK</code>, también pasa a <code>CLOSED</code>.</p></li>
+</ol>
+<p>Si no se envía o recibe un <code>ACK</code> tras el envío de <code>FIN</code>, el lado que lo
+envió se queda en <code>FIN_WAIT_1</code> esperando. Tras un timeout se puede
+retransmitir el <code>FIN</code> o cerrar la conexión forzosamente.</p>
+<p>Si el receptor no envía su <code>FIN</code>, la conexión queda en estado
+<em>half-closed</em>. Esto es válido en TCP pero un extremo de la conexión
+puede quedar esperando indefinidamente (o hasta timeout).</p>
+<p>Si alguno ignora el proceso y cierra abruptamente, sin enviar <code>FIN</code>, se
+puede usar la bandera <code>RST</code> para abortar la conexión. Esto ocasiona un
+cierre inmediato, pero no es ordenado y puede provocar pérdida de datos.</p>
+</div>
+<div id="control-de-errores-1" class="section level2 hasAnchor" number="8.4">
+<h2><span class="header-section-number">8.4</span> Control de errores<a href="tcp-transmission-control-protocol.html#control-de-errores-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Como se mencionó en la sección anterior, para cada segmento se calcula
+un código de verificación (<em>checksum</em>) a partir del encabezado, algunos
+campos de la capa IP y los datos que transporta; el valor obtenido se
+inserta en el campo de detección de errores y se envía el segmento. Al
+arribo del segmento, el receptor realiza el mismo cálculo; si el
+resultado no coincide con el valor recibido, ha ocurrido un error y el
+segmento se desecha.</p>
+<p>TCP asigna a cada octeto transmitido un número de secuencia único
+durante el tiempo de vida de la conexión. Los valores iniciales usados
+por cada extremo, son los números de secuencia iniciales indicados
+durante el establecimiento de la conexión. En los segmentos que
+transportan datos del usuario, el campo de número de secuencia
+corresponde al primer octeto de datos del segmento. El receptor utiliza
+este valor para detectar segmentos duplicados o faltantes.</p>
+<p>A la llegada de un segmento de datos, el receptor verifica su integridad
+y si éste llegó correctamente, responde enviando un acuse de recibo
+colocando en el campo correspondiente el número de secuencia del
+siguiente octeto que espera recibir; el acuse de recibo es acumulativo.
+Por ejemplo, si la transferencia de A a B utiliza un número de secuencia
+inicial <span class="math inline">\(i\)</span>, un mensaje <code>ACK(k)</code> de B a A, indica el arribo correcto de
+los octetos <span class="math inline">\(i+1\)</span> a <span class="math inline">\(k-1\)</span> (el mensaje SYN consume el primer número de
+secuencia <span class="math inline">\(i\)</span>).</p>
+<p>Segmentos dañados o descartados en la red, no serán reconocidos; si
+después de un cierto tiempo el transmisor no ha recibido el acuse de
+recibo, asumirá que el segmento se perdió y lo enviará nuevamente.</p>
+<p>TCP utiliza un mecanismo de ventanas deslizantes y puede haber varios
+segmentos en tránsito. En la gran mayoría de las versiones de TCP, si
+uno de esos segmentos se pierde o está dañado, el acuse de recibo se
+envía con el valor de los datos recibidos correctamente hasta ese
+segmento. El emisor reenvía datos a partir del segmento dañado. Es
+decir, en la mayoría de los casos, TCP utiliza un mecanismo <em>Go-back to
+N</em>. Algunas versiones modernas pueden emplear acuses de recibo
+selectivos (SACK, <em>selective acknowledgment</em>).</p>
+<p>Dado que la comunicación es bidireccional, los acuses de recibo pueden
+combinarse con segmentos de datos que viajan en la dirección contraria.
+A ésto se le conoce como <em>piggybacking</em>. Es una opción que mejora el
+rendimiento de la red, por lo que a veces el acuse de recibo se retiene
+un cierto tiempo (200 ms típicamente) para intentar combinarlo con datos
+salientes.</p>
+</div>
+<div id="control-de-flujo" class="section level2 hasAnchor" number="8.5">
+<h2><span class="header-section-number">8.5</span> Control de flujo<a href="tcp-transmission-control-protocol.html#control-de-flujo" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>TCP utiliza el mecanismo de “ventana deslizante” para controlar la
+cadencia a la que se transmite información para asegurar que el emisor
+no envíe más datos de los que el receptor puede procesar y almacenar en
+su búfer de recepción. Se trata de un espacio en memoria creado al
+establecer la conexión en el que se almacenan los datos entrantes
+mientras la aplicación los procesa. Para evitar que este búfer se
+desborde, el receptor informa al emisor, mediante el campo “tamaño de
+ventana receptor” en el encabezado TCP
+(figura <a href="tcp-transmission-control-protocol.html#f:hdrtcp" reference-type="ref" reference="f:hdrtcp">5</a>),
+cuántos octetos adicionales puede aceptar en ese momento.</p>
+<p>El tamaño de esta ventana es dinámico y refleja el espacio disponible en
+el búfer del receptor. El emisor puede enviar tantos datos como indique
+la ventana, sin esperar un acuse de recibo para cada octeto enviado, lo
+que permite un flujo continuo y eficiente de información.</p>
+<p>Si el buffer se llena, el receptor anunciará una ventana de tamaño cero,
+indicando al emisor que debe detener temporalmente el envío de datos. El
+emisor permanecerá en espera hasta que el receptor libere espacio y
+anuncie una ventana mayor que cero, momento en el cual el emisor podrá
+reanudar la transmisión.</p>
+<p>Del lado del transmisor, además de atender el tamaño de la ventana para
+determinar cuántos octetos puede enviar en un segmento, debe retener
+esos datos enviados en su propio buffer hasta recibir la confirmación de
+que los datos han llegado correctamente, ya que es posible que pueda
+retransmitirlos.</p>
+<p>Es en el buffer de recepción donde se manifiesta el concepto de ventana
+deslizante, como se muestra en la
+figura <a href="tcp-transmission-control-protocol.html#f:ventdesliz" reference-type="ref" reference="f:ventdesliz">9</a>. La secuencia de octetos representa el flujo
+de datos generados por la aplicación. El rectángulo azul representa la
+ventana deslizante en el tramsisor.</p>
+<div class="float" id="f:ventdesliz">
+<img src="figuras/c6/ventdesliz.jpg" alt="El mecanismo de ventana deslizante en TCP." />
+<div class="figcaption"><em>El mecanismo de ventana deslizante en
+TCP.</em></div>
+</div>
+<ul>
+<li><p>La región A corresponde a octetos que ya han sido enviados y
+reconocidos, por lo que TCP los descarta.</p></li>
+<li><p>La región B corresponde a octetos enviados pero aún no reconocidos.
+Se retienen en caso de que deban ser retransmitidos. Se contrae a la
+derecha conforme llegan los acuses de recibo.</p></li>
+<li><p>Los octetos en la región C pueden ser transmitidos. Por motivos de
+eficiencia, TCP trata de esperar a que se tenga un mínimo número de
+octetos antes de enviar el segmento. Se contrae a la derecha
+conforme se envían datos.</p></li>
+<li><p>La región D corresponde a datos que no pueden ser enviados hasta que
+el receptor anuncie que tiene espacio disponible. Si el receptor
+anunca un tamaño de ventana de <span class="math inline">\(n\)</span> octetos y la región C tiene <span class="math inline">\(m\)</span>
+octetos, la ventana del transmisor se “desliza” a la derecha <span class="math inline">\(n-m\)</span>
+octetos.</p></li>
+</ul>
+<p>El ejemplo de la figura <a href="tcp-transmission-control-protocol.html#f:ctlflujo" reference-type="ref" reference="f:ctlflujo">10</a> muestra el control de flujo en acción. En la
+figura, se supone que al establecer la conexión, se definión un buffer
+de recepción de 4kOctetos en el nodo B.</p>
+<div class="float" id="f:ctlflujo">
+<img src="figuras/c6/ctlflujo.jpg" alt="Ejemplo de control de flujo en TCP." />
+<div class="figcaption"><em>Ejemplo de control de flujo en
+TCP.</em></div>
+</div>
+<ul>
+<li><p>El nodo A envía 2 kOctetos. El número de secuencia del primer octeto
+es 200.</p></li>
+<li><p>Esta información queda en el buffer de recepción en espera de ser
+entregada a la aplicación. El nodo B notifica al transmisor la
+correcta recepción de los datos. <code>ACK</code> indica que espera que el
+siguiente octeto sea el número 2,248. Los octetos recibidos se
+enumeraron de 200 a 2,247. También notifica que la ventana de
+recepción disponible es de 2,048 octetos.</p></li>
+<li><p>El nodo A envía otros 2 kOctetos enumerados a partir de 2,248.</p></li>
+<li><p>El nodo B notifica la correcta recepción de estos datos (espera que
+el siguiente octeto sea 4,296) y también notifica que ya no tiene
+espacio en el buffer, por lo que el emisor debe suspender la
+transmisión.</p></li>
+<li><p>Eventualmente, la aplicación recibe los dos primeros kOctetos. En
+ese momento, el Nodo B envía un segmento con el mismo valor de acuse
+de recibo (no ha recibido nada nuevo) pero anunciando una ventana de
+2 kOctetos, el espacio disponible en el buffer de recepción.</p></li>
+<li><p>El nodo A envía otros 2 kOctetos enumerados a partir de 4,296.</p></li>
+</ul>
+</div>
+<div id="control-de-congestión" class="section level2 hasAnchor" number="8.6">
+<h2><span class="header-section-number">8.6</span> Control de congestión<a href="tcp-transmission-control-protocol.html#control-de-congestión" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>TCP debe adaptarse constantemente a la capacidad disponible en la red,
+reduciendo la tasa de transmisión cuando detecta congestión y
+aumentándola cuando considera que hay recursos disponibles.</p>
+<p>La idea básica es llegar a un nivel auto-sincronizado en el que la tasa
+a la que se inyectan paquetes en la red es igual a la tasa en que se
+reciben los acuses de recibo. Idealmente, si la ventana del receptor lo
+permite, hay tantos paquetes en tránsito en la red como sea posible.</p>
+<p>Existen muchas variantes de control de congestión en TCP; las más
+populares se basan en los conceptos mostrados en la
+figura <a href="tcp-transmission-control-protocol.html#f:ctlcong" reference-type="ref" reference="f:ctlcong">11</a>.</p>
+<div class="float" id="f:ctlcong">
+<img src="figuras/c6/ctlcong.jpg" alt="Control de congestión en TCP." />
+<div class="figcaption"><em>Control de congestión en TCP.</em></div>
+</div>
+<p>Se define una <strong>Ventana de Congestión</strong>, cwnd, que evoluciona en función
+de las condiciones de congestión en la red y limita la cantidad de datos
+que el transmisor puede enviar. Combinando este mecanismo con el de
+control de flujo, si se tienen datos a transmitir, la cantidad a enviar
+será el valor menor entre cwnd (control de congestión) y la ventana de
+recepción (control de flujo).</p>
+<p>Por otro lado, se considera que las redes modernas son bastante
+confiables y que si un segmento no llega a su destino, es porque hubo
+congestión en la red y el segmento fue descartado por algún enrutador.
+De esta manera, la ausencia del acuse de recibo de un segmento es vista
+como un indicador de congestión y el emisor reacciona disminuyendo la
+tasa a la que inyecta segmentos <a href="#fn21" class="footnote-ref" id="fnref21"><sup>21</sup></a>.</p>
+<div id="arranque-lento-slow-start-y-prevención-de-congestión-congestion-avoidance" class="section level3 hasAnchor" number="8.6.1">
+<h3><span class="header-section-number">8.6.1</span> Arranque lento (<em>Slow start</em>) y prevención de congestión (<em>Congestion avoidance</em>)<a href="tcp-transmission-control-protocol.html#arranque-lento-slow-start-y-prevención-de-congestión-congestion-avoidance" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Al inicio de una conexión, se desconoce completamente la capacidad de la
+red. Por ello, el transmisor toma una actitud cautelosa enviando pocos
+datos (<em>slow start</em>). Para ello cwnd se inicia con el valor de uno o dos
+segmentos.</p>
+<p>Como se desea aprovechar rápidamente la capacidad disponible, en esta
+fase se permite que cwnd crezca exponencialmente: con cada acuse de
+recibo, cwnd se incrementa en uno, con lo que cwnd se duplica cada RTT
+(retardo de ida y vuelta). Este proceso continúa hasta que cwnd rebase
+un “umbral” ssthresh (<em>slow start threshold</em>) o hasta que se detecte la
+pérdida de un segmento.</p>
+<p>Si cwnd rebasa ssthresh, se entra en la fase de prevención de
+congestión; en ella, la tasa de transmisión aumenta mucho más
+lentamente: cwnd se expande linealmente en un segmento a cada RTT, es
+decir, cuando los reconocimientos de toda una ventana de segmentos han
+sido recibidos.</p>
+<p>En el ejemplo de la tabla <a href="tcp-transmission-control-protocol.html#t:ventcong" reference-type="ref" reference="t:ventcong">2</a>, se supone que el transmisor siempre tiene datos
+a enviar; el RTT es constante de T segundos y ssthresh tiene un valor de
+15. La ventana de recepción no afecta el ejemplo, por lo que no se
+muestra.</p>
+<div id="t:ventcong">
+<table>
+<caption>Arranque lento y prevención de congestión</caption>
+<thead>
+<tr class="header">
+<th></th>
+<th align="center"><strong>Tiempo</strong></th>
+<th align="center"><strong>Acuses de recibo</strong></th>
+<th align="center"><strong>cwnd</strong></th>
+<th align="center"><strong>Segmentos enviados</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td align="center">0</td>
+<td align="center"></td>
+<td align="center">1</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td>Arranque</td>
+<td align="center">T</td>
+<td align="center">1</td>
+<td align="center">2</td>
+<td align="center">2, 3</td>
+</tr>
+<tr class="odd">
+<td>lento</td>
+<td align="center">2T</td>
+<td align="center">2, 3</td>
+<td align="center">4</td>
+<td align="center">4, 5, 6, 7</td>
+</tr>
+<tr class="even">
+<td></td>
+<td align="center">3T</td>
+<td align="center">4, 5, 6, 7</td>
+<td align="center">8</td>
+<td align="center">8, 9, ..., 15</td>
+</tr>
+<tr class="odd">
+<td>Prevención</td>
+<td align="center">4T</td>
+<td align="center">8, 9, ..., 15</td>
+<td align="center">9</td>
+<td align="center">16, 17, ..., 24</td>
+</tr>
+<tr class="even">
+<td>congestión</td>
+<td align="center">5T</td>
+<td align="center">16, 17, ..., 24</td>
+<td align="center">10</td>
+<td align="center">25, 26, ..., 34</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>En la figura <a href="tcp-transmission-control-protocol.html#f:ctlcong" reference-type="ref" reference="f:ctlcong">11</a> la cruz color rojo indica que se ha perdido un
+segmento (o más); esto ocurre con un valor de cwnd de 16 segmentos. Como
+el segmento no llega a su destino, no se envía un acuse de recepción. El
+transmisor detecta la ausencia de acuse por la expiración de un
+temporizador. En respuesta a ello:</p>
+<ul>
+<li><p>La ventana de congestión se reduce a 1 o 2 segmentos. Se reduce
+drásticamente la tasa de transmisión para contribuir a disminuir la
+congestión en la red. Este comportamiento se muestra en la figura
+con la línea cortada de color naranja.</p></li>
+<li><p>El umbral ssthresh toma el valor de la mitad de cwnd al momento de
+la pérdida del segmento. Se ajusta la fase de crecimiento
+exponencial a la mitad de la capacidad estimada al momento de la
+pérdida del segmento.</p></li>
+<li><p>Se retransmiten los segmentos a partir de aquél que detonó el
+temporizador. En efecto, TCP implemnta un mecanismo de <em>Go-back-N</em>.</p></li>
+</ul>
+</div>
+<div id="retransmisión-rápida-fast-retransmission-y-recuperación-rápida-fast-recovery" class="section level3 hasAnchor" number="8.6.2">
+<h3><span class="header-section-number">8.6.2</span> Retransmisión rápida (<em>fast retransmission</em>) y recuperación rápida (<em>fast recovery</em>)<a href="tcp-transmission-control-protocol.html#retransmisión-rápida-fast-retransmission-y-recuperación-rápida-fast-recovery" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>El mecanismo descrito en el párrafo anterior corresponde a la version de
+TCP conocida como <strong>TCP Tahoe</strong>, que es la primera en la que se
+implementaron los mecanismos de control de congestión. Este mecanismo
+puede ser bastante ineficiente, pues además de que se debe esperar a que
+se agote un temporizador, se continua con la transmisión a una tasa
+sumamente baja de uno solo segmento.</p>
+<p>Si las condiciones de congestión en la red no son tan severas, lo cual
+ocurre con mucha frecuencia, en una ventana de transmisión se estarían
+perdiendo algunos segmentos, pero no todos. Imaginemos que se ha enviado
+una ventana con los segmentos 14 a 20 y se pierde el segmento 16. El
+receptor, a la llegada del segmento 15, envía un acuse de recibo con el
+valor 16, el siguiente segmento que espera recibir. Se ha perdido el
+segmento 16 pero llega el 17. El receptor lo almacena en su buffer y
+envía nuevamente un ACK 16. Este acuse será visto en el transmisor como
+un reconocimiento duplicado, aunque no podrá saber si el duplicado se
+debe a la pérdida de un segmento o a otros factores.</p>
+<p>La recepción de varios acuses duplicados (3 en la mayoría de las
+implementaciones), es un fuerte indicio de que un segmento ha sido
+descartado (en nuestro ejemplo, el segmento 16), por lo que éste se
+re-expide inmediatamente, sin tener que esperar el vencimiento del
+temporizador. A esto es al que sele llama retransmisión rápida.</p>
+<p>Por otro lado, la llegada de acuses duplicados indica que la congestión
+no es tan drástica pues algunos de los segmentos posteriores al que
+presumiblemente ha sido descartado, lograron llegar al destino. Por
+ello, la reducción en la tasa de transmisión no debería ser tan drástica
+como el transmitir solo un segmento.</p>
+<p>La recuperación rápida consiste en reducir y cwnd sshtresh a la mitad
+del valor que tenía cwnd, con lo que la tasa de transmisión se reduce
+efectivamente a la mitad y un nuevo ciclo de prevención de congestión se
+inicia. Este comportamiento muestra en la
+figura <a href="tcp-transmission-control-protocol.html#f:ctlcong" reference-type="ref" reference="f:ctlcong">11</a> con
+la línea continua de color azul y corresponde a las implementaciones
+llamadas <strong>Tcp Reno</strong> y <strong>TCP New Reno</strong> que son la base de la mayoría
+de las implementaciones actuales.</p>
+</div>
+<div id="otros-mecanismos-de-control-de-congestión-en-tcp" class="section level3 hasAnchor" number="8.6.3">
+<h3><span class="header-section-number">8.6.3</span> Otros mecanismos de control de congestión en TCP<a href="tcp-transmission-control-protocol.html#otros-mecanismos-de-control-de-congestión-en-tcp" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>En los últimos años han surgido nuevos algoritmos de control de
+congestión en TCP que buscan superar las limitaciones de los mecanismos
+tradicionales mencionados anteriormente. Estos mecanismos modernos
+optimizan el rendimiento en redes de alta velocidad o latencia variable
+y consideran escenarios específicos como centros de datos. A
+continuación, se describen los algoritmos más relevantes:</p>
+<dl>
+<dt>TCP Cubic.</dt>
+<dd>
+<p>Es el algoritmo de control de congestión por defecto en sistemas
+Linux desde 2006. Utiliza una función cúbica para modelar el
+crecimiento de la ventana de congestión, lo que permite una
+recuperación más rápida tras una pérdida y una mejor utilización del
+ancho de banda disponible. Su comportamiento es más agresivo que TCP
+Reno, pero mantiene compatibilidad con conexiones tradicionales, lo
+que lo hace adecuado para redes modernas de alta capacidad.</p>
+</dd>
+<dt>BBR.</dt>
+<dd>
+<p>Desarrollado por Google, BBR (<em>Bottleneck Bandwidth and Round-trip
+propagation time</em>) representa un cambio de paradigma al no basarse
+en la pérdida de paquetes como señal de congestión. En su lugar,
+construye un modelo de la red estimando el ancho de banda máximo y
+el retardo de ida y vuelta (RTT). Ajusta su tasa de envío para
+operar cerca de la capacidad de la red sin provocar congestión, lo
+que permite mantener altas tasas de transferencia incluso en enlaces
+con alta latencia o pérdidas espurias.</p>
+</dd>
+<dt>DCTCP.</dt>
+<dd>
+<p>DCTCP (<em>Data Center TCP</em>) fue diseñado específicamente para centros
+de datos, donde es crucial mantener baja latencia y alto
+rendimiento. DCTCP extiende el uso de ECN (<em>Explicit Congestion
+Notification</em>) para ajustar de forma precisa la ventana de
+congestión, utilizando la proporción de paquetes marcados con ECN
+como indicador del nivel de congestión. Gracias a este enfoque,
+logra respuestas más suaves que TCP tradicional ante variaciones en
+la red.</p>
+</dd>
+<dt>LEDBAT.</dt>
+<dd>
+<p>Pensado para aplicaciones que generan tráfico en segundo plano,
+LEDBAT(<em>Low Extra Delay Background Transport</em>) ajusta dinámicamente
+su tasa de envío para no interferir con flujos interactivos o
+prioritarios. Basado en la medición del retardo (<em>one-way delay</em>),
+LEDBAT reduce su envío si detecta que está generando congestión,
+permitiendo así un uso eficiente del ancho de banda sin afectar la
+experiencia de otros usuarios.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="21">
+<li id="fn21"><p>Los buffers de transmisión y recepción, las ventanas de recepción
+y congestión, y los números de secuencia y de reconocimiento, se
+especifican en octetos. Sin embargo, para simplificar la exposición,
+en esta sección nos referiremos al envío, recepción y acuse de
+recibo de segmentos.<a href="tcp-transmission-control-protocol.html#fnref21" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="udp-user-datagram-protocol.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="problemas-5.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/05-CapaTransporte.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdown_RedesComputadoras.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

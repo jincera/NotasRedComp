@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 16 Problemas | Redes de Computadoras</title>
+  <meta name="description" content="Notas del curso Redes de Computadoras en HTML." />
+  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 16 Problemas | Redes de Computadoras" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Notas del curso Redes de Computadoras en HTML." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 16 Problemas | Redes de Computadoras" />
+  
+  <meta name="twitter:description" content="Notas del curso Redes de Computadoras en HTML." />
+  
+
+<meta name="author" content="José Incera" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="enrutamiento.html"/>
+<link rel="next" href="introducción-4.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Redes de Computadoras. Notas de Curso</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Presentación</a></li>
+<li class="chapter" data-level="" data-path="resumen.html"><a href="resumen.html"><i class="fa fa-check"></i>Resumen</a></li>
+<li class="chapter" data-level="1" data-path="conceptos-básicos.html"><a href="conceptos-básicos.html"><i class="fa fa-check"></i><b>1</b> Conceptos básicos</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="conceptos-básicos.html"><a href="conceptos-básicos.html#sistemas-de-comunicaciones"><i class="fa fa-check"></i><b>1.1</b> Sistemas de comunicaciones</a></li>
+<li class="chapter" data-level="1.2" data-path="conceptos-básicos.html"><a href="conceptos-básicos.html#redes-de-telecomunicaciones"><i class="fa fa-check"></i><b>1.2</b> Redes de telecomunicaciones</a></li>
+<li class="chapter" data-level="1.3" data-path="conceptos-básicos.html"><a href="conceptos-básicos.html#señal"><i class="fa fa-check"></i><b>1.3</b> Señal</a></li>
+<li class="chapter" data-level="1.4" data-path="conceptos-básicos.html"><a href="conceptos-básicos.html#conversión-analógica-a-digital-ad"><i class="fa fa-check"></i><b>1.4</b> Conversión analógica a digital (A/D)</a>
+<ul>
+<li class="chapter" data-level="" data-path="conceptos-básicos.html"><a href="conceptos-básicos.html#teorema-de-nyquist"><i class="fa fa-check"></i>Teorema de Nyquist</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="conmutación.html"><a href="conmutación.html"><i class="fa fa-check"></i><b>2</b> Conmutación</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="conmutación.html"><a href="conmutación.html#conmutación-de-mensajes"><i class="fa fa-check"></i><b>2.1</b> Conmutación de mensajes</a></li>
+<li class="chapter" data-level="2.2" data-path="conmutación.html"><a href="conmutación.html#conmutación-de-circuitos"><i class="fa fa-check"></i><b>2.2</b> Conmutación de circuitos</a></li>
+<li class="chapter" data-level="2.3" data-path="conmutación.html"><a href="conmutación.html#conmutación-de-paquetes"><i class="fa fa-check"></i><b>2.3</b> Conmutación de paquetes</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="multiplexaje.html"><a href="multiplexaje.html"><i class="fa fa-check"></i><b>3</b> Multiplexaje</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="multiplexaje.html"><a href="multiplexaje.html#multiplexaje-en-el-tiempo"><i class="fa fa-check"></i><b>3.1</b> Multiplexaje en el tiempo</a></li>
+<li class="chapter" data-level="3.2" data-path="multiplexaje.html"><a href="multiplexaje.html#multiplexaje-en-frecuencia"><i class="fa fa-check"></i><b>3.2</b> Multiplexaje en frecuencia</a></li>
+<li class="chapter" data-level="3.3" data-path="multiplexaje.html"><a href="multiplexaje.html#s:cdm"><i class="fa fa-check"></i><b>3.3</b> Multiplexaje por división de código</a></li>
+<li class="chapter" data-level="3.4" data-path="multiplexaje.html"><a href="multiplexaje.html#multiplexaje-espacial"><i class="fa fa-check"></i><b>3.4</b> Multiplexaje espacial</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="arquitecturas-de-red.html"><a href="arquitecturas-de-red.html"><i class="fa fa-check"></i><b>4</b> Arquitecturas de red</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="arquitecturas-de-red.html"><a href="arquitecturas-de-red.html#modelo-isoosi"><i class="fa fa-check"></i><b>4.1</b> Modelo ISO/OSI</a></li>
+<li class="chapter" data-level="4.2" data-path="arquitecturas-de-red.html"><a href="arquitecturas-de-red.html#modelo-tcpip"><i class="fa fa-check"></i><b>4.2</b> Modelo TCP/IP</a></li>
+<li class="chapter" data-level="4.3" data-path="arquitecturas-de-red.html"><a href="arquitecturas-de-red.html#encapsulamiento"><i class="fa fa-check"></i><b>4.3</b> Encapsulamiento</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="taxonomía.html"><a href="taxonomía.html"><i class="fa fa-check"></i><b>5</b> Taxonomía</a></li>
+<li class="chapter" data-level="6" data-path="problemas.html"><a href="problemas.html"><i class="fa fa-check"></i><b>6</b> Problemas</a></li>
+<li class="chapter" data-level="7" data-path="capl1.html"><a href="capl1.html"><i class="fa fa-check"></i><b>7</b> Capa física</a>
+<ul>
+<li class="chapter" data-level="" data-path="capl1.html"><a href="capl1.html#resumen-1"><i class="fa fa-check"></i>Resumen</a></li>
+<li class="chapter" data-level="7.1" data-path="capl1.html"><a href="capl1.html#medios-de-transmisión"><i class="fa fa-check"></i><b>7.1</b> Medios de transmisión</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="capl1.html"><a href="capl1.html#introducción"><i class="fa fa-check"></i><b>7.1.1</b> Introducción</a></li>
+<li class="chapter" data-level="" data-path="capl1.html"><a href="capl1.html#baudaje-y-velocidad-de-transmisión"><i class="fa fa-check"></i>Baudaje y velocidad de transmisión</a></li>
+<li class="chapter" data-level="7.1.2" data-path="capl1.html"><a href="capl1.html#medios-guiados"><i class="fa fa-check"></i><b>7.1.2</b> Medios guiados</a></li>
+<li class="chapter" data-level="" data-path="capl1.html"><a href="capl1.html#par-trenzado"><i class="fa fa-check"></i>Par trenzado</a></li>
+<li class="chapter" data-level="" data-path="capl1.html"><a href="capl1.html#cable-coaxial"><i class="fa fa-check"></i>Cable coaxial</a></li>
+<li class="chapter" data-level="" data-path="capl1.html"><a href="capl1.html#fibra-óptica"><i class="fa fa-check"></i>Fibra óptica</a></li>
+<li class="chapter" data-level="7.1.3" data-path="capl1.html"><a href="capl1.html#medios-no-guiados"><i class="fa fa-check"></i><b>7.1.3</b> Medios no guiados</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="capl1.html"><a href="capl1.html#sistemas-de-comunicaciones-1"><i class="fa fa-check"></i><b>7.2</b> Sistemas de comunicaciones</a></li>
+<li class="chapter" data-level="7.3" data-path="capl1.html"><a href="capl1.html#codificaciones"><i class="fa fa-check"></i><b>7.3</b> Codificaciones</a></li>
+<li class="chapter" data-level="7.4" data-path="capl1.html"><a href="capl1.html#problemas-1"><i class="fa fa-check"></i><b>7.4</b> Problemas</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="capl2.html"><a href="capl2.html"><i class="fa fa-check"></i><b>8</b> Capa de enlace de datos</a>
+<ul>
+<li class="chapter" data-level="" data-path="capl2.html"><a href="capl2.html#resumen-2"><i class="fa fa-check"></i>Resumen</a></li>
+<li class="chapter" data-level="8.1" data-path="capl2.html"><a href="capl2.html#introducción-1"><i class="fa fa-check"></i><b>8.1</b> Introducción</a></li>
+<li class="chapter" data-level="8.2" data-path="capl2.html"><a href="capl2.html#control-de-errores"><i class="fa fa-check"></i><b>8.2</b> Control de errores</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="capl2.html"><a href="capl2.html#detección-de-errores"><i class="fa fa-check"></i><b>8.2.1</b> Detección de errores</a></li>
+<li class="chapter" data-level="8.2.2" data-path="capl2.html"><a href="capl2.html#auto-corrección-de-errores"><i class="fa fa-check"></i><b>8.2.2</b> Auto-corrección de errores</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="capl2.html"><a href="capl2.html#protocolos-para-corrección-de-errores"><i class="fa fa-check"></i><b>8.3</b> Protocolos para corrección de errores</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="capl2.html"><a href="capl2.html#protocolo-stop-and-wait"><i class="fa fa-check"></i><b>8.3.1</b> Protocolo Stop and Wait</a></li>
+<li class="chapter" data-level="8.3.2" data-path="capl2.html"><a href="capl2.html#protocolo-de-bit-alternado"><i class="fa fa-check"></i><b>8.3.2</b> Protocolo de bit alternado</a></li>
+<li class="chapter" data-level="8.3.3" data-path="capl2.html"><a href="capl2.html#protocolos-de-ventanas-deslizantes"><i class="fa fa-check"></i><b>8.3.3</b> Protocolos de ventanas deslizantes</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="capl2.html"><a href="capl2.html#problemas-2"><i class="fa fa-check"></i><b>8.4</b> Problemas</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="caplan.html"><a href="caplan.html"><i class="fa fa-check"></i><b>9</b> Redes locales</a>
+<ul>
+<li class="chapter" data-level="" data-path="caplan.html"><a href="caplan.html#resumen-3"><i class="fa fa-check"></i>Resumen</a></li>
+<li class="chapter" data-level="9.1" data-path="caplan.html"><a href="caplan.html#introducción-2"><i class="fa fa-check"></i><b>9.1</b> Introducción</a></li>
+<li class="chapter" data-level="9.2" data-path="caplan.html"><a href="caplan.html#ethernetieee-802.3"><i class="fa fa-check"></i><b>9.2</b> Ethernet/IEEE 802.3</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="caplan.html"><a href="caplan.html#csmacd"><i class="fa fa-check"></i><b>9.2.1</b> CSMA/CD</a></li>
+<li class="chapter" data-level="9.2.2" data-path="caplan.html"><a href="caplan.html#formato-de-la-trama"><i class="fa fa-check"></i><b>9.2.2</b> Formato de la trama</a></li>
+<li class="chapter" data-level="9.2.3" data-path="caplan.html"><a href="caplan.html#implementaciones"><i class="fa fa-check"></i><b>9.2.3</b> Implementaciones</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="caplan.html"><a href="caplan.html#redes-locales-inalámbricas"><i class="fa fa-check"></i><b>9.3</b> Redes locales inalámbricas</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="caplan.html"><a href="caplan.html#protocolo-de-acceso"><i class="fa fa-check"></i><b>9.3.1</b> Protocolo de Acceso</a></li>
+<li class="chapter" data-level="9.3.2" data-path="caplan.html"><a href="caplan.html#implementaciones-1"><i class="fa fa-check"></i><b>9.3.2</b> Implementaciones</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="caplan.html"><a href="caplan.html#conmutacion"><i class="fa fa-check"></i><b>9.4</b> Conmutacion</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="caplan.html"><a href="caplan.html#principio-de-operación"><i class="fa fa-check"></i><b>9.4.1</b> Principio de operación</a></li>
+<li class="chapter" data-level="9.4.2" data-path="caplan.html"><a href="caplan.html#conmutadores-transparentes---operación"><i class="fa fa-check"></i><b>9.4.2</b> Conmutadores transparentes - operación</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="caplan.html"><a href="caplan.html#protocolo-spanning-tree"><i class="fa fa-check"></i><b>9.5</b> Protocolo Spanning Tree</a>
+<ul>
+<li class="chapter" data-level="9.5.1" data-path="caplan.html"><a href="caplan.html#protocolo-spanning-tree-1"><i class="fa fa-check"></i><b>9.5.1</b> Protocolo Spanning Tree</a></li>
+<li class="chapter" data-level="" data-path="caplan.html"><a href="caplan.html#asignación-del-puente-raíz"><i class="fa fa-check"></i>Asignación del Puente Raíz</a></li>
+<li class="chapter" data-level="" data-path="caplan.html"><a href="caplan.html#temporizadores-y-reconfiguración-de-la-topología"><i class="fa fa-check"></i>Temporizadores y reconfiguración de la topología</a></li>
+</ul></li>
+<li class="chapter" data-level="9.6" data-path="caplan.html"><a href="caplan.html#rapid-stp"><i class="fa fa-check"></i><b>9.6</b> Rapid STP</a></li>
+<li class="chapter" data-level="9.7" data-path="caplan.html"><a href="caplan.html#agregación-de-enlaces"><i class="fa fa-check"></i><b>9.7</b> Agregación de enlaces</a></li>
+<li class="chapter" data-level="9.8" data-path="caplan.html"><a href="caplan.html#redes-locales-virtuales"><i class="fa fa-check"></i><b>9.8</b> Redes locales virtuales</a>
+<ul>
+<li class="chapter" data-level="9.8.1" data-path="caplan.html"><a href="caplan.html#criterios-de-membresía"><i class="fa fa-check"></i><b>9.8.1</b> Criterios de membresía</a></li>
+<li class="chapter" data-level="9.8.2" data-path="caplan.html"><a href="caplan.html#etiquetado-de-vlan"><i class="fa fa-check"></i><b>9.8.2</b> Etiquetado de VLAN</a></li>
+<li class="chapter" data-level="9.8.3" data-path="caplan.html"><a href="caplan.html#puertos-de-acceso-y-de-trunking"><i class="fa fa-check"></i><b>9.8.3</b> Puertos de acceso y de trunking</a></li>
+</ul></li>
+<li class="chapter" data-level="9.9" data-path="caplan.html"><a href="caplan.html#problemas-3"><i class="fa fa-check"></i><b>9.9</b> Problemas</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="introducción-3.html"><a href="introducción-3.html"><i class="fa fa-check"></i><b>10</b> Introducción</a></li>
+<li class="chapter" data-level="11" data-path="sec:ip.html"><a href="sec:ip.html"><i class="fa fa-check"></i><b>11</b> Protocolo IP</a></li>
+<li class="chapter" data-level="12" data-path="esquema-de-direccionamiento.html"><a href="esquema-de-direccionamiento.html"><i class="fa fa-check"></i><b>12</b> Esquema de direccionamiento</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="esquema-de-direccionamiento.html"><a href="esquema-de-direccionamiento.html#clases-de-direcciones-ip"><i class="fa fa-check"></i><b>12.1</b> Clases de direcciones IP</a></li>
+<li class="chapter" data-level="12.2" data-path="esquema-de-direccionamiento.html"><a href="esquema-de-direccionamiento.html#muxe1scaras-de-longitud-variable"><i class="fa fa-check"></i><b>12.2</b> Máscaras de longitud variable</a></li>
+<li class="chapter" data-level="12.3" data-path="esquema-de-direccionamiento.html"><a href="esquema-de-direccionamiento.html#cidr"><i class="fa fa-check"></i><b>12.3</b> CIDR</a></li>
+<li class="chapter" data-level="12.4" data-path="esquema-de-direccionamiento.html"><a href="esquema-de-direccionamiento.html#asignaciuxf3n-de-direcciones-a-dispositivos"><i class="fa fa-check"></i><b>12.4</b> Asignación de direcciones a dispositivos</a></li>
+<li class="chapter" data-level="12.5" data-path="esquema-de-direccionamiento.html"><a href="esquema-de-direccionamiento.html#direcciones-privadas"><i class="fa fa-check"></i><b>12.5</b> Direcciones privadas</a>
+<ul>
+<li class="chapter" data-level="" data-path="esquema-de-direccionamiento.html"><a href="esquema-de-direccionamiento.html#network-address-translation---nat"><i class="fa fa-check"></i>Network Address Translation - NAT</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="protocolos-auxiliares.html"><a href="protocolos-auxiliares.html"><i class="fa fa-check"></i><b>13</b> Protocolos auxiliares</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="protocolos-auxiliares.html"><a href="protocolos-auxiliares.html#icmp"><i class="fa fa-check"></i><b>13.1</b> ICMP</a></li>
+<li class="chapter" data-level="13.2" data-path="protocolos-auxiliares.html"><a href="protocolos-auxiliares.html#arp"><i class="fa fa-check"></i><b>13.2</b> ARP</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="ipv6.html"><a href="ipv6.html"><i class="fa fa-check"></i><b>14</b> IPv6</a></li>
+<li class="chapter" data-level="15" data-path="enrutamiento.html"><a href="enrutamiento.html"><i class="fa fa-check"></i><b>15</b> Enrutamiento</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="enrutamiento.html"><a href="enrutamiento.html#enrutamiento-estuxe1tico"><i class="fa fa-check"></i><b>15.1</b> Enrutamiento estático</a></li>
+<li class="chapter" data-level="15.2" data-path="enrutamiento.html"><a href="enrutamiento.html#enrutamiento-dinuxe1mico"><i class="fa fa-check"></i><b>15.2</b> Enrutamiento dinámico</a>
+<ul>
+<li class="chapter" data-level="15.2.1" data-path="enrutamiento.html"><a href="enrutamiento.html#sistemas-autuxf3nomos"><i class="fa fa-check"></i><b>15.2.1</b> Sistemas autónomos</a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="enrutamiento.html"><a href="enrutamiento.html#protocolos-de-enrutamiento-interno"><i class="fa fa-check"></i><b>15.3</b> Protocolos de enrutamiento interno</a>
+<ul>
+<li class="chapter" data-level="15.3.1" data-path="enrutamiento.html"><a href="enrutamiento.html#enrutamiento-interno---vector-de-distancias"><i class="fa fa-check"></i><b>15.3.1</b> Enrutamiento interno - Vector de distancias</a></li>
+<li class="chapter" data-level="" data-path="enrutamiento.html"><a href="enrutamiento.html#rip"><i class="fa fa-check"></i>RIP</a></li>
+<li class="chapter" data-level="15.3.2" data-path="enrutamiento.html"><a href="enrutamiento.html#enrutamiento-interno---estado-de-enlace"><i class="fa fa-check"></i><b>15.3.2</b> Enrutamiento interno - Estado de enlace</a></li>
+<li class="chapter" data-level="" data-path="enrutamiento.html"><a href="enrutamiento.html#ospf"><i class="fa fa-check"></i>OSPF</a></li>
+</ul></li>
+<li class="chapter" data-level="15.4" data-path="enrutamiento.html"><a href="enrutamiento.html#protocolos-de-enrutamiento-externo"><i class="fa fa-check"></i><b>15.4</b> Protocolos de enrutamiento externo</a>
+<ul>
+<li class="chapter" data-level="15.4.1" data-path="enrutamiento.html"><a href="enrutamiento.html#bgp.-caracteruxedsticas-generales"><i class="fa fa-check"></i><b>15.4.1</b> BGP. Características generales</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="problemas-4.html"><a href="problemas-4.html"><i class="fa fa-check"></i><b>16</b> Problemas</a></li>
+<li class="chapter" data-level="17" data-path="introducción-4.html"><a href="introducción-4.html"><i class="fa fa-check"></i><b>17</b> Introducción</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="introducción-4.html"><a href="introducción-4.html#comunicación-mediante-sockets"><i class="fa fa-check"></i><b>17.1</b> Comunicación mediante Sockets</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="udp-user-datagram-protocol.html"><a href="udp-user-datagram-protocol.html"><i class="fa fa-check"></i><b>18</b> UDP (<em>User Datagram Protocol</em>)</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="udp-user-datagram-protocol.html"><a href="udp-user-datagram-protocol.html#formato-del-datagrama-udp"><i class="fa fa-check"></i><b>18.1</b> Formato del datagrama UDP</a></li>
+<li class="chapter" data-level="18.2" data-path="udp-user-datagram-protocol.html"><a href="udp-user-datagram-protocol.html#análisis-de-un-datagrama-udp"><i class="fa fa-check"></i><b>18.2</b> Análisis de un datagrama UDP</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="tcp-transmission-control-protocol.html"><a href="tcp-transmission-control-protocol.html"><i class="fa fa-check"></i><b>19</b> TCP (<em>Transmission Control Protocol</em>)</a>
+<ul>
+<li class="chapter" data-level="19.1" data-path="tcp-transmission-control-protocol.html"><a href="tcp-transmission-control-protocol.html#formato-del-segmento-tcp"><i class="fa fa-check"></i><b>19.1</b> Formato del segmento TCP</a></li>
+<li class="chapter" data-level="19.2" data-path="tcp-transmission-control-protocol.html"><a href="tcp-transmission-control-protocol.html#análisis-de-un-segmento-tcp"><i class="fa fa-check"></i><b>19.2</b> Análisis de un segmento TCP</a></li>
+<li class="chapter" data-level="19.3" data-path="tcp-transmission-control-protocol.html"><a href="tcp-transmission-control-protocol.html#establecimiento-y-liberación-de-una-conexión"><i class="fa fa-check"></i><b>19.3</b> Establecimiento y liberación de una conexión</a></li>
+<li class="chapter" data-level="19.4" data-path="tcp-transmission-control-protocol.html"><a href="tcp-transmission-control-protocol.html#control-de-errores-1"><i class="fa fa-check"></i><b>19.4</b> Control de errores</a></li>
+<li class="chapter" data-level="19.5" data-path="tcp-transmission-control-protocol.html"><a href="tcp-transmission-control-protocol.html#control-de-flujo"><i class="fa fa-check"></i><b>19.5</b> Control de flujo</a></li>
+<li class="chapter" data-level="19.6" data-path="tcp-transmission-control-protocol.html"><a href="tcp-transmission-control-protocol.html#control-de-congestión"><i class="fa fa-check"></i><b>19.6</b> Control de congestión</a>
+<ul>
+<li class="chapter" data-level="19.6.1" data-path="tcp-transmission-control-protocol.html"><a href="tcp-transmission-control-protocol.html#arranque-lento-slow-start-y-prevención-de-congestión-congestion-avoidance"><i class="fa fa-check"></i><b>19.6.1</b> Arranque lento (<em>Slow start</em>) y prevención de congestión (<em>Congestion avoidance</em>)</a></li>
+<li class="chapter" data-level="19.6.2" data-path="tcp-transmission-control-protocol.html"><a href="tcp-transmission-control-protocol.html#retransmisión-rápida-fast-retransmission-y-recuperación-rápida-fast-recovery"><i class="fa fa-check"></i><b>19.6.2</b> Retransmisión rápida (<em>fast retransmission</em>) y recuperación rápida (<em>fast recovery</em>)</a></li>
+<li class="chapter" data-level="19.6.3" data-path="tcp-transmission-control-protocol.html"><a href="tcp-transmission-control-protocol.html#otros-mecanismos-de-control-de-congestión-en-tcp"><i class="fa fa-check"></i><b>19.6.3</b> Otros mecanismos de control de congestión en TCP</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="problemas-5.html"><a href="problemas-5.html"><i class="fa fa-check"></i><b>20</b> Problemas</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Redes de Computadoras</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="problemas-4" class="section level1 hasAnchor" number="16">
+<h1><span class="header-section-number">Capítulo 16</span> Problemas<a href="problemas-4.html#problemas-4" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div class="Ejercicios">
+<p>Durante el proceso de encaminamiento de datagramas en un enrutador,
+¿Cuál(es) de las siguientes afirmaciones es(son) correcta(s)?</p>
+<ul>
+<li><p>Se modifica el campo TTL incrementándolo en 1</p></li>
+<li><p>Se modifica el campo TTL decrementándolo en 1</p></li>
+<li><p>Se recalcula el campo FCS (<em>checksum</em>)</p></li>
+<li><p>Se cambia la dirección IP de origen por la de la interfaz de salida</p></li>
+<li><p>Se cambia la dirección IP de destino por la de la interfaz de salida</p></li>
+<li><p>Se mantienen las direcciones IP de origen y destino</p></li>
+</ul>
+<p>Asigne los nombres faltantes en la figura, que representa la
+clasificación típica de las familias de protocolos de enrutamiento (para
+redes fijas).</p>
+<div class="center">
+<div class="float">
+<img src="figuras/c5/ejerc52.jpg" alt="image" />
+<div class="figcaption">image</div>
+</div>
+</div>
+<p>Tras configurar una red (en la que no se ha intercambiado ningún
+mensaje), la computadora A quiere comunicarse con B y para ello manda
+una trama de difusión ARP. Tras recibir la res-pues-ta de B, le envía un
+mensaje. Ahora B debe responder a A. ¿Necesita B mandar a su vez una
+trama de difusión ARP?</p>
+<p>Justifique muy brevemente su respuesta.</p>
+<p>Cierta empresa necesita alrededor de <span class="math inline">\(2,000\)</span> direcciones IP. Le fueron
+asignadas un conjunto de direcciones de red contiguas a partir de la
+dirección 194.108.168.0.</p>
+<ul>
+<li><p>¿Cuántas direcciones de red le fueron otorgadas?<br />
+</p></li>
+<li><p>Utilizando CIDR, ¿qué dirección de red se anuncia?</p></li>
+</ul>
+<p>Se le proporciona la dirección de red 172.80.0.0 y se le solicita dar
+soporte al máximo número de subredes posible sabiendo que en cada una se
+tendrán como máximo 460 dispositivos conectados. ¿Cuál es la máscara de
+red más apropiada para esta situación?</p>
+<ul>
+<li><p>255.255.255.192</p></li>
+<li><p>255.255.0.0</p></li>
+<li><p>255.255.192.0</p></li>
+<li><p>255.255.254.0</p></li>
+<li><p>Ninguna de las anteriores</p></li>
+</ul>
+<p>Para un administrador de un Sistema Autónomo, ¿qué diferencia hay entre
+un protocolo de enrutamiento IGP y uno EGP</p>
+<p>Proporcione un ejemplo de protocolo IGP y uno de EGP</p>
+<p>Seleccione las respuestas correctas.</p>
+<ul>
+<li><p>Generalmente, el cálculo de la ruta más corta en OSPF se hace con</p>
+<ul>
+<li><p>Bellman-ford algorithm</p></li>
+<li><p>Routing information protocol</p></li>
+<li><p>Dijkstra?s algorithm</p></li>
+<li><p>Distance vector routing</p></li>
+</ul></li>
+<li><p>¿Cuál es el orden correcto en que se ejecutan las siguientes
+operaciones en OSPF:</p>
+<ol style="list-style-type: decimal">
+<li><p>Emisión de paquetes Hello</p></li>
+<li><p>Propagación de información link-state y construcción de tablas
+de enrutamiento</p></li>
+<li><p>Establecer adyacencias y sincronización de la base de datos</p>
+<ul>
+<li><p>1-2-3</p></li>
+<li><p>1-3-2</p></li>
+<li><p>3-2-1</p></li>
+<li><p>2-1-3</p></li>
+</ul></li>
+</ol></li>
+<li><p>¿Qué protocolo utiliza OSPF para descubrir vecinos?</p>
+<ul>
+<li><p>Link state protocol</p></li>
+<li><p>Error-correction protocol</p></li>
+<li><p>Routing information protocol</p></li>
+<li><p>Hello protocol</p></li>
+</ul></li>
+</ul>
+<p>¿Qué es BGP-4 y en qué se diferencia de otros protocolos de ruteo?</p>
+</div>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="enrutamiento.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="introducción-4.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/04-CapaRed.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdown_RedesComputadoras.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
