@@ -429,7 +429,7 @@ trama.</p>
 recibido. El complemento a unos de la suma en el receptor debe ser cero;
 de lo contrario, se tiene la certeza de que la trama tuvo un error y
 debe ser descartada.</p>
-<p>En la figura <a href="capl2.html#fig:checksum">3.4</a> se muestra un ejemplo del cálculo de checksum
+<p>En la tabla de la figura <a href="capl2.html#fig:checksum">3.4</a> se muestra un ejemplo del cálculo de checksum
 para el mensaje “Hola” en el transmisor, y la verificación en el
 receptor.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:checksum"></span>
@@ -512,7 +512,16 @@ Figura 3.6: <em>Registro de corrimientos para el Generador <span class="math inl
 <p>En el transmisor los flip-flops se inicializan con cero. La secuencia de
 datos <span class="math inline">\(D\)</span> se introduce al registro de corrimientos y se envía por el
 canal. Al final, el patrón que queda en el registro de corrimientos
-corresponde al remanente y es el que se envía junto con la secuencia.</p>
+corresponde al remanente y es el que se envía junto con la secuencia.
+La tabla de la figura <a href="capl2.html#fig:crc2">3.7</a> se muestra un ejemplo de cómo se van modificando
+los flip-flops del circuito de la figura <a href="capl2.html#fig:crccto">3.6</a> para el mensaje <strong>101101</strong>.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:crc2"></span>
+<img src="tablas/crc.jpg" alt="*Ejemplo de ejecución de CRC para un generador $G(x) = x^3+x^1+1$. aplicado al mensaje 101101*" width="50%" />
+<p class="caption">
+Figura 3.7: <em>Ejemplo de ejecución de CRC para un generador <span class="math inline">\(G(x) = x^3+x^1+1\)</span>. aplicado al mensaje 101101</em>
+</p>
+</div>
+<p>En cada renglón se muestra el nuevo estado de los flip-flops aplicando los bits del mensaje uno a uno por cada pulso de reloj. FF0 corresponde al bit menos significativo y FF2 al más significativo. Observe que al mensaje (en la 2a columna) se le han agregado tres bits en cero al final. Estos bits se sustituyen por los resultantes en el circuito.</p>
 <p>En el receptor, el registro también se inicializa con cero; la trama se
 introduce al registro bit a bit, incluyendo los bits de redundancia. Al
 final, si no hubo error en la trama, los flip-flops del registro deben
@@ -646,7 +655,7 @@ de cero, indica qué bit es el incorrecto y se puede corregir
 automáticamente. Una observación: para determinar la posición del
 bit en decimal, se debe invertir el orden de los bits.</p></li>
 </ol>
-<p>La figura <a href="capl2.html#fig:ejhamming">3.7</a> muestra un ejemplo de cómo se calculan los
+<p>La figura <a href="capl2.html#fig:ejhamming">3.8</a> muestra un ejemplo de cómo se calculan los
 bits de redundancia al transmitir un mensaje con tres palabras de 6 bits
 cada una (pasos 1 a 4). Por ejemplo, el bit de verificación en la
 posición 2 se calcula con la paridad non de los bits de datos en las
@@ -659,7 +668,7 @@ los calculados, se obtiene la posición del bit erróneo en cada palabra.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:ejhamming"></span>
 <img src="figuras/c2/ejhamming.JPG" alt="*Ejemplo para calcular los bits de verificación utilizando códigos de hamming.*" width="99%" />
 <p class="caption">
-Figura 3.7: <em>Ejemplo para calcular los bits de verificación utilizando códigos de hamming.</em>
+Figura 3.8: <em>Ejemplo para calcular los bits de verificación utilizando códigos de hamming.</em>
 </p>
 </div>
 </div>
@@ -682,7 +691,7 @@ presentamos los conceptos básicos.</p>
 <div id="protocolo-stop-and-wait" class="section level3 hasAnchor" number="3.3.1">
 <h3><span class="header-section-number">3.3.1</span> Protocolo Stop and Wait<a href="capl2.html#protocolo-stop-and-wait" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>El principio de operación del protocolo Stop and Wait (parada y espera),
-también llamado Send and Wait, se muestra en la figura <a href="capl2.html#fig:stopw1">3.8</a>. A
+también llamado Send and Wait, se muestra en la figura <a href="capl2.html#fig:stopw1">3.9</a>. A
 la izquierda se encuentra el transmisor. La capa superior (en este caso,
 la capa de red) solicita transmitir un datagrama. La capa de enlace de
 datos calcula la secuencia de verificación de integridad (con un
@@ -705,7 +714,7 @@ recibido el acuse, la trama se reenvía automáticamente (ARQ).</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:stopw1"></span>
 <img src="figuras/c2/stopw1.jpg" alt="*Protocolo Stop and Wait. Una trama dañada.*" width="95%" />
 <p class="caption">
-Figura 3.8: <em>Protocolo Stop and Wait. Una trama dañada.</em>
+Figura 3.9: <em>Protocolo Stop and Wait. Una trama dañada.</em>
 </p>
 </div>
 <p>Si la trama llega incorrecta, el receptor podría enviar un acuse
@@ -716,11 +725,11 @@ active el temporizador. Sin embargo, su uso es poco común pues se
 argumenta que aumenta mucho la complejidad de los protocolos y ésta no
 se justifica si los errores son relativamente raros.</p>
 <p>Es posible que la trama llegó correctamente pero su acuse se dañó o se
-perdió, como se muestra en la figura <a href="capl2.html#fig:stopw2">3.9</a> (la figura está simplificada para mayor claridad). En ese caso, al agotarse el temporizador, el emisor enviará nuevamente la trama, pero para el receptor esta es una trama duplicada que debe descartarse.</p>
+perdió, como se muestra en la figura <a href="capl2.html#fig:stopw2">3.10</a> (la figura está simplificada para mayor claridad). En ese caso, al agotarse el temporizador, el emisor enviará nuevamente la trama, pero para el receptor esta es una trama duplicada que debe descartarse.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:stopw2"></span>
 <img src="figuras/c2/stopw2.jpg" alt="*Acuse de recibo dañado.*" width="40%" />
 <p class="caption">
-Figura 3.9: <em>Acuse de recibo dañado.</em>
+Figura 3.10: <em>Acuse de recibo dañado.</em>
 </p>
 </div>
 </div>
@@ -732,7 +741,7 @@ llamado <strong>Número de Secuencia</strong>. Como solamente hay una trama en
 tránsito (es decir, en camino del emisor al receptor) y no se libera
 otra hasta no recibir su acuse, el número de secuencia puede ser de un
 solo bit en el envío de las tramas y de sus acuses de recibo.</p>
-<p>En la figura <a href="capl2.html#fig:bitalternado">3.10</a> se observa la operación del protocolo de
+<p>En la figura <a href="capl2.html#fig:bitalternado">3.11</a> se observa la operación del protocolo de
 bit alternado. El cronograma se coloca de forma horizontal para ahorrar
 espacio. Se observa cómo se van alternando los números de secuencia 0
 y 1. Con el fin de hacer más clara la asignación de números de
@@ -742,7 +751,7 @@ ACK en naranja.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:bitalternado"></span>
 <img src="figuras/c2/bitalternado.jpg" alt="*Protocolo de bit alternado.*" width="95%" />
 <p class="caption">
-Figura 3.10: <em>Protocolo de bit alternado.</em>
+Figura 3.11: <em>Protocolo de bit alternado.</em>
 </p>
 </div>
 <p>La figura muestra cómo el protocolo se recupera automáticamente (ARQ)
@@ -756,12 +765,12 @@ acuse de recibo.</p>
 <p>Es muy importante que el valor de los temporizadores esté bien ajustado.
 Si el temporizador es muy corto, se reenviarán tramas innecesariamente,
 como se muestra en la imagen izquierda de la
-figura <a href="capl2.html#fig:timer">3.11</a>, mientras que si es muy largo (imagen derecha), se pierde mucho tiempo en retransmitir la trama. En ambos casos, el desempeño de la red (un término que definiremos formalmente más adelante), se degrada
+figura <a href="capl2.html#fig:timer">3.12</a>, mientras que si es muy largo (imagen derecha), se pierde mucho tiempo en retransmitir la trama. En ambos casos, el desempeño de la red (un término que definiremos formalmente más adelante), se degrada
 severamente.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:timer"></span>
 <img src="figuras/c2/timer.jpg" alt="*Efecto de temporizadores mal ajustados.*" width="98%" />
 <p class="caption">
-Figura 3.11: <em>Efecto de temporizadores mal ajustados.</em>
+Figura 3.12: <em>Efecto de temporizadores mal ajustados.</em>
 </p>
 </div>
 <p>El valor ideal del temporizador es ligeramente superior al retardo de
@@ -796,11 +805,11 @@ sección nos limitaremos a presentar los conceptos básicos</em>.</p>
 permitir que varias tramas sean transmitidas mientras se espera el acuse
 de recibo. El emisor puede transmitir las tramas que se encuentran dentro de un
 rango o “ventana”, como la mostrada en azul en la
-figura <a href="capl2.html#fig:slidingw">3.12</a>.</p>
+figura <a href="capl2.html#fig:slidingw">3.13</a>.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:slidingw"></span>
 <img src="figuras/c2/slidingw.jpg" alt="*Ventana deslizante en el transmisor.*" width="98%" />
 <p class="caption">
-Figura 3.12: <em>Ventana deslizante en el transmisor.</em>
+Figura 3.13: <em>Ventana deslizante en el transmisor.</em>
 </p>
 </div>
 <p>Con cada trama enviada, la ventana se “cierra” una posición. En nuestra
@@ -813,18 +822,18 @@ a la 6, ampliando su tamaño en uno. Así es como la ventana se va
 <p>El tamaño de la ventana depende de muchos factores que, lamentablemente,
 no podremos analizar por ahora. El tamaño de la ventana determina los
 números de secuencia que, como en el protocolo del bit alternado, pueden
-ser reutilizados. En la figura <a href="capl2.html#fig:slidingw">3.12</a>, el tamaño de la ventana es de 8 tramas (y por consiguiente, el campo que identifica al número de trama, es de 3 bits).</p>
+ser reutilizados. En la figura <a href="capl2.html#fig:slidingw">3.13</a>, el tamaño de la ventana es de 8 tramas (y por consiguiente, el campo que identifica al número de trama, es de 3 bits).</p>
 <p>En estricto sentido, las variantes más sencillas de esta familia de
 protocolos no requiere de una ventana del lado del receptor. Sin
 embargo, es muy común que ésta se implemente como un buffer en el que se
 almacenan temporalmente las tramas hasta que puedan ser entregadas a la
 capa superior<a href="#fn17" class="footnote-ref" id="fnref17"><sup>17</sup></a>. Por ello, en las figuras de esta sección estaremos
 mostrando ventanas tanto en el transmisor como en el receptor.</p>
-<p>En la figura <a href="capl2.html#fig:opsw1">3.13</a> se ejemplifica la operación de este protocolo con un tamaño de ventana de cuatro tramas.</p>
+<p>En la figura <a href="capl2.html#fig:opsw1">3.14</a> se ejemplifica la operación de este protocolo con un tamaño de ventana de cuatro tramas.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:opsw1"></span>
 <img src="figuras/c2/opsw1.jpg" alt="*Dinámica del protocolo de ventanas deslizantes.*" width="95%" />
 <p class="caption">
-Figura 3.13: <em>Dinámica del protocolo de ventanas deslizantes.</em>
+Figura 3.14: <em>Dinámica del protocolo de ventanas deslizantes.</em>
 </p>
 </div>
 <ul>
